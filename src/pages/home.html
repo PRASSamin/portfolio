@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/public/css/style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="shortcut icon" href="/src/assets/favicon/favicon.svg" type="image/x-icon">
+    <title>Portfolio</title>
+  </head>
+  <body class="pras-bg">
+    <div id="cv-check">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+      <div>
+        <h1>CV Not Uploaded Yet</h1>
+      </div>
+    </div>
+
+    <section class="nav_area">
+      <div class="top-nav container pt-5 mx-auto pras-black">
+        <a href="./home.html">
+          <img class="pras-logo" src="/src/assets/images/logo-b.svg" alt="" srcset="" />
+        </a>
+        <ul class="menu-items pras-mtext">
+          <a href="./home.html">
+            <li class="active">Home</li>
+          </a>
+          <a href="/src/pages/underconstruction.html">
+            <li>Projects</li>
+          </a>
+          <a target="_blank" href="https://github.com/PRASSamin">
+            <li>Github</li>
+          </a>
+          <a href="/src/pages/underconstruction.html">
+            <li>Blogs</li>
+          </a>
+          <a href="/src/pages/underconstruction.html">
+            <li>about</li>
+          </a>
+        </ul>
+      </div>
+
+      <div class="container mx-auto nav-content flex">
+        <div class="flex my-self srLeft">
+          <h1 class="pras-mtext">PRAS Samin</h1>
+          <h2 class="pras-mtext">Developer</h2>
+          <p class="pras-subtext">
+            Proficient in web development and Flutter, I specialize in creating
+            dynamic and user-friendly applications. With a keen eye for detail
+            and a passion for innovation, I aim to deliver seamless experiences
+            across platforms, combining cutting-edge technology with intuitive
+            design.
+          </p>
+          <div class="download-btn" id="download-btn">
+            <button class=" pras-d-button">DOWNLOAD CV</button>
+          </div>
+        </div>
+        <div class="social srRight">
+          <button id="switchDark"><i id="switchIcon" class="fa-solid fa-moon fa-2x"></i></button>
+          <a
+            title="Instagram"
+            href="https://www.instagram.com/imprassamin/"
+            target="_blank"
+          >
+            <i class="pras-social-icon fa-brands fa-instagram"></i>
+          </a>
+          <a title="X" href="https://twitter.com/prassamin78" target="_blank">
+            <i class="pras-social-icon fa-brands fa-x-twitter"></i>
+          </a>
+          <a title="DEV" href="https://dev.to/prassamin" target="_blank">
+            <i class="pras-social-icon fa-brands fa-dev"></i>
+          </a>
+          <a title="Github" href="https://github.com/PRASSamin" target="_blank">
+            <i class="pras-social-icon fa-brands fa-github"></i>
+          </a>
+          <a
+            title="Linkedin"
+            href="https://www.linkedin.com/in/pras-samin-826421270/"
+            target="_blank"
+          >
+            <i class="pras-social-icon fa-brands fa-linkedin"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+    <main>
+      <section class="container mx-auto srr">
+        <div class="flex flex-col serv-title">
+          <h1 class="pras-mtext">Our services</h1>
+          <p class="pras-subtext">
+            Discover our suite of services tailored to your needs. From
+            consultations to solutions, we're here to elevate your experience
+          </p>
+        </div>
+        <div class="services flex">
+          <div class="web pras-s-border">
+            <i class="pras-mtext fa fa-code"></i>
+            <h1 class="pras-mtext">Web development</h1>
+            <p class="pras-subtext">
+              Transforming visions into digital reality, our web development
+              service crafts seamless online experiences tailored to your
+              brand's identity and audience. Harness the power of cutting-edge
+              technologies to stand out in the digital landscape.
+            </p>
+          </div>
+          <div class="flutter pras-s-border">
+            <img class="pras-logo" src="/src/assets/images/flutter.svg" alt="Flutter" srcset="" />
+            <h1 class="pras-mtext">Flutter development</h1>
+            <p class="pras-subtext">
+              Empowering cross-platform innovation, our Flutter development
+              service crafts dynamic mobile experiences that seamlessly engage
+              users across iOS and Android. Unlock the full potential of your
+              app ideas with our expertise in cutting-edge technologies.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="container mx-auto srr">
+        <div class="pro-title flex items-center">
+          <h1 class="pras-mtext">Projects</h1>
+          <a href="#">
+            <h2 class="pras-allpro-border pras-subtext">View all Projects</h2>
+          </a>
+        </div>
+        <div class="flex flex-wrap projects justify-between">
+          <a href="https://github.com/PRASSamin/PRAS-Recipe-Realm" target="_blank" class="w-1/4 p-3 proj">
+            <div>
+              <img src="/src/assets/images/recipe-realm.jpg" alt="" srcset="" />
+              <div class="dark-mask"></div>
+            </div>
+            <div class="proj-text">
+              <h2 class="pras-subtext">flutter app</h2>
+              <h1 class="pras-mtext">Recipe Realm</h1>
+            </div>
+          </a>
+          <a href="https://github.com/PRASSamin/PRAS-Weather-App" target="_blank" class="w-1/4 p-3 proj">
+            <div>
+              <img src="/src/assets/images/pras-weather.jpg" alt="" srcset="" />
+            </div>
+            <div class="proj-text">
+              <h2 class="pras-subtext">flutter app</h2>
+              <h1 class="pras-mtext">PRAS Weather</h1>
+            </div>
+          </a>
+          <a href="https://github.com/PRASSamin/PRAS-Spectrum-Theme" target="_blank" class="w-1/4 p-3 proj">
+            <div>
+              <img src="/src/assets/images/spectrum-theme.png" alt="" srcset="" />
+            </div>
+            <div class="proj-text">
+              <h2 class="pras-subtext">vscode extension</h2>
+              <h1 class="pras-mtext">Spectrum Theme</h1>
+            </div>
+          </a>
+          <a href="https://github.com/PRASSamin/PRAS-Video-Downloader" target="_blank" class="w-1/4 p-3 proj">
+            <div>
+              <img src="/src/assets/images/PRAS-Downloader.jpg" alt="" srcset="" />
+            </div>
+            <div class="proj-text">
+              <h2 class="pras-subtext">website</h2>
+              <h1 class="pras-mtext">PRAS Downloader</h1>
+            </div>
+          </a>
+        </div>
+      </section>
+      <section class="">
+        <div class="expContainer">
+          <div
+            class="srr experience flex container mx-auto justify-center py-36"
+          >
+            <div class="myexp flex items-center mx-auto">
+              <h1 class="pras-mtext">4</h1>
+              <div class="flex flex-col ml-3">
+                <h2 class="pras-subtext">YEARS OF</h2>
+                <h2 class="pras-subtext">EXPERIENCE</h2>
+              </div>
+            </div>
+            <div class="projcomp flex items-center mx-auto">
+              <h1 class="pras-mtext">200+</h1>
+              <div class="flex flex-col ml-3">
+                <h2 class="pras-subtext">PROJECTS</h2>
+                <h2 class="pras-subtext">completed</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div class="blogtitle container mx-auto flex flex-col py-36">
+          <div class="srr">
+            <h1 class="text-center text-6xl font-bold mb-3 pras-mtext">Latest News</h1>
+            <p class="text-center mb-24 text-lg pras-subtext">
+              Explore our latest insights and updates, offering valuable
+              perspectives on diverse subjects.
+            </p>
+          </div>
+          <div class="srr  flex flex-col">
+            <div class=" flex gap-5 blogs">
+              <div class="w-1/3 blog">
+                <div class="relative">
+                  <a
+                    href="https://twitter.com/prassamin78/status/1767459815876686098"
+                    target="_blank"
+                  >
+                    <img
+                      class="rounded-t-2xl"
+                      src="https://pbs.twimg.com/media/GIdHODPbAAAnCB1?format=jpg&name=medium"
+                      alt="Thumbnail"
+                    />
+                    <div
+                      class="absolute top-0 left-0 w-full h-full pras-mask opacity-95"
+                    ></div>
+                    <div
+                      class="mx-6 pb-6 absolute top-0 left-0 w-full h-full flex flex-col items-start justify-end pras-black"
+                    >
+                      <h2 class="text-lg uppercase pras-subtext">
+                        Twitter / Mar 12, 2024
+                      </h2>
+                      <h1 class="text-3xl font-bold pras-mtext">AI Generate Photo</h1>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div class="w-1/3 blog">
+                <div class="relative">
+                  <a
+                    href="https://twitter.com/prassamin78/status/1767459815876686098"
+                    target="_blank"
+                  >
+                    <img
+                      class="rounded-t-2xl"
+                      src="https://pbs.twimg.com/media/GIdHODPbAAAnCB1?format=jpg&name=medium"
+                      alt="Thumbnail"
+                    />
+                    <div
+                      class="absolute top-0 left-0 w-full h-full pras-mask opacity-95"
+                    ></div>
+                    <div
+                      class="mx-6 pb-6 absolute top-0 left-0 w-full h-full flex flex-col items-start justify-end pras-black"
+                    >
+                      <h2 class="text-lg uppercase pras-subtext">
+                        Twitter / Mar 12, 2024
+                      </h2>
+                      <h1 class="text-3xl font-bold pras-mtext">AI Generate Photo</h1>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div class="w-1/3 blog">
+                <div class="relative">
+                  <a
+                    href="https://twitter.com/prassamin78/status/1767459815876686098"
+                    target="_blank"
+                  >
+                    <img
+                      class="rounded-t-2xl"
+                      src="https://pbs.twimg.com/media/GIdHODPbAAAnCB1?format=jpg&name=medium"
+                      alt="Thumbnail"
+                    />
+                    <div
+                      class="absolute top-0 left-0 w-full h-full pras-mask opacity-95"
+                    ></div>
+                    <div
+                      class=" mx-6 pb-6 absolute top-0 left-0 w-full h-full flex flex-col items-start justify-end pras-black"
+                    >
+                      <h2 class="text-lg uppercase pras-subtext">
+                        Twitter / Mar 12, 2024
+                      </h2>
+                      <h1 class="text-3xl font-bold pras-mtext">AI Generate Photo</h1>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="mt-20 mx-auto">
+              <a
+                href="#"
+                class="pras-blog-button uppercase px-8 py-3 rounded-lg blog-btn"
+                ><button>View all blogs</button></a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav">
+      <section class="bnav-top pras-nav-b">
+        <div class="pt-24 pb-16 container flex mx-auto gap-28">
+          <div class="c-1 w-1/3 flex flex-col justify-start items-start">
+            <a href="./home.html">
+              <img
+                class="w-40 object-cover mb-8 pras-logo"
+                src="/src/assets/images/logo-b.svg"
+                alt="PRAS LOGO"
+              />
+            </a>
+            <p class="pras-mtext text-lg font-medium pras-gray leading-8">
+              Embark on a journey through my digital universe. Uncover
+              innovative projects, creative experiments, and solutions that
+              redefine the digital landscape. Let's code the future together!
+            </p>
+          </div>
+          <div class="c-2 w-1/3 flex flex-col justify-center items-center">
+            <ul
+              class="pras-mtext uppercase leading-9 text-lg font-medium flex flex-col pras-gray"
+            >
+              <li>
+                <a href="./home.html" class="active">Home</a>
+              </li>
+              <li>
+                <a href="/src/pages/underconstruction.html">Projects</a>
+              </li>
+              <li>
+                <a href="/src/pages/underconstruction.html">Blogs</a>
+              </li>
+              <li>
+                <a href="/src/pages/underconstruction.html">About</a>
+              </li>
+              <li>
+                <a
+                  href="mailto:prassamin@gmail.com?subject=From%20Portfolio%3A%20"
+                >
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="c-3 w-1/3 flex flex-col justify-center items-center gap-8">
+            <p class=" pras-mtext text-center leading-8 text-lg font-medium pras-gray">
+              Connect with me for collaboration or a chat. Let's explore
+              together!
+            </p>
+            <a href="mailto:prassamin@gmail.com?subject=From%20Portfolio%3A%20">
+              <p class="email pras-mtext">prassamin@gmail.com</p>
+            </a>
+          </div>
+        </div>
+      </section>
+      <section class="bnav-bottom pt-3 pb-2">
+        <div class="container mx-auto">
+          <div class="flex items-center bnav-b-content justify-between">
+            <div class="gap-10 flex">
+              <a
+                title="Instagram"
+                href="https://www.instagram.com/imprassamin/"
+                target="_blank"
+              >
+                <i class="pras-bottom-icon fa-brands fa-instagram"></i>
+              </a>
+              <a
+                title="X"
+                href="https://twitter.com/prassamin78"
+                target="_blank"
+              >
+                <i class="pras-bottom-icon fa-brands fa-x-twitter"></i>
+              </a>
+              <a title="DEV" href="https://dev.to/prassamin" target="_blank">
+                <i class="pras-bottom-icon fa-brands fa-dev"></i>
+              </a>
+              <a
+                title="Github"
+                href="https://github.com/PRASSamin"
+                target="_blank"
+              >
+                <i class="pras-bottom-icon fa-brands fa-github"></i>
+              </a>
+              <a
+                title="Linkedin"
+                href="https://www.linkedin.com/in/pras-samin-826421270/"
+                target="_blank"
+              >
+                <i class="pras-bottom-icon fa-brands fa-linkedin"></i>
+              </a>
+              <a
+                title="Medium"
+                href="https://www.facebook.com/yourprassamin/"
+                target="_blank"
+              >
+                <i class="pras-bottom-icon fa-brands fa-facebook"></i>
+              </a>
+            </div>
+            <h1 class="copyrighttxt pras-subtext">
+              ©2024 <a href="./home.html">PRAS.</a> All rights reserved.
+            </h1>
+          </div>
+        </div>
+      </section>
+    </nav>
+
+    <script src="/src/public/js/script.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="/src/public/js/theme.js"></script>
+
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"
+      integrity="sha512-GWzVrcGlo0TxTRvz9ttioyYJ+Wwk9Ck0G81D+eO63BaqHaJ3YZX9wuqjwgfcV/MrB2PhaVX9DkYVhbFpStnqpQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script>
+        ScrollReveal().reveal(".srr", {
+        delay: 300, 
+        distance: "50px", 
+        duration: 600,
+        easing: "ease-in-out",
+        origin: "bottom",
+        reset: false,
+      });
+
+        ScrollReveal().reveal(".srLeft", {
+        delay: 300, 
+        distance: "50px", 
+        duration: 600,
+        easing: "ease-in-out", 
+        origin: "left", 
+        reset: false,
+      });
+
+        ScrollReveal().reveal(".srRight", {
+        delay: 300,
+        distance: "50px", 
+        duration: 600, 
+        easing: "ease-in-out",
+        origin: "right", 
+        reset: false,
+      });
+
+
+      
+
+
+    </script>
+
+  </body>
+</html>

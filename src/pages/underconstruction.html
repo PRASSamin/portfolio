@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Error</title>
+    <link
+    href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/public/css/style.css" />
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+    />
+    <link rel="shortcut icon" href="/src/assets/favicon/error.png" type="image/x-icon">
+  </head>
+  
+  <style>
+    *{
+      user-select: none;
+    }
+
+    ul {
+      display: flex;
+      gap: 50px;
+      
+      li {
+        font-size: 20px;
+        text-transform: uppercase;
+      }
+    }
+    
+    .mContainer {
+      background: var(--bgImg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 100vh;
+      
+      img {
+        height: 30px;
+      }
+    }
+    
+    .NavContent {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      
+      .my-self {
+        flex-direction: column;
+        justify-content: center;
+      }
+      
+      img {
+        height: 70%;
+        margin-top: 15rem;
+      }
+      
+      h1 {
+        font-size: 90px;
+        font-weight: 800;
+        line-height: 80px;
+      }
+    }
+
+
+    @media only screen and (max-width: 768px) {
+      .pras-logo {
+        display: none;
+      }
+
+      .mContainer{
+        ul{
+          margin-right: 25px;
+          margin-left: 100px;
+          
+        }
+      }
+      .NavContent {
+        width: 100%;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        margin-top: 6rem;
+
+      .my-self {
+        flex-direction: column;
+        justify-content: center;
+      }
+      
+      img {
+        width: 100%;
+        height: auto;
+        margin-top: -5rem;}
+
+        h2{
+          font-size: 23px;
+          margin: 0px 25px;
+          padding: 0;
+          line-height: 20px;
+        }
+        
+        h1 {
+          font-size: 45px;
+          font-weight: 800;
+          line-height: 80px;
+          margin: 0px 25px;
+          margin: 0px 25px;
+      }
+      button{
+        margin: 0px 25px;
+
+      }
+
+      .w-1\/2{
+        width: 100%;
+      }
+    }
+  }
+
+    @media only screen and (min-width: 769px) and (max-width: 1024px) {
+
+
+      *{
+        overflow: hidden;
+      }
+
+      .pras-logo {
+        margin-left: 25px;
+      }
+
+      .mContainer{
+        ul{
+          margin-right: 25px;
+          margin-left: 100px;
+          
+        }
+      }
+      .NavContent {
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        margin-top: 6rem;
+
+      .my-self {
+        flex-direction: column;
+        justify-content: center;
+      }
+      
+      .srRight {
+        align-items: center;
+
+      }
+      
+      img {
+        width: 90%;
+        height: auto;
+        margin-top: -0rem;
+      }
+
+        h2{
+          font-size: 30px;
+          margin: 0px 25px;
+          padding: 0;
+          line-height: 50px;
+        }
+        
+        h1 {
+          font-size: 70px;
+          font-weight: 800;
+          line-height: 80px;
+          margin: 0px 25px;
+          margin-bottom: 15px;
+      }
+      button{
+        margin: 0px 25px;
+
+      }
+
+      .w-1\/2{
+        width: 100%;
+      }
+
+    }
+  }
+
+  @media only screen and (min-width: 1025px) and (max-width: 1440px) {
+
+    *{
+        overflow: hidden;
+      }
+
+      .pras-logo {
+        margin-left: 25px;
+      }
+
+      .mContainer{
+        ul{
+          margin-right: 25px;
+          margin-left: 100px;
+          
+        }
+      }
+      .NavContent {
+        flex-direction: row;
+        justify-content: start;
+        align-items: start;
+        margin-top: 6rem;
+
+      .my-self {
+        flex-direction: column;
+        justify-content: center;
+      }
+      
+      .srRight {
+        align-items: center;
+
+      }
+      
+      img {
+        width:80%;
+        height: auto;
+        margin-top: 10rem;
+      }
+
+        h2{
+          font-size: 25px;
+          margin: 0px 25px;
+          padding: 0;
+          line-height: 50px;
+        }
+        
+        h1 {
+          font-size: 55px;
+          font-weight: 800;
+          line-height: 80px;
+          margin: 0px 25px;
+          margin-bottom: 15px;
+      }
+      button{
+        margin: 0px 25px;
+        padding: 10px 35px;
+        border-radius: 10px;
+
+      }
+
+      .w-1\/2{
+        width: 100%;
+      }
+
+    }
+
+  }
+    </style>
+  <body>
+    <div class="mContainer pras-mtext">
+      <div class="container mx-auto pt-5 flex justify-between">
+        <a href="">
+          <img class="pras-logo" src="/src/assets/images/logo-b.svg" alt="" srcset="" />
+        </a>
+        <button id="switchDark">
+          <i id="switchIcon" class="fa-solid fa-moon fa-2x"></i>
+        </button>
+        <ul>
+          <a href="/src/pages/home.html">
+            <li>Home</li>
+          </a>
+          <a target="_blank" href="https://github.com/PRASSamin">
+            <li>Github</li>
+          </a>
+        </ul>
+      </div>
+      <div>
+        <div
+        class="NavContent container mx-auto flex-column items-start justify-start flex"
+        >
+        <div class="srLeft mb-72 w-1/2 flex my-self flex-col items-start">
+          <h2 class="uppercase text-3xl font-medium pb-3">
+            Webpage Is Under
+          </h2>
+          <h1 class="uppercase">Construction</h1>
+          <a href="/src/pages/home.html"
+          ><button
+          class="bg-black text-white py-3 px-16 rounded-xl text-lg font-bold mt-10 pras-d-button"
+          >
+          Home
+        </button></a
+        >
+      </div>
+      <div class="srRight w-1/2 flex my-self flex-col items-end">
+        <img src="/src/assets/images/webdevelopment.png" alt="" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/src/public/js/theme.js"></script>
+<script src="https://unpkg.com/scrollreveal"></script>
+
+<script>
+  ScrollReveal().reveal(".srLeft", {
+    delay: 300,
+    distance: "50px",
+    duration: 600,
+    easing: "ease-in-out",
+    origin: "left",
+    reset: false,
+  });
+  
+  ScrollReveal().reveal(".srRight", {
+    delay: 300,
+    distance: "50px",
+    duration: 600,
+    easing: "ease-in-out",
+    origin: "right",
+    reset: false,
+  });
+  
+  </script>
+  </body>
+  </html>
+  
