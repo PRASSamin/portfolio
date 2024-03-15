@@ -140,7 +140,7 @@ body {
   --blog-button-hover: #ffffff;
   --gtop: rgba(245, 245, 241, 0);
   --gbottom: rgb(212, 212, 212);
-  --bgImg: url(/src/);
+  --bgImg: url(/images/white-bg.jpg);
   --pras-logo: brightness(0) saturate(100%) invert(0%) sepia(100%) saturate(0%)
     hue-rotate(21deg) brightness(97%) contrast(103%);
   --blog-g-top: rgba(1, 3, 20, 0);

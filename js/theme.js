@@ -37,7 +37,7 @@ function applyTheme(theme) {
         document.documentElement.style.setProperty('--bottom-icon-hover', 'rgb(255, 255, 255)');
         document.documentElement.style.setProperty('--blog-button', '#fff');
         document.documentElement.style.setProperty('--blog-button-hover', '#ffffff');
-        document.documentElement.style.setProperty('--bgImg', 'url(/src/assets/images/dark-bg.jpg)');
+        document.documentElement.style.setProperty('--bgImg', 'url(/images/dark-bg.jpg)');
         document.documentElement.style.setProperty('--gtop', 'rgba(245, 245, 241, 0)');
         document.documentElement.style.setProperty('--gbottom', 'rgba(245, 245, 241, 0)');
         document.documentElement.style.setProperty('--pras-logo', 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7454%) hue-rotate(22deg) brightness(101%) contrast(86%)');
@@ -68,7 +68,7 @@ function applyTheme(theme) {
         document.documentElement.style.setProperty('--bottom-icon-hover', '#000');
         document.documentElement.style.setProperty('--blog-button', '#000');
         document.documentElement.style.setProperty('--blog-button-hover', '#ffffff');
-        document.documentElement.style.setProperty('--bgImg', 'url(/src/assets/images/white-bg.jpg)');
+        document.documentElement.style.setProperty('--bgImg', 'url(/images/white-bg.jpg)');
         document.documentElement.style.setProperty('--gtop', 'rgba(245, 245, 241, 0)');
         document.documentElement.style.setProperty('--gbottom', 'rgb(212, 212, 212)');
         document.documentElement.style.setProperty('--pras-logo', 'brightness(0) saturate(100%) invert(0%) sepia(100%) saturate(0%) hue-rotate(21deg) brightness(97%) contrast(103%)');

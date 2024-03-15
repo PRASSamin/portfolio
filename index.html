@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/src/public/css/style.css" />
+    <link rel="stylesheet" href="/css/style.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
@@ -15,7 +15,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="shortcut icon" href="/src/assets/favicon/favicon.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="/images/favicon.svg" type="image/x-icon" />
     <title>Portfolio</title>
   </head>
   <body class="pras-bg">
@@ -28,23 +28,23 @@
 
     <section class="nav_area">
       <div class="top-nav container pt-5 mx-auto pras-black">
-        <a href="./home.html">
-          <img class="pras-logo" src="/src/assets/images/logo-b.svg" alt="" srcset="" />
+        <a href="/index.html">
+          <img class="pras-logo" src="images/logo-b.svg" alt="" srcset="" />
         </a>
         <ul class="menu-items pras-mtext">
-          <a href="./home.html">
+          <a href="/index.html">
             <li class="active">Home</li>
           </a>
-          <a href="/src/pages/underconstruction.html">
+          <a href="/pages/underconstruction.html">
             <li>Projects</li>
           </a>
           <a target="_blank" href="https://github.com/PRASSamin">
             <li>Github</li>
           </a>
-          <a href="/src/pages/underconstruction.html">
+          <a href="/pages/underconstruction.html">
             <li>Blogs</li>
           </a>
-          <a href="/src/pages/underconstruction.html">
+          <a href="/pages/underconstruction.html">
             <li>about</li>
           </a>
         </ul>
@@ -62,11 +62,13 @@
             design.
           </p>
           <div class="download-btn" id="download-btn">
-            <button class=" pras-d-button">DOWNLOAD CV</button>
+            <button class="pras-d-button">DOWNLOAD CV</button>
           </div>
         </div>
         <div class="social srRight">
-          <button id="switchDark"><i id="switchIcon" class="fa-solid fa-moon fa-2x"></i></button>
+          <button id="switchDark">
+            <i id="switchIcon" class="fa-solid fa-moon fa-2x"></i>
+          </button>
           <a
             title="Instagram"
             href="https://www.instagram.com/imprassamin/"
@@ -114,7 +116,12 @@
             </p>
           </div>
           <div class="flutter pras-s-border">
-            <img class="pras-logo" src="/src/assets/images/flutter.svg" alt="Flutter" srcset="" />
+            <img
+              class="pras-logo"
+              src="/images/flutter.svg"
+              alt="Flutter"
+              srcset=""
+            />
             <h1 class="pras-mtext">Flutter development</h1>
             <p class="pras-subtext">
               Empowering cross-platform innovation, our Flutter development
@@ -129,14 +136,18 @@
       <section class="container mx-auto srr">
         <div class="pro-title flex items-center">
           <h1 class="pras-mtext">Projects</h1>
-          <a href="/src/pages/underconstruction.html">
+          <a href="/pages/underconstruction.html">
             <h2 class="pras-allpro-border pras-subtext">View all Projects</h2>
           </a>
         </div>
         <div class="flex flex-wrap projects justify-between">
-          <a href="https://github.com/PRASSamin/PRAS-Recipe-Realm" target="_blank" class="w-1/4 p-3 proj">
+          <a
+            href="https://github.com/PRASSamin/PRAS-Recipe-Realm"
+            target="_blank"
+            class="w-1/4 p-3 proj"
+          >
             <div>
-              <img src="/src/assets/images/recipe-realm.jpg" alt="" srcset="" />
+              <img src="/images/recipe-realm.jpg" alt="" srcset="" />
               <div class="dark-mask"></div>
             </div>
             <div class="proj-text">
@@ -144,27 +155,39 @@
               <h1 class="pras-mtext">Recipe Realm</h1>
             </div>
           </a>
-          <a href="https://github.com/PRASSamin/PRAS-Weather-App" target="_blank" class="w-1/4 p-3 proj">
+          <a
+            href="https://github.com/PRASSamin/PRAS-Weather-App"
+            target="_blank"
+            class="w-1/4 p-3 proj"
+          >
             <div>
-              <img src="/src/assets/images/pras-weather.jpg" alt="" srcset="" />
+              <img src="/images/pras-weather.jpg" alt="" srcset="" />
             </div>
             <div class="proj-text">
               <h2 class="pras-subtext">flutter app</h2>
               <h1 class="pras-mtext">PRAS Weather</h1>
             </div>
           </a>
-          <a href="https://github.com/PRASSamin/PRAS-Spectrum-Theme" target="_blank" class="w-1/4 p-3 proj">
+          <a
+            href="https://github.com/PRASSamin/PRAS-Spectrum-Theme"
+            target="_blank"
+            class="w-1/4 p-3 proj"
+          >
             <div>
-              <img src="/src/assets/images/spectrum-theme.png" alt="" srcset="" />
+              <img src="/images/spectrum-theme.png" alt="" srcset="" />
             </div>
             <div class="proj-text">
               <h2 class="pras-subtext">vscode extension</h2>
               <h1 class="pras-mtext">Spectrum Theme</h1>
             </div>
           </a>
-          <a href="https://github.com/PRASSamin/PRAS-Video-Downloader" target="_blank" class="w-1/4 p-3 proj">
+          <a
+            href="https://github.com/PRASSamin/PRAS-Video-Downloader"
+            target="_blank"
+            class="w-1/4 p-3 proj"
+          >
             <div>
-              <img src="/src/assets/images/PRAS-Downloader.jpg" alt="" srcset="" />
+              <img src="/images/PRAS-Downloader.jpg" alt="" srcset="" />
             </div>
             <div class="proj-text">
               <h2 class="pras-subtext">website</h2>
@@ -198,14 +221,16 @@
       <section>
         <div class="blogtitle container mx-auto flex flex-col py-36">
           <div class="srr">
-            <h1 class="text-center text-6xl font-bold mb-3 pras-mtext">Latest News</h1>
+            <h1 class="text-center text-6xl font-bold mb-3 pras-mtext">
+              Latest News
+            </h1>
             <p class="text-center mb-24 text-lg pras-subtext">
               Explore our latest insights and updates, offering valuable
               perspectives on diverse subjects.
             </p>
           </div>
-          <div class="srr  flex flex-col">
-            <div class=" flex gap-5 blogs">
+          <div class="srr flex flex-col">
+            <div class="flex gap-5 blogs">
               <div class="w-1/3 blog">
                 <div class="relative">
                   <a
@@ -226,7 +251,9 @@
                       <h2 class="text-lg uppercase pras-subtext">
                         Twitter / Mar 12, 2024
                       </h2>
-                      <h1 class="text-3xl font-bold pras-mtext">AI Generate Photo</h1>
+                      <h1 class="text-3xl font-bold pras-mtext">
+                        AI Generate Photo
+                      </h1>
                     </div>
                   </a>
                 </div>
@@ -251,7 +278,9 @@
                       <h2 class="text-lg uppercase pras-subtext">
                         Twitter / Mar 12, 2024
                       </h2>
-                      <h1 class="text-3xl font-bold pras-mtext">AI Generate Photo</h1>
+                      <h1 class="text-3xl font-bold pras-mtext">
+                        AI Generate Photo
+                      </h1>
                     </div>
                   </a>
                 </div>
@@ -271,12 +300,14 @@
                       class="absolute top-0 left-0 w-full h-full pras-mask opacity-95"
                     ></div>
                     <div
-                      class=" mx-6 pb-6 absolute top-0 left-0 w-full h-full flex flex-col items-start justify-end pras-black"
+                      class="mx-6 pb-6 absolute top-0 left-0 w-full h-full flex flex-col items-start justify-end pras-black"
                     >
                       <h2 class="text-lg uppercase pras-subtext">
                         Twitter / Mar 12, 2024
                       </h2>
-                      <h1 class="text-3xl font-bold pras-mtext">AI Generate Photo</h1>
+                      <h1 class="text-3xl font-bold pras-mtext">
+                        AI Generate Photo
+                      </h1>
                     </div>
                   </a>
                 </div>
@@ -284,7 +315,7 @@
             </div>
             <div class="mt-20 mx-auto">
               <a
-                href="/src/pages/underconstruction.html"
+                href="/pages/underconstruction.html"
                 class="pras-blog-button uppercase px-8 py-3 rounded-lg blog-btn"
                 ><button>View all blogs</button></a
               >
@@ -298,10 +329,10 @@
       <section class="bnav-top pras-nav-b">
         <div class="pt-24 pb-16 container flex mx-auto gap-28">
           <div class="c-1 w-1/3 flex flex-col justify-start items-start">
-            <a href="./home.html">
+            <a href="/index.html">
               <img
                 class="w-40 object-cover mb-8 pras-logo"
-                src="/src/assets/images/logo-b.svg"
+                src="/images/logo-b.svg"
                 alt="PRAS LOGO"
               />
             </a>
@@ -316,16 +347,16 @@
               class="pras-mtext uppercase leading-9 text-lg font-medium flex flex-col pras-gray"
             >
               <li>
-                <a href="./home.html" class="active">Home</a>
+                <a href="/index.html" class="active">Home</a>
               </li>
               <li>
-                <a href="/src/pages/underconstruction.html">Projects</a>
+                <a href="/pages/underconstruction.html">Projects</a>
               </li>
               <li>
-                <a href="/src/pages/underconstruction.html">Blogs</a>
+                <a href="/pages/underconstruction.html">Blogs</a>
               </li>
               <li>
-                <a href="/src/pages/underconstruction.html">About</a>
+                <a href="/pages/underconstruction.html">About</a>
               </li>
               <li>
                 <a
@@ -336,8 +367,12 @@
               </li>
             </ul>
           </div>
-          <div class="c-3 w-1/3 flex flex-col justify-center items-center gap-8">
-            <p class=" pras-mtext text-center leading-8 text-lg font-medium pras-gray">
+          <div
+            class="c-3 w-1/3 flex flex-col justify-center items-center gap-8"
+          >
+            <p
+              class="pras-mtext text-center leading-8 text-lg font-medium pras-gray"
+            >
               Connect with me for collaboration or a chat. Let's explore
               together!
             </p>
@@ -391,17 +426,16 @@
               </a>
             </div>
             <h1 class="copyrighttxt pras-subtext">
-              ©2024 <a href="./home.html">PRAS.</a> All rights reserved.
+              ©2024 <a href="/index.html">PRAS.</a> All rights reserved.
             </h1>
           </div>
         </div>
       </section>
     </nav>
 
-    <script src="/src/public/js/script.js"></script>
+    <script src="/js/script.js"></script>
     <script src="https://unpkg.com/scrollreveal"></script>
-    <script src="/src/public/js/theme.js"></script>
-
+    <script src="/js/theme.js"></script>
 
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"
@@ -411,38 +445,32 @@
     ></script>
 
     <script>
-        ScrollReveal().reveal(".srr", {
-        delay: 300, 
-        distance: "50px", 
+      ScrollReveal().reveal(".srr", {
+        delay: 300,
+        distance: "50px",
         duration: 600,
         easing: "ease-in-out",
         origin: "bottom",
         reset: false,
       });
 
-        ScrollReveal().reveal(".srLeft", {
-        delay: 300, 
-        distance: "50px", 
-        duration: 600,
-        easing: "ease-in-out", 
-        origin: "left", 
-        reset: false,
-      });
-
-        ScrollReveal().reveal(".srRight", {
+      ScrollReveal().reveal(".srLeft", {
         delay: 300,
-        distance: "50px", 
-        duration: 600, 
+        distance: "50px",
+        duration: 600,
         easing: "ease-in-out",
-        origin: "right", 
+        origin: "left",
         reset: false,
       });
 
-
-      
-
-
+      ScrollReveal().reveal(".srRight", {
+        delay: 300,
+        distance: "50px",
+        duration: 600,
+        easing: "ease-in-out",
+        origin: "right",
+        reset: false,
+      });
     </script>
-
   </body>
 </html>
