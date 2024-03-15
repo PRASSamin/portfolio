@@ -12,4 +12,4 @@ downloadBtn.addEventListener('click', async (event) => {
     setTimeout(() => {
         cvCheack.style.opacity = "0";
     }, 1000);
-} )
+} ) 

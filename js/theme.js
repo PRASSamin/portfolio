@@ -53,7 +53,7 @@ function applyTheme(theme) {
 
         console.log('light mode');
         document.documentElement.setAttribute('data-theme', 'light');
-        document.documentElement.style.setProperty('--mtext', '#000');
+        document.documentElement.style.setProperty('--mtext', '#000'); 
         document.documentElement.style.setProperty('--bg', '#ffffff');
         document.documentElement.style.setProperty('--s-border', '#000');
         document.documentElement.style.setProperty('--allpro-b', '#444444');

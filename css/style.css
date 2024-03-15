@@ -146,7 +146,7 @@ body {
   --blog-g-top: rgba(1, 3, 20, 0);
   --blog-g-bottom: rgba(255, 255, 255, 1);
   --bottom-border: #000;
-}
+} 
 
 ::-webkit-scrollbar {
   background-color: transparent;
