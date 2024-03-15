@@ -153,6 +153,11 @@ body {
   width: 0px;
 }
 
+.mContainer{
+  background: var(--bgImg);
+
+}
+
 .nav_area {
   background: var(--bgImg);
   background-repeat: no-repeat;
