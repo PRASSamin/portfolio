@@ -39,7 +39,7 @@ function applyTheme(theme) {
         document.documentElement.style.setProperty('--blog-button-hover', '#ffffff');
         document.documentElement.style.setProperty('--bgImg', 'url(../images/dark-bg.svg)');
         document.documentElement.style.setProperty('--gtop', 'rgba(245, 245, 241, 0)');
-        document.documentElement.style.setProperty('--gbottom', 'rgba(245, 245, 241, 0)');
+        document.documentElement.style.setProperty('--gbottom', '#f5f5f11c');
         document.documentElement.style.setProperty('--pras-logo', 'brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7454%) hue-rotate(22deg) brightness(101%) contrast(86%)');
         document.documentElement.style.setProperty('--blog-g-top', 'rgba(1,3,20,0)');
         document.documentElement.style.setProperty('--blog-g-bottom', 'rgba(0,0,0,1)');
