@@ -12,8 +12,8 @@ Proficient in web development and Flutter, I specialize in creating dynamic and 
 Feel free to reach out to me for any inquiries or collaboration opportunities.
 
 - **Email**: prassamin@gmail.com
-- **LinkedIn**: (https://www.linkedin.com/in/pras-samin-826421270/)
-- **GitHub**: (https://github.com/PRASSamin)
+- **LinkedIn**: [LinkedIn](https://www.linkedin.com/in/pras-samin-826421270/)
+- **GitHub**: [GitHub](https://github.com/PRASSamin)
 
 ## License
 
