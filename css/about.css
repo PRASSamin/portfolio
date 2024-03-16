@@ -1,0 +1,469 @@
+:root {
+  --circle-diameter: 20rem;
+  --pras-htext: #ff6700;
+  --pras-h-border: #833807;
+  --pras-soc-bad-text: #fff;
+  --pras-himg: brightness(0) saturate(100%) invert(47%) sepia(42%)
+    saturate(6216%) hue-rotate(4deg) brightness(108%) contrast(101%);
+  --shahtml: #ffa78487;
+  --shacss: #71d8fa8c;
+  --shajs: #ffff747e;
+  --shanode: #d5ff7b8a;
+  --shaflut: #939aff7d;
+  --shareact: #93e4ff77;
+}
+
+.pras-htext {
+  color: var(--pras-htext);
+}
+
+.pras-hbg {
+  background-color: var(--pras-htext);
+  border: 5px solid var(--pras-h-border);
+  color: var(--pras-soc-bad-text);
+}
+
+.pras-himg {
+  filter: var(--pras-himg);
+}
+
+.progress {
+  position: relative;
+  margin: auto auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+  margin-bottom: 80px;
+}
+
+.bar-overflow {
+  position: relative;
+  overflow: hidden;
+  width: var(--circle-diameter);
+  height: 10rem;
+}
+
+.bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--circle-diameter);
+  height: var(--circle-diameter);
+  border-radius: 50%;
+  --rotation: calc(45deg + calc(var(--percent) * 1.8 * 1deg));
+  transform: rotate(var(--rotation));
+  transition: transform var(--animation-duration) ease;
+}
+
+.info {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem;
+  min-width: 7.5rem;
+  font-weight: bold;
+}
+
+.info h2 {
+  font-size: 2rem;
+}
+
+.info p {
+  font-size: 1rem;
+}
+
+.number {
+  position: relative;
+  z-index: 10;
+}
+
+.number:before {
+  min-width: 5ch;
+  content: attr(data-number);
+}
+
+.fa-sun,
+.fa-moon {
+  font-size: 23px;
+}
+
+.NavContent {
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  .my-self {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  h1 {
+    font-size: 90px;
+    font-weight: 800;
+    line-height: 80px;
+  }
+}
+
+.projects-section {
+  .py-24 {
+    padding-top: 40px;
+    padding-bottom: 15rem;
+  }
+}
+
+.ExpertiseContainer2 {
+  display: none !important;
+}
+
+@media only screen and (max-width: 768px) {
+  .connectivity-container {
+    padding: 0px 25px !important;
+    padding-bottom: 10rem !important;
+  }
+
+  .connectivity-hub-section {
+    h1 {
+      text-align: center;
+    }
+  }
+
+  .skill-title {
+    margin-bottom: 6rem !important;
+  }
+
+  .qua-container {
+    padding: 0px 25px;
+    padding-bottom: 50px !important;
+  }
+
+  .skill-container {
+    padding: 80px 25px !important;
+  }
+
+  .ExpertiseContainer2 {
+    display: flex !important;
+    padding-top: 0px !important;
+  }
+
+  .ExpertiseContainer1 {
+    display: none !important;
+  }
+
+  .NavContent {
+    .my-self {
+      h1 {
+        font-size: 50px;
+      }
+    }
+  }
+
+  .w-1\/3 {
+    width: 100% !important;
+    padding: 10px;
+  }
+
+  .projects-section {
+    .py-24 {
+      padding-top: 30px;
+      padding-bottom: 20rem;
+    }
+  }
+
+  .projects {
+    h1 {
+      font-size: 25px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      width: 100%;
+    }
+    h2 {
+      font-size: 14px;
+    }
+  }
+
+  .IntroContainer {
+    flex-direction: column !important;
+    padding-top: 40px !important;
+    padding-bottom: 4rem !important;
+
+    .fa-whatsapp,
+    .fa-envelope,
+    .fa-user,
+    .fa-discord,
+    .fa-gamepad,
+    .fa-music,
+    .fa-film {
+      font-size: 18px;
+    }
+
+    .font-semibold,
+    .fev-text {
+      font-size: 14px;
+    }
+
+    .text1,
+    .interest-text {
+      font-size: 16px;
+    }
+    .text2 {
+      font-size: 26px;
+    }
+
+    .dettetxt {
+      font-size: 14px;
+      line-height: 23px;
+    }
+
+    .AboutText {
+      padding: 0px 25px !important;
+    }
+
+    .gap-10 {
+      row-gap: 15px !important;
+    }
+
+    .w-1\/2 {
+      width: 100% !important;
+    }
+
+    img {
+      display: none;
+    }
+  }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  .top-nav {
+    .pras-logo {
+      display: none;
+    }
+  }
+
+  .connectivity-container {
+    padding: 0px 25px !important;
+    padding-bottom: 10rem !important;
+  }
+
+  .connectivity-hub-section {
+    h1 {
+      text-align: center;
+    }
+  }
+
+  .ExpertiseContainer1 {
+    padding-top: 0px !important;
+  }
+
+  .skill-title {
+    margin-bottom: 8rem !important;
+  }
+
+  .qua-container {
+    padding: 0px 25px;
+    padding-bottom: 50px !important;
+  }
+
+  .skill-container {
+    padding: 80px 25px !important;
+  }
+
+  .NavContent {
+    .my-self {
+      h1 {
+        font-size: 90px;
+      }
+    }
+  }
+
+  .w-1\/3 {
+    width: 50% !important;
+    padding: 10px;
+  }
+
+  .projects-section {
+    .py-24 {
+      padding-top: 30px;
+      padding-bottom: 20rem;
+    }
+  }
+
+  .projects {
+    h1 {
+      font-size: 25px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      width: 100%;
+    }
+    h2 {
+      font-size: 14px;
+    }
+  }
+
+  .IntroContainer {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+}
+
+@media only screen and (min-width: 1025px) and (max-width: 1440px) {
+  .w-1\/3 {
+    width: 33.333333%;
+    padding: 10px;
+  }
+
+  .projects-section {
+    .py-24 {
+      padding-top: 40px;
+      padding-bottom: 15rem;
+    }
+  }
+
+  .projects {
+    h1 {
+      font-size: 35px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      width: 100%;
+    }
+    h2 {
+      font-size: 18px;
+    }
+  }
+}
+
+.icons-sec {
+  font-size: 21px;
+}
+
+#experience .exptext {
+  color: #66fcf1;
+  font-size: 30px;
+  text-align: center;
+}
+
+.barr {
+  background-color: #000000;
+  display: block;
+  height: 4px;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 50px;
+}
+
+.barr span {
+  height: 7px;
+  float: left;
+}
+
+.shadowhtml {
+  box-shadow: 0px 0px 7px 5px var(--shahtml);
+}
+.shadowcss {
+  box-shadow: 0px 0px 7px 5px var(--shacss);
+}
+.shadowjs {
+  box-shadow: 0px 0px 7px 5px var(--shajs);
+}
+.shadownode {
+  box-shadow: 0px 0px 7px 5px var(--shanode);
+}
+.shadowflutter {
+  box-shadow: 0px 0px 7px 5px var(--shaflut);
+}
+.shadowreact {
+  box-shadow: 0px 0px 7px 5px var(--shareact);
+}
+
+.html {
+  width: 0%;
+  animation: html 2s forwards;
+}
+
+.css {
+  width: 0%;
+  animation: css 2s forwards;
+}
+
+.js {
+  width: 0%;
+  animation: js 2s forwards;
+}
+
+.nodejs {
+  width: 0%;
+  animation: nodejs 2s forwards;
+}
+.flutter {
+  width: 0%;
+  animation: flutter 2s forwards;
+}
+.reactjs {
+  width: 0%;
+  animation: reactjs 2s forwards;
+}
+
+@keyframes html {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 96%;
+  }
+}
+
+@keyframes css {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 95%;
+  }
+}
+
+@keyframes js {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 80%;
+  }
+}
+
+@keyframes nodejs {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 80%;
+  }
+}
+
+@keyframes flutter {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 40%;
+  }
+}
+@keyframes reactjs {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 75%;
+  }
+}

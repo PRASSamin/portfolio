@@ -1,24 +1,16 @@
-# PRAS Portfolio Website (v1.0.0)
+# PRAS Portfolio Website (v2.0.0)
 
-Welcome to the v1.0.0 stable version of my portfolio website!
+Welcome to the v2.0.0 stable version of my portfolio website!
 
 ## Overview
 
-This is the first stable release of my portfolio website, showcasing my projects, skills, and experiences. In this version, I've implemented the following features:
+This is the second stable release of my portfolio website, showcasing my projects, skills, and experiences. In this version, I've fixed UI issues and addressed previous faults.
 
-- **Home Page:** The main landing page providing an introduction to myself and an overview of my skills and expertise.
+Stay tuned for more updates!
 
-## Upcoming Features
+## Changelog
 
-In the upcoming v2.0.0 release, I plan to introduce the following pages:
-
-- **About Page:** Providing more detailed information about myself, including my background, education, and interests.
-  
-- **Blog Page:** Featuring articles, tutorials, and insights related to my areas of expertise and interests.
-  
-- **Projects Page:** Showcasing a selection of my projects with detailed descriptions, screenshots, and links to GitHub repositories or live demos.
-
-Stay tuned for the next release!
+For a detailed list of changes in this version, please refer to the [changelog](CHANGELOG.md).
 
 ## Feedback
 

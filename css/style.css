@@ -163,7 +163,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 919px;
+  height: 100vh;
 
   .top-nav {
     display: flex;
@@ -192,7 +192,6 @@ body {
   .nav-content {
     flex-direction: row;
     justify-content: space-between;
-    margin-top: 250px;
     align-items: center;
 
     .my-self {
@@ -749,7 +748,6 @@ a.active {
     }
 
     .nav-content {
-      margin-top: 150px;
 
       .my-self {
         margin-left: 25px;

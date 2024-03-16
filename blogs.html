@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <title>Blogs</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="shortcut icon" href="images/favicon.svg" type="image/x-icon" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <style>
+    .fa-sun,
+    .fa-moon {
+      font-size: 23px;
+    }
+
+    .NavContent {
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+
+      .my-self {
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      h1 {
+        font-size: 90px;
+        font-weight: 800;
+        line-height: 80px;
+      }
+    }
+
+    .blog-section {
+      .py-24 {
+        padding-top: 40px;
+        padding-bottom: 15rem;
+      }
+    }
+
+    @media only screen and (max-width: 768px) {
+      .NavContent {
+        .my-self {
+          h1 {
+            font-size: 50px;
+          }
+        }
+      }
+
+      .w-1\/3 {
+        width: 50%;
+        padding: 10px;
+      }
+
+      .blog-section {
+        .py-24 {
+          padding-top: 20px;
+          padding-bottom: 20rem;
+        }
+      }
+
+      .blogs {
+        margin: 0px 15px;
+
+        h1 {
+          font-size: 25px;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          width: 100%;
+        }
+        h2 {
+          font-size: 14px;
+        }
+      }
+    }
+
+    @media only screen and (min-width: 769px) and (max-width: 1024px) {
+      .top-nav {
+        img {
+          display: none;
+        }
+      }
+
+      .NavContent {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .w-1\/3 {
+        width: 33.333333%;
+        padding: 10px;
+      }
+
+      .blog-section {
+        .py-24 {
+          padding-top: 40px;
+          padding-bottom: 20rem;
+        }
+      }
+
+      .blogs {
+        margin: 0px 15px;
+
+        h1 {
+          font-size: 35px;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          width: 100%;
+        }
+        h2 {
+          font-size: 18px;
+        }
+      }
+    }
+
+    @media only screen and (min-width: 1025px) and (max-width: 1440px) {
+      .w-1\/3 {
+        width: 33.333333%;
+        padding: 10px;
+      }
+
+      .blog-section {
+        .py-24 {
+          padding-top: 40px;
+          padding-bottom: 15rem;
+        }
+      }
+
+      .blogs {
+        margin: 0px 15px;
+
+        h1 {
+          font-size: 35px;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          width: 100%;
+        }
+        h2 {
+          font-size: 18px;
+        }
+      }
+    }
+  </style>
+
+  <body class="pras-bg">
+    <section class="nav_area">
+      <div class="top-nav container pt-5 mx-auto pras-black">
+        <a href="index.html">
+          <img class="pras-logo" src="images/logo-b.svg" alt="" srcset="" />
+        </a>
+        <ul class="menu-items pras-mtext">
+          <a href="index.html">
+            <li>Home</li>
+          </a>
+          <a href="projects.html">
+            <li>Projects</li>
+          </a>
+          <a target="_blank" href="https://github.com/PRASSamin">
+            <li>Github</li>
+          </a>
+          <a href="blogs.html">
+            <li class="active">Blogs</li>
+          </a>
+          <a href="about.html">
+            <li>about</li>
+          </a>
+          <li>
+            <button id="switchDark">
+              <i id="switchIcon" class="fa-1x fa-solid fa-moon"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <div class="w-full h-full flex justify-center items-center">
+        <div class="srr NavContent container mx-auto flex-column flex">
+          <div class="flex my-self flex-col">
+            <h1 class="uppercase pras-mtext">Blogs</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+    <main>
+      <section class="mb-40 mt-5 blog-section">
+        <div class="container mx-auto flex flex-col py-24">
+          <div class="flex flex-wrap blogs justify-between">
+            <div class="w-1/3">
+              <div class="relative">
+                <a
+                  href="https://twitter.com/prassamin78/status/1767459815876686098"
+                  target="_blank"
+                >
+                  <img
+                    class="rounded-t-2xl select-none"
+                    src="https://pbs.twimg.com/media/GIdHODPbAAAnCB1?format=jpg&name=medium"
+                    alt="Thumbnail"
+                  />
+                  <div
+                    class="pt-4 pb-6 top-0 left-0 w-full h-full flex flex-col items-start justify-end text-black"
+                  >
+                    <h2 class="text-lg uppercase pras-subtext">
+                      Twitter / Mar 12, 2024
+                    </h2>
+                    <h1 class="text-3xl pras-mtext font-bold">
+                      AI Generate Photo
+                    </h1>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="w-1/3">
+              <!-- <div class="relative">
+                        <a href="https://twitter.com/prassamin78/status/1767459815876686098" target="_blank">
+                          <img class="rounded-t-2xl" src="https://pbs.twimg.com/media/GIdHODPbAAAnCB1?format=jpg&name=medium" alt="Thumbnail" />
+                          <div class="pt-4 pb-6 top-0 left-0 w-full h-full flex flex-col items-start justify-end text-black">
+                            <h2 class="text-lg uppercase pras-subtext">Twitter / Mar 12, 2024</h2>
+                            <h1 class="text-3xl pras-mtext font-bold">AI Generate Photo</h1>
+                          </div>
+                        </a>
+                      </div> -->
+            </div>
+            <div class="w-1/3">
+              <!-- <div class="relative">
+                        <a href="https://twitter.com/prassamin78/status/1767459815876686098" target="_blank">
+                          <img class="rounded-t-2xl" src="https://pbs.twimg.com/media/GIdHODPbAAAnCB1?format=jpg&name=medium" alt="Thumbnail" />
+                          <div class="pt-4 pb-6 top-0 left-0 w-full h-full flex flex-col items-start justify-end text-black">
+                            <h2 class="text-lg uppercase pras-subtext">Twitter / Mar 12, 2024</h2>
+                            <h1 class="text-3xl pras-mtext font-bold">AI Generate Photo</h1>
+                          </div>
+                        </a>
+                      </div> -->
+            </div>
+            <div class="w-1/3">
+              <!-- <div class="relative">
+                        <a href="https://twitter.com/prassamin78/status/1767459815876686098" target="_blank">
+                          <img class="rounded-t-2xl" src="https://pbs.twimg.com/media/GIdHODPbAAAnCB1?format=jpg&name=medium" alt="Thumbnail" />
+                          <div class="pt-4 pb-6 top-0 left-0 w-full h-full flex flex-col items-start justify-end text-black">
+                            <h2 class="text-lg uppercase pras-subtext">Twitter / Mar 12, 2024</h2>
+                            <h1 class="text-3xl pras-mtext font-bold">AI Generate Photo</h1>
+                          </div>
+                        </a>
+                      </div> -->
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav">
+      <section class="bnav-top pras-nav-b">
+        <div class="pt-24 pb-16 container flex mx-auto gap-28">
+          <div class="c-1 w-1/3 flex flex-col justify-start items-start">
+            <a href="index.html">
+              <img
+                class="w-40 object-cover mb-8 pras-logo"
+                src="images/logo-b.svg"
+                alt="PRAS LOGO"
+              />
+            </a>
+            <p class="pras-mtext text-lg font-medium pras-gray leading-8">
+              Embark on a journey through my digital universe. Uncover
+              innovative projects, creative experiments, and solutions that
+              redefine the digital landscape. Let's code the future together!
+            </p>
+          </div>
+          <div class="c-2 w-1/3 flex flex-col justify-center items-center">
+            <ul
+              class="pras-mtext uppercase leading-9 text-lg font-normal flex flex-col pras-gray"
+            >
+              <li>
+                <a href="index.html">Home</a>
+              </li>
+              <li>
+                <a href="projects.html">Projects</a>
+              </li>
+              <li>
+                <a href="blogs.html" class="active">Blogs</a>
+              </li>
+              <li>
+                <a href="projects.html">About</a>
+              </li>
+              <li>
+                <a
+                  href="mailto:prassamin@gmail.com?subject=From%20Portfolio%3A%20"
+                >
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div
+            class="c-3 w-1/3 flex flex-col justify-center items-center gap-8"
+          >
+            <p
+              class="pras-mtext text-center leading-8 text-lg font-medium pras-gray"
+            >
+              Connect with me for collaboration or a chat. Let's explore
+              together!
+            </p>
+            <a href="mailto:prassamin@gmail.com?subject=From%20Portfolio%3A%20">
+              <p class="email pras-mtext">prassamin@gmail.com</p>
+            </a>
+          </div>
+        </div>
+      </section>
+      <section class="bnav-bottom pt-3 pb-2">
+        <div class="container mx-auto">
+          <div class="flex items-center bnav-b-content justify-between">
+            <div class="gap-10 flex">
+              <a
+                title="Instagram"
+                href="https://www.instagram.com/imprassamin/"
+                target="_blank"
+              >
+                <i class="pras-bottom-icon fa-brands fa-instagram"></i>
+              </a>
+              <a
+                title="X"
+                href="https://twitter.com/prassamin78"
+                target="_blank"
+              >
+                <i class="pras-bottom-icon fa-brands fa-x-twitter"></i>
+              </a>
+              <a title="DEV" href="https://dev.to/prassamin" target="_blank">
+                <i class="pras-bottom-icon fa-brands fa-dev"></i>
+              </a>
+              <a
+                title="Github"
+                href="https://github.com/PRASSamin"
+                target="_blank"
+              >
+                <i class="pras-bottom-icon fa-brands fa-github"></i>
+              </a>
+              <a
+                title="Linkedin"
+                href="https://www.linkedin.com/in/pras-samin-826421270/"
+                target="_blank"
+              >
+                <i class="pras-bottom-icon fa-brands fa-linkedin"></i>
+              </a>
+              <a
+                title="Medium"
+                href="https://www.facebook.com/yourprassamin/"
+                target="_blank"
+              >
+                <i class="pras-bottom-icon fa-brands fa-facebook"></i>
+              </a>
+            </div>
+            <h1 class="copyrighttxt pras-subtext">
+              ©2024 <a href="index.html">PRAS.</a> All rights reserved.
+            </h1>
+          </div>
+        </div>
+      </section>
+    </nav>
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="js/theme.js"></script>
+    <script>
+      ScrollReveal().reveal(".srr", {
+        delay: 300,
+        distance: "50px",
+        duration: 600,
+        easing: "ease-in-out",
+        origin: "bottom",
+        reset: false,
+      });
+    </script>
+  </body>
+</html>
