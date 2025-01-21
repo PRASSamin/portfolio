@@ -1,3 +1,30 @@
+import { type User } from "@clerk/nextjs/server";
+import type { Channel, UserResponse, ChannelData } from "stream-chat";
+
+export interface MyUser extends User {
+  publicMetadata: {
+    chatToken?: string;
+    role?: "admin" | "user";
+  };
+} 
+
+export interface StreamChannel extends Channel {
+  data:
+    | (ChannelData & {
+        created_by?:
+          | (UserResponse & {
+              name?: string;
+              image?: string;
+            })
+          | null
+          | undefined;
+      })
+    | undefined;
+  metadata?: {
+    inviteToken: string;
+  };
+}
+
 export type ProjectType = {
   id: number;
   title: string;

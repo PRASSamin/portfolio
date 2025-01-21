@@ -185,3 +185,224 @@
     animation-delay: 0.3s;
   }
 }
+@layer chatTheme {
+  .str-chat {
+    input,
+    textarea {
+      @apply !bg-transparent !text-foreground;
+    }
+
+    .str-chat__channel-header,
+    .str-chat__thread-header,
+    .str-chat__thread-container {
+      @apply !bg-sidebar !text-sidebar-foreground !border-b !border-border/50 !border-x-0 !border-t-0 !border-solid;
+
+      .str-chat__channel-header-info {
+        @apply !text-muted-foreground;
+      }
+
+      .str-chat__close-thread-button svg path {
+        @apply !fill-muted-foreground;
+      }
+    }
+
+    .str-chat-react__modal__inner {
+      @apply !bg-sidebar !text-sidebar-foreground !rounded-lg !shadow-md !py-5;
+
+      .str-chat__edit-message-form-options {
+        @apply !flex !justify-between !w-full;
+      }
+
+      button {
+        @apply !w-full !capitalize !py-2 !rounded;
+
+        &:hover {
+          @apply !bg-muted !font-bold !transition-all !duration-300;
+        }
+      }
+    }
+
+    .str-chat__thread-container .str-chat__message-list-main-panel {
+      @apply !h-full;
+
+      .str-chat__parent-message-li {
+        @apply !border-muted-foreground/50;
+      }
+    }
+
+    .str-chat__list, .str-chat__empty-channel {
+      @apply !bg-sidebar;
+
+      .str-chat__message-bubble {
+        @apply dark:!bg-muted !text-foreground;
+      }
+
+      .str-chat__message--me .str-chat__message-bubble {
+        @apply !bg-[#e0a5ff] dark:!bg-[#3a0085] !text-foreground;
+      }
+
+      .str-chat__message-reaction {
+        @apply !bg-muted !text-foreground;
+      }
+    }
+
+    .str-chat__date-separator-line {
+      @apply !bg-muted-foreground/50;
+    }
+
+    .str-chat__message-attachment-file--item {
+      @apply !bg-transparent !text-foreground;
+      .str-chat__message-attachment-download-icon path {
+        @apply !fill-foreground;
+      }
+    }
+
+    .str-chat__message .str-chat__message-options {
+      .str-chat__message-actions-box-button:hover,
+      .str-chat__message-reply-in-thread-button:hover,
+      .str-chat__message-reactions-button:hover {
+        @apply !bg-muted !text-foreground;
+      }
+
+      .str-chat__message-actions-box-button:active,
+      .str-chat__message-reply-in-thread-button:active,
+      .str-chat__message-reactions-button:active {
+        @apply !bg-[#3a0085] !text-foreground;
+      }
+    }
+
+    .str-chat__list-notifications {
+      @apply !bg-sidebar !m-0 !px-4;
+    }
+
+    .str-chat__avatar-image {
+      @apply !bg-transparent;
+    }
+
+    .str-chat__message-input {
+      @apply !bg-sidebar !text-foreground !px-0;
+
+      .str-chat__attachment-preview-file {
+      @apply !bg-muted !text-foreground !border-none;
+      }
+
+      .str-chat__attachment-preview-delete {
+        @apply !w-5 !aspect-square !top-0 !right-2 !bg-transparent !text-foreground !border-none;
+
+        &:hover {
+          @apply !bg-transparent;
+        }
+      }
+
+      .str-chat__message-textarea-container {
+        @apply !border-border;
+      }
+
+      .str-chat__suggestion-list-container {
+        @apply !bg-muted !text-foreground;
+
+        .str-chat__suggestion-list {
+          .str-chat__suggestion-item--selected {
+            @apply !bg-primary-foreground/50;
+          }
+        }
+      }
+
+      span {
+        @apply !text-foreground;
+      }
+    }
+
+    .str-chat__reaction-selector .str-chat__message-reactions-options {
+      @apply !bg-muted !text-foreground;
+
+      li button {
+        @apply !bg-transparent !text-foreground;
+      }
+
+      .str-chat__message-reaction-emoji div {
+        --str-chat__sprite-image-height: var(--str-chat__stream-emoji-size, 25px) !important;
+      }
+    }
+
+    .str-chat__message-actions-box {
+      @apply !bg-muted !rounded-sm;
+
+      .str-chat__message-actions-list-item-button {
+        @apply !bg-transparent !text-foreground !px-2.5 !py-2;
+
+        &:hover {
+          @apply !bg-primary-foreground/50;
+        }
+      }
+    }
+
+    .str-chat__message--deleted-inner {
+      @apply !bg-muted !text-foreground !opacity-50;
+    }
+
+    .str-chat__unread-messages-separator {
+      @apply !bg-muted !text-foreground;
+    }
+
+    .str-chat__quoted-message-preview-header {
+      @apply !border-t !px-2;
+
+      .str-chat__quoted-message-reply-to-message {
+        @apply !text-left;
+      }
+
+      .str-chat__quoted-message-remove {
+        @apply !flex !items-center !justify-end;
+      }
+    }
+
+    .str-chat__message-text {
+      .str-chat__quoted-message-preview {
+        @apply !opacity-50 !cursor-pointer !transition-all !duration-300;
+
+        &:hover {
+          @apply !opacity-100;
+        }
+      }
+    }
+
+    .str-chat__message--highlighted {
+      @apply dark:!bg-muted !bg-gray-300 !rounded;
+    }
+
+    .str-chat__quoted-message-preview {
+      @apply !w-full;
+
+      .str-chat__avatar {
+        @apply !hidden;
+      }
+
+      .str-chat__quoted-message-bubble {
+        @apply !bg-transparent !text-foreground !p-0;
+      }
+    }
+
+    .str-chat__message-attachment {
+      @apply !p-0;
+      background: transparent !important;
+    }
+
+    .str-chat__gallery-image {
+      aspect-ratio: 1 / 1;
+    }
+
+.str-chat__modal__close-button {
+  @apply !bg-transparent !text-foreground !p-0 !m-0 !w-6 !h-6 !rounded-full !absolute !top-5 !right-5;
+
+  svg {
+    rect {
+      @apply !fill-none;
+    }
+    path {
+      @apply !fill-muted-foreground cursor-pointer;
+    }
+  }
+}
+  }
+}

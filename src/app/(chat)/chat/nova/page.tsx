@@ -1,26 +1,15 @@
-"use client";
-import React, { useState } from "react";
-import LoadingAnimation from "../../components/loader";
+import TalkWithNovaView from "./view";
+import {metatag} from "@/lib/metatag";
 
-const MessagePage = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
-  console.log(isLoaded);
-  return (
-    <div className="relative w-full h-[calc(100vh-64px)]">
-      {!isLoaded && (
-        <div className="fixed bg-black inset-0 z-50 flex justify-center items-center">
-          <LoadingAnimation />
-        </div>
-      )}
-      <iframe
-        className={`w-[calc(100vw+2px)] h-full -translate-x-[1px] -translate-y-[1px] transition-opacity duration-300 ${
-          isLoaded ? "opacity-100" : "opacity-0"
-        }`}
-        src="https://tawk.to/chat/678260b549e2fd8dfe0608af/default"
-        onLoad={() => setIsLoaded(true)}
-      ></iframe>
-    </div>
-  );
+const TalkWithNovaPage = () => {
+    return <TalkWithNovaView />
 };
 
-export default MessagePage;
+export default TalkWithNovaPage;
+
+export const generateMetadata = () => {
+    return metatag({
+        pageTitle: "Talk With Nova | PRAS Samin",
+        robots: "noindex, nofollow",
+    })
+}

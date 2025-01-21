@@ -38,3 +38,11 @@ export const formatDate = (
 
   return format(recentDate, dateFormat);
 };
+
+export const toCapitalize = (str: string) => {
+  const strObj = str.split(" ");
+  for (let i = 0; i < strObj.length; i++) {
+    strObj[i] = strObj[i][0].toUpperCase() + strObj[i].slice(1).toLowerCase();
+  }
+  return strObj.join(" ");
+};

@@ -17,13 +17,14 @@ import { Menu } from "lucide-react";
 import React from "react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { MessageCircleMore } from "lucide-react";
 import { SignedIn, UserButton } from "@clerk/nextjs";
 import { useTheme } from "next-themes";
 import { dark } from "@clerk/themes";
-import UserMenu from "./UserMenu";
+import UserMenu, {Logout} from "./UserMenu";
+import {useClerk} from "@clerk/nextjs";
 
 const ChatNavBar = () => {
+  const { signOut } = useClerk();
   const { theme } = useTheme();
   const pathname = usePathname();
   const navItems = [
@@ -106,10 +107,22 @@ const ChatNavBar = () => {
                 },
                 elements: {
                   rootBox: "hidden lg:flex",
+                  userButtonPopoverActionButton__signOut: "hidden"
                 },
                 baseTheme: theme === "dark" ? dark : undefined,
               }}
-            />
+            >
+              <UserButton.MenuItems>
+                <UserButton.Action
+                    labelIcon={<Logout className={`size-4`} />}
+                    label="Sign out"
+                    onClick={() => {
+                      signOut();
+                      window.location.href = `/signin?redirect_url=${encodeURIComponent(window.location.href)}`;
+                    }}
+                />
+              </UserButton.MenuItems>
+            </UserButton>
           </SignedIn>
 
           <div className="block lg:hidden h-[40px] w-[1px] bg-muted-foreground/50" />
