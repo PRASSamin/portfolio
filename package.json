@@ -44,6 +44,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-lottie": "^1.2.10",
+    "react-markdown": "8.0.7",
     "rehype-document": "^7.0.3",
     "rehype-format": "^5.0.1",
     "rehype-pretty-code": "^0.14.0",

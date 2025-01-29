@@ -24,8 +24,8 @@ export type ChannelHeaderProps = {
 };
 
 type ExtendedStreamChatGenerics = DefaultStreamChatGenerics & {
-  channelType: StreamChannel
-}
+  channelType: StreamChannel;
+};
 
 /**
  * The ChannelHeader component renders some basic information about a Channel.

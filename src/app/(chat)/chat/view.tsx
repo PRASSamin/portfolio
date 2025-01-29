@@ -164,7 +164,7 @@ const ChatPageView = ({ user, admin, apiKey }: Props) => {
 
   if (!client) {
     return (
-      <div className="fixed bg-black inset-0 z-50 flex justify-center items-center">
+      <div className="fixed bg-background inset-0 z-[9999] flex justify-center items-center">
         <LoadingAnimation />
         {isTimeout && (
           <div className="absolute bottom-10 flex flex-col items-center">
