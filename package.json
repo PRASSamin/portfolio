@@ -83,5 +83,8 @@
     "core-js",
     "prisma",
     "sharp"
-  ]
+  ],
+"overrides" {
+"react-markdown": "9.0.3"
+}
 }
