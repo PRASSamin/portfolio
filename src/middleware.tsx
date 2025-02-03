@@ -1,10 +1,17 @@
 import { NextResponse, NextRequest } from "next/server";
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import { maintenanceNotice } from "./config";
 
 async function middleware(request: NextRequest) {
   const headers = new Headers(request.headers);
   const { pathname } = request.nextUrl;
   headers.set("x-current-url", request.nextUrl.href);
+
+  if (maintenanceNotice.enabled) {
+    return NextResponse.rewrite(new URL("/maintenance", request.nextUrl.href), {
+      headers,
+    });
+  }
 
   if (pathname.startsWith("/wa")) {
     if (pathname.split("/").length - 1 > 2) {
