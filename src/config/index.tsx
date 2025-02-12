@@ -11,7 +11,7 @@ interface MaintenanceNotice {
 }
 
 export const maintenanceNotice: MaintenanceNotice = {
-  enabled: ture,
+  enabled: true,
   end: {
     date: "2025-02-20",
     probability: "high",
