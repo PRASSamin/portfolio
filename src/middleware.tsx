@@ -8,9 +8,17 @@ async function middleware(request: NextRequest) {
   headers.set("x-current-url", request.nextUrl.href);
 
   if (maintenanceNotice.enabled) {
-    return NextResponse.rewrite(new URL("/maintenance", request.nextUrl.href), {
-      headers,
-    });
+    const staticMediaRegex =
+      /\.(png|jpg|jpeg|gif|svg|webp|mp4|webm|ogg|mov|avi|wmv)$/i;
+
+    if (!pathname.startsWith("/api") && !staticMediaRegex.test(pathname)) {
+      return NextResponse.rewrite(
+        new URL("/maintenance", request.nextUrl.href),
+        {
+          headers,
+        }
+      );
+    }
   }
 
   if (pathname.startsWith("/wa")) {
