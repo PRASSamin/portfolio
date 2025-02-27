@@ -63,7 +63,7 @@ export async function POST(request: NextRequest) {
     }
 
     const inviteData = {
-      chatToken: vUser.publicMetadata?.chatToken || "",
+      chatToken: client.createToken(vUser.id),
       user: userObj,
       channelId: vUser.id,
     };
