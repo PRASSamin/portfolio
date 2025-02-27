@@ -1,19 +1,16 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useCreateChatClient } from "stream-chat-react";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
-import { MyUser, StreamChannel } from "@/types";
-import { toCapitalize } from "@/lib/utils";
+import { MyUser } from "@/types";
 import { useRouter } from "next/navigation";
-import { encodeToken } from "@/lib/tokenizer";
 import LoadingAnimation from "@/app/(chat)/components/loader";
 import ChatSideBar from "../components/ChatSideBar";
 import { useChat } from "@/app/context/ChatProvider";
 import ChattingArea from "../components/ChattingArea";
 
 import "stream-chat-react/dist/css/v2/index.css";
-import axios from "axios";
 
 type Props = {
   user: MyUser;
@@ -38,77 +35,20 @@ const ChatPageView = ({ user, admin, apiKey }: Props) => {
     userData: userObj,
   });
 
-  // Fetch Channels for Admin
   useEffect(() => {
-    if (!client || admin.id !== user.id) return;
-
-    const fetchChannels = async () => {
-      try {
-        const result: StreamChannel[] = await client.queryChannels({
-          type: "messaging",
-          members: { $in: [admin.id] },
-        });
-        setChannels(result);
-        if (result.length > 0) setActiveChannel(result[0]);
-      } catch (error) {
-        console.error("Error fetching channels:", error);
-      }
-    };
-
-    fetchChannels();
-  }, [client, admin.id, user.id]);
-
-  // Setup Chat for Non-Admin Users
-  useEffect(() => {
-    if (!client || admin.id === user.id) return;
+    if (!client || !user.id) return;
 
     const fetchChannels = async () => {
       try {
         // Check if the user is already in any channels
-        const result = await client.queryChannels({
+        const channels = await client.queryChannels({
           type: "messaging",
           members: { $in: [user.id] },
         });
 
-        if (
-          result.length > 0 &&
-          result.filter((channel) => channel.id === user.id).length > 0
-        ) {
-          setChannels(result);
-          setActiveChannel(result[0]);
-        } else {
-          const inviteData = {
-            chatToken: user.publicMetadata.chatToken,
-            user: {
-              id: user.id,
-              name: `${user.firstName} ${user.lastName}` || "",
-              image: user.imageUrl,
-            },
-            channelId: user.id,
-          };
-
-          // Create global invite url of the channel
-          const inviteToken = encodeToken(inviteData);
-          const inviteDetails = await axios.post("/api/chat/invite", {
-            token: inviteToken,
-          });
-          const inviteId = inviteDetails.data.id;
-
-          // Create a new chat channel
-          const chatChannel: StreamChannel = client.channel(
-            "messaging",
-            user.id,
-            {
-              image: user.imageUrl,
-              name: `${toCapitalize(user?.firstName || "")}'s Inbox`,
-              members: [user.id, admin.id],
-              metadata: {
-                inviteToken: inviteId,
-              },
-            }
-          );
-
-          setActiveChannel(chatChannel);
+        if (channels.length > 0) {
+          setChannels(channels);
+          setActiveChannel(channels[0]);
         }
       } catch (error) {
         console.error("Error fetching or creating channels:", error);
@@ -116,7 +56,7 @@ const ChatPageView = ({ user, admin, apiKey }: Props) => {
     };
 
     fetchChannels();
-  }, [admin, client, user]);
+  }, [client, user?.id]);
 
   // Handle incoming new messages and trigger push notifications
   useEffect(() => {

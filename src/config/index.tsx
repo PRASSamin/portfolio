@@ -11,7 +11,7 @@ interface MaintenanceNotice {
 }
 
 export const maintenanceNotice: MaintenanceNotice = {
-  enabled: true,
+  enabled: false,
   end: {
     date: "2025-02-30",
     probability: "high",
