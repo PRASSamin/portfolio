@@ -23,8 +23,8 @@ export default async function Page() {
 
   return (
     <ChatPageView
-      user={JSON.parse(JSON.stringify(user))}
-      admin={JSON.parse(JSON.stringify(admin))}
+      user={user ? JSON.parse(JSON.stringify(user)) : null}
+      admin={admin ? JSON.parse(JSON.stringify(admin)) : null}
       apiKey={stream_api_key}
     />
   );

@@ -60,8 +60,8 @@ model Blog {
 }
 
 model ChatInvite {
-  id          String   @unique
-  token       String   @unique
+  id          String   @id @default(uuid())
+  token       String
   createdAt   DateTime @default(now()) 
   updatedAt   DateTime @updatedAt
 }

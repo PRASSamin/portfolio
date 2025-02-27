@@ -19,7 +19,7 @@ const BlogsPage: React.FC = async ({}) => {
       orderBy: [{ updatedAt: "desc" }, { createdAt: "desc" }],
     })
   );
-  console.log(blogs);
+
   return (
     <div className="my-8 min-h-[calc(100vh-45px-64px-(32px*2))] w-[calc(100vw-2rem)] lg:container mx-auto flex flex-col gap-10 items-center">
       <div className="flex flex-col gap-1 items-center">

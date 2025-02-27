@@ -61,6 +61,10 @@ const ChatPageView = ({ user, admin, apiKey }: Props) => {
   // Handle incoming new messages and trigger push notifications
   useEffect(() => {
     if (client) {
+      client.on("notification.added_to_channel", (event) => {
+        router.refresh();
+      });
+
       client.on("message.new", (event) => {
         router.refresh();
 

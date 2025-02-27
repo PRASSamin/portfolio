@@ -2,19 +2,16 @@ import { db } from "@/lib/db";
 
 export const InviteTokenGenerator = async (token: string) => {
   try {
-    const inviteId = crypto.randomUUID().replaceAll("-", "").substring(0, 15);
-
-    await db.chatInvite.create({
+    const invite = await db.chatInvite.create({
       data: {
-        id: inviteId,
         token: token,
       },
     });
 
     return {
       success: true,
-      id: inviteId,
-      status: 200,
+      id: invite.id,
+      status: 201,
     };
   } catch (error: any) {
     console.error("Error occurred:", error.message || error);

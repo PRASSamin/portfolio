@@ -27,6 +27,18 @@ export async function POST(request: NextRequest) {
   //   },
   // });
 
+  // Assign username if not present
+  if (!user.username) {
+    const username = user?.id
+      ?.replace("user_", "")
+      ?.replace(/[^a-zA-Z0-9]/g, "");
+    try {
+      client.users.updateUser(user.id, { username });
+    } catch (error) {
+      console.log("Failed to update username:", error);
+    }
+  }
+
   const publicMetadata: Record<string, any> = {
     chatToken: token,
     // novaToken: key,

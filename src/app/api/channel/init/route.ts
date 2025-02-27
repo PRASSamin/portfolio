@@ -33,11 +33,15 @@ export async function POST(request: NextRequest) {
       (u) => u.emailAddresses[0]?.emailAddress !== admin_email
     );
 
-    if (!admin || !vUser || admin.id === vUser.id) {
+    if (!admin || !vUser) {
       return NextResponse.json(
         { message: "Invalid admin or user" },
         { status: 400 }
       );
+    }
+
+    if (admin.id === vUser.id) {
+      return NextResponse.json({ success: true }, { status: 200 });
     }
 
     const userObj = {
@@ -75,8 +79,9 @@ export async function POST(request: NextRequest) {
 
     const channel = client.channel("messaging", vUser.id, {
       image: vUser.imageUrl,
-      name: `${toCapitalize(user?.firstName || "")}'s Inbox`,
-      members: [user.id, admin.id],
+      created_by_id: vUser.id,
+      name: `${toCapitalize(vUser?.firstName || "")}'s Inbox`,
+      members: [vUser.id, admin.id],
       metadata: {
         inviteToken: invId,
       },
