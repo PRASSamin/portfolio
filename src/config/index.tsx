@@ -13,7 +13,7 @@ interface MaintenanceNotice {
 export const maintenanceNotice: MaintenanceNotice = {
   enabled: true,
   end: {
-    date: "2025-02-30",
+    date: "2025-03-10",
     probability: "high",
   },
   message: (
