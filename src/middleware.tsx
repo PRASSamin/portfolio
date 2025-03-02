@@ -36,6 +36,18 @@ async function middleware(request: NextRequest) {
 
 export default clerkMiddleware(async (auth, request) => {
   const isPrivateRoute = createRouteMatcher(["/chat(.*)", "/me(.*)"]);
+  const { pathname } = request.nextUrl;
+
+  if (pathname.startsWith("/chat")) {
+    const userAgent = request.headers.get("user-agent") || "";
+    const isAndroid = /Android/i.test(userAgent);
+
+    if (isAndroid) {
+      const deepLinkPath = pathname.replace(/^\//, ""); 
+      const deepLink = `qubitchat://${deepLinkPath}`;
+      return NextResponse.redirect(deepLink);
+    }
+  }
 
   if (isPrivateRoute(request)) {
     await auth.protect();
