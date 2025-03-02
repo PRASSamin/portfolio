@@ -1,15 +1,15 @@
 import TalkWithNovaView from "./view";
-import {metatag} from "@/lib/metatag";
+import { metatag } from "@/utils/metatag";
 
 const TalkWithNovaPage = () => {
-    return <TalkWithNovaView />
+  return <TalkWithNovaView />;
 };
 
 export default TalkWithNovaPage;
 
 export const generateMetadata = () => {
-    return metatag({
-        pageTitle: "Talk With Nova | PRAS Samin",
-        robots: "noindex, nofollow",
-    })
-}
+  return metatag({
+    pageTitle: "Talk With Nova | PRAS Samin",
+    robots: "noindex, nofollow",
+  });
+};

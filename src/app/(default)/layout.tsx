@@ -2,7 +2,7 @@ import "../globals.css";
 import NavBar from "../components/nav";
 import { Theme } from "../context/ThemeProvider";
 import Footer from "../components/footer";
-import { poppins } from "@/lib/fonts";
+import { poppins } from "@/utils/fonts";
 
 export default async function RootLayout({
   children,

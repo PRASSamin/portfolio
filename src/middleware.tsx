@@ -1,6 +1,7 @@
 import { NextResponse, NextRequest } from "next/server";
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import { maintenanceNotice } from "./config";
+import { getChatAppRoute } from "./utils/getChatAppRoute";
 
 async function middleware(request: NextRequest) {
   const headers = new Headers(request.headers);
@@ -43,7 +44,7 @@ export default clerkMiddleware(async (auth, request) => {
     const isAndroid = /Android/i.test(userAgent);
 
     if (isAndroid) {
-      const deepLinkPath = pathname.replace(/^\//, ""); 
+      const deepLinkPath = getChatAppRoute(pathname).replace(/^\//, ""); 
       const deepLink = `qubitchat://${deepLinkPath}`;
       return NextResponse.redirect(deepLink);
     }

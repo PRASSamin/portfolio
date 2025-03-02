@@ -1,6 +1,5 @@
 import "../globals.css";
-import { Theme } from "../context/ThemeProvider";
-import { poppins } from "@/lib/fonts";
+import { poppins } from "@/utils/fonts";
 
 export default async function RootLayout({
   children,

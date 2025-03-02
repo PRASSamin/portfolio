@@ -1,5 +1,5 @@
-import { db } from "@/lib/db";
-import { BLOGSERIALIZER } from "@/lib/serializers";
+import { db } from "@/utils/db";
+import { BLOGSERIALIZER } from "@/utils/serializers";
 import { BlogType } from "@/types";
 import {
   Card,
@@ -8,10 +8,10 @@ import {
   CardTitle,
   CardFooter,
 } from "@/components/ui/card";
-import { formatDate } from "@/lib/utils";
+import { formatDate } from "@/utils/utils";
 import ExpandableText from "../../components/ReadMore";
 import Link from "next/link";
-import { metatag } from "@/lib/metatag";
+import { metatag } from "@/utils/metatag";
 
 const BlogsPage: React.FC = async ({}) => {
   const blogs: BlogType[] = BLOGSERIALIZER(

@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { cn } from "@/lib/utils";
-import exp from "constants";
+import { cn } from "@/utils/utils";
 
 interface ExpandableTextProps {
   text: string;
@@ -26,20 +25,24 @@ const ExpandableText: React.FC<ExpandableTextProps> = ({
 
   const displayText = isExpanded
     ? text
-    : typeof maxLength === "number" ? `${text.slice(0, maxLength)}${text.length > maxLength ? "..." : ""}` : maxLength === "max" && text;
+    : typeof maxLength === "number"
+    ? `${text.slice(0, maxLength)}${text.length > maxLength ? "..." : ""}`
+    : maxLength === "max" && text;
 
   return (
     <div className={cn(className)}>
       <p>
         {displayText}{" "}
-        {typeof maxLength === "number" && text.length > maxLength && expandable && (
-          <button
-            onClick={toggleExpanded}
-            className="text-purple-500 hover:underline font-medium text-xs"
-          >
-            {isExpanded ? collapseButtonText : expandButtonText}
-          </button>
-        )}
+        {typeof maxLength === "number" &&
+          text.length > maxLength &&
+          expandable && (
+            <button
+              onClick={toggleExpanded}
+              className="text-purple-500 hover:underline font-medium text-xs"
+            >
+              {isExpanded ? collapseButtonText : expandButtonText}
+            </button>
+          )}
       </p>
     </div>
   );

@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { StreamChat } from "stream-chat";
 import { clerkClient } from "@clerk/nextjs/server";
-import { encodeToken } from "@/lib/tokenizer";
+import { encodeToken } from "@/utils/tokenizer";
 import { InviteTokenGenerator } from "../../chat/invite/handlers";
-import { toCapitalize } from "@/lib/utils";
+import { toCapitalize } from "@/utils/utils";
 
 const api_key = process.env.NEXT_STREAM_API_KEY!;
 const api_secret = process.env.NEXT_STREAM_API_SECRET!;

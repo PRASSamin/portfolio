@@ -1,5 +1,5 @@
 import "./globals.css";
-import { poppins } from "@/lib/fonts";
+import { poppins } from "@/utils/fonts";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

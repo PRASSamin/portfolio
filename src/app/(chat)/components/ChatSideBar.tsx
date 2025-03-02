@@ -1,11 +1,9 @@
 "use client";
-import React from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import type { Channel as StreamChannel } from "stream-chat";
 import { MyUser } from "@/types";
-import { useRouter } from "next/navigation";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/utils";
 import { BetterImage } from "@prass/betterimage/components";
 import {
   Sidebar,

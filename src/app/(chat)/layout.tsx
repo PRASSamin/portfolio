@@ -1,10 +1,10 @@
 import "../globals.css";
 import ChatNavBar from "./components/nav";
-export { metadata } from "..//layout";
-import { poppins } from "@/lib/fonts";
+import { poppins } from "@/utils/fonts";
 import { Theme } from "../context/ThemeProvider";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ChatProvider } from "@/app/context/ChatProvider";
+export { metadata } from "..//layout";
 
 export default function ChatLayout({
   children,

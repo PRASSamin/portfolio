@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useClerk } from "@clerk/nextjs";
 import { useTheme } from "next-themes";
 import { dark } from "@clerk/themes";
-import {cn} from "@/lib/utils"
+import { cn } from "@/utils/utils";
 
 export const Gear = () => {
   return (
@@ -22,9 +22,13 @@ export const Gear = () => {
   );
 };
 
-export const Logout = ({className}: {className?: string}) => {
+export const Logout = ({ className }: { className?: string }) => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" className={cn("w-5", className)}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 16 16"
+      className={cn("w-5", className)}
+    >
       <path
         fill="currentColor"
         fillRule="evenodd"
@@ -125,8 +129,10 @@ export default function UserMenu() {
         </button>
         <button
           onClick={() => {
-              signOut();
-              window.location.href = `/signin?redirect_url=${encodeURIComponent(window.location.href)}`;
+            signOut();
+            window.location.href = `/signin?redirect_url=${encodeURIComponent(
+              window.location.href
+            )}`;
           }}
           data-section="sign-out"
           className="flex items-center font-medium text-[0.8125rem] justify-start min-w-0 gap-4 w-full py-[0.7rem] px-5 border-b border-muted-foreground/20 bg-muted hover:bg-[#1f1f23] text-muted-foreground z-10 relative rounded-b-lg"

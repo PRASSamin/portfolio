@@ -1,6 +1,6 @@
 import UserProfileView from "./view";
 import { currentUser } from "@clerk/nextjs/server";
-import { metatag } from "@/lib/metatag";
+import { metatag } from "@/utils/metatag";
 
 export default async function UserProfilePage() {
   return <UserProfileView />;

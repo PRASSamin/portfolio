@@ -1,6 +1,6 @@
 import CountDown from "@/app/components/CountDown";
 import { maintenanceNotice } from "@/config";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/utils";
 
 export default function MaintenancePage() {
   return (

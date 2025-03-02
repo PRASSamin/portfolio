@@ -1,11 +1,11 @@
-import { db } from "@/lib/db";
-import { EXPERIENCESERIALIZER, EDUCATIONSERIALIZER } from "@/lib/serializers";
+import { db } from "@/utils/db";
+import { EXPERIENCESERIALIZER, EDUCATIONSERIALIZER } from "@/utils/serializers";
 import EducationSection from "./components/education";
 import ExperienceSection from "./components/experience";
 import ExpertiseSection from "./components/expertise";
 import SocialSection from "./components/social";
 import AboutMeSection from "./components/aboutme";
-import { metatag } from "@/lib/metatag";
+import { metatag } from "@/utils/metatag";
 
 const AboutPage = async () => {
   const exps = EXPERIENCESERIALIZER(
@@ -29,7 +29,6 @@ const AboutPage = async () => {
 };
 
 export default AboutPage;
-
 
 export const generateMetadata = () => {
   return metatag({

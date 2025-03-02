@@ -1,5 +1,3 @@
-import { Metadata } from "next";
-import React from "react";
 import rehypeFormat from "rehype-format";
 import rehypeStringify from "rehype-stringify";
 import rehypeSlug from "rehype-slug";
@@ -15,10 +13,10 @@ import remarkDeflist from "remark-deflist";
 import supersub from "remark-supersub";
 import { unified } from "unified";
 import { transformerCopyButton } from "@rehype-pretty/transformers";
-import { db } from "@/lib/db";
+import { db } from "@/utils/db";
 import { BlogType } from "@/types";
-import { BLOGSERIALIZER } from "@/lib/serializers";
-import { formatDate } from "@/lib/utils";
+import { BLOGSERIALIZER } from "@/utils/serializers";
+import { formatDate } from "@/utils/utils";
 import {
   Card,
   CardDescription,

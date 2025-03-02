@@ -1,7 +1,7 @@
 import HomeView from "./home/view";
-import { db } from "@/lib/db";
-import { PROJECTSERIALIZER } from "@/lib/serializers";
-import { metatag } from "@/lib/metatag";
+import { db } from "@/utils/db";
+import { PROJECTSERIALIZER } from "@/utils/serializers";
+import { metatag } from "@/utils/metatag";
 
 export default async function Home() {
   const projects = PROJECTSERIALIZER(

@@ -16,7 +16,7 @@ import {
 import { Menu } from "lucide-react";
 import React from "react";
 import { usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/utils";
 import { SignedIn, UserButton } from "@clerk/nextjs";
 import { useTheme } from "next-themes";
 import { dark } from "@clerk/themes";

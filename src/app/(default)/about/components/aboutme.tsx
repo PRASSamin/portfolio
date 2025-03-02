@@ -11,7 +11,7 @@ import {
 import { WhatsApp } from "@mui/icons-material";
 import Link from "next/link";
 import { User } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/utils";
 import ProgrammerAnimation from "../../../components/ProgrammerAnim";
 
 const AboutMeSection = async () => {
@@ -83,13 +83,13 @@ const AboutMeSection = async () => {
       >
         <div className="flex flex-col gap-5 justify-center">
           <p>
-            I&apos;m a web developer fully focused on web and Python development. I
-            specialize in crafting dynamic websites and applications using{" "}
-            <strong>React</strong>, <strong>Next.js</strong>,{" "}
+            I&apos;m a web developer fully focused on web and Python
+            development. I specialize in crafting dynamic websites and
+            applications using <strong>React</strong>, <strong>Next.js</strong>,{" "}
             <strong>Tailwind CSS</strong>, <strong>Django</strong>, and more.
-            While I&apos;ve stepped away from Flutter, I&apos;m passionate about building
-            modern, scalable, and engaging full-stack solutions. Follow along as
-            I continue to grow in this field!
+            While I&apos;ve stepped away from Flutter, I&apos;m passionate about
+            building modern, scalable, and engaging full-stack solutions. Follow
+            along as I continue to grow in this field!
           </p>
           <div className="flex flex-col gap-3">
             <div className="flex gap-3 font-medium">

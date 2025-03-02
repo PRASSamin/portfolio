@@ -1,4 +1,4 @@
-import { db } from "@/lib/db";
+import { db } from "@/utils/db";
 
 export const InviteTokenGenerator = async (token: string) => {
   try {

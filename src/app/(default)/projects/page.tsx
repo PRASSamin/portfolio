@@ -1,6 +1,6 @@
-import { db } from "@/lib/db";
-import { metatag } from "@/lib/metatag";
-import { PROJECTSERIALIZER } from "@/lib/serializers";
+import { db } from "@/utils/db";
+import { metatag } from "@/utils/metatag";
+import { PROJECTSERIALIZER } from "@/utils/serializers";
 import ProjectPageView from "./view";
 
 const ProjectPage = async () => {

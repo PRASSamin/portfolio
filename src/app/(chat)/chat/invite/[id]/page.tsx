@@ -1,8 +1,8 @@
 import { currentUser } from "@clerk/nextjs/server";
 import InviteToChannelView from "./view";
 import { MyUser } from "@/types";
-import { decodeToken } from "@/lib/tokenizer";
-import { db } from "@/lib/db";
+import { decodeToken } from "@/utils/tokenizer";
+import { db } from "@/utils/db";
 import { notFound } from "next/navigation";
 
 const apiKey = process.env.NEXT_STREAM_API_KEY!;

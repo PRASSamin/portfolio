@@ -1,4 +1,4 @@
-import { db } from "@/lib/db";
+import { db } from "@/utils/db";
 
 async function main() {
   // await db.education.createMany({

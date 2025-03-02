@@ -2,7 +2,7 @@ import ChatPageView from "./view";
 import { createClerkClient } from "@clerk/backend";
 import { currentUser } from "@clerk/nextjs/server";
 import { MyUser } from "@/types";
-import { metatag } from "@/lib/metatag";
+import { metatag } from "@/utils/metatag";
 
 const clerk_secret = process.env.CLERK_SECRET_KEY!;
 const stream_api_key = process.env.NEXT_STREAM_API_KEY!;
