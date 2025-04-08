@@ -1,12 +1,37 @@
-import { type User } from "@clerk/nextjs/server";
+import { JsonValue } from "@prisma/client/runtime/library";
 import type { Channel, UserResponse, ChannelData } from "stream-chat";
 
-export interface MyUser extends User {
-  publicMetadata: {
-    chatToken?: string;
-    role?: "admin" | "user";
-  };
-} 
+export interface ConnectedAccount {
+  id: string;
+  user_id: string;
+  oauth_id: string;
+  provider: "google" | "github";
+  provider_data: JsonValue;
+  created_at: Date;
+}
+
+export interface DBUser extends Record<string, any> {
+  id: string;
+  username: string;
+  first_name?: string | null;
+  last_name?: string | null;
+  full_name?: string | null;
+  avatar?: string | null;
+  email: string;
+  role: string;
+  connected_accounts: ConnectedAccount[];
+  public_metadata: JsonValue;
+  created_at: Date;
+  updated_at: Date;
+}
+
+export interface User extends DBUser {
+  update: (
+    updates: Partial<{ first_name: string; last_name: string; avatar: string }>
+  ) => Promise<any>;
+  delete: () => Promise<null>;
+  reload: () => Promise<void>;
+}
 
 export interface StreamChannel extends Channel {
   data:
@@ -34,9 +59,27 @@ export type ProjectType = {
     github?: string;
     live?: string;
   };
+  slug: string;
+  tools: Array<number>;
+  content?: string;
   category: string;
-  createdAt: Date;
-  updatedAt: Date;
+  created_at: Date;
+  updated_at: Date;
+};
+
+export type RawProjectType = {
+  id: number;
+  title: string;
+  description?: string;
+  image: string;
+  github?: string;
+  live?: string;
+  slug: string;
+  tools: Array<number>;
+  content?: string;
+  category: string;
+  created_at: Date;
+  updated_at: Date;
 };
 
 export type ExperienceType = {
@@ -47,8 +90,8 @@ export type ExperienceType = {
   period: string;
   start: Date;
   end?: Date;
-  createdAt: Date;
-  updatedAt: Date;
+  created_at: Date;
+  updated_at: Date;
 };
 
 export type EducationType = {
@@ -60,8 +103,8 @@ export type EducationType = {
   period: string;
   start: Date;
   end?: Date;
-  createdAt: Date;
-  updatedAt: Date;
+  created_at: Date;
+  updated_at: Date;
 };
 
 export type BlogType = {
@@ -71,6 +114,7 @@ export type BlogType = {
   content: string;
   description: string;
   tags: string[];
-  createdAt: Date;
-  updatedAt: Date;
+  thumbnail?: string;
+  created_at: Date;
+  updated_at: Date;
 };

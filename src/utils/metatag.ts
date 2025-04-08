@@ -4,9 +4,48 @@ type Props = {
   pageTitle: string;
   robots: string;
   keywords?: string[];
+  description?: string;
 };
 
-export const metatag = async ({ pageTitle, robots, keywords }: Props) => {
+type MetaType = {
+  title: string;
+  canonical: string | null;
+  description?: string;
+  keywords: string[];
+  openGraph: {
+    title: string;
+    url: string | null;
+    siteName: string;
+    images: {
+      url: string;
+      width: number;
+      height: number;
+    }[];
+    locale: string;
+    type: string;
+  };
+  twitter: {
+    title: string;
+    creator: string;
+    images: string[];
+  };
+  alternates: {
+    canonical: string | null;
+    languages: { [key: string]: string | null };
+  };
+  robots: string;
+  structuredData: {
+    name: string;
+    url: string | null;
+  };
+};
+
+export const metatag = async ({
+  pageTitle,
+  robots,
+  keywords,
+  description,
+}: Props) => {
   const headersList = await headers();
   const pageUrl = headersList.get("x-current-url");
   const fav = "https://pras.me/logo-512x512.png";
@@ -20,7 +59,7 @@ export const metatag = async ({ pageTitle, robots, keywords }: Props) => {
 
   const margedkeywords = fixedKeywords.concat(keywords || []);
 
-  return {
+  const meta: MetaType = {
     title: pageTitle,
     canonical: pageUrl,
     keywords: margedkeywords,
@@ -53,4 +92,10 @@ export const metatag = async ({ pageTitle, robots, keywords }: Props) => {
       url: pageUrl,
     },
   };
+
+  if (description) {
+    meta["description"] = description;
+  }
+
+  return meta;
 };

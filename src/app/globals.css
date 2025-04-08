@@ -4,45 +4,6 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 201.82 24.44% 8.82%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 5.9% 10%;
-    --radius: 0rem;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-    --pras-logo: none;
-    --shaded: 262 92% 51%;
-    --radius: 0.5rem;
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
     --background: 240 10% 3.9%;
     --foreground: 210 5.56% 92.94%;
     --card: 240 10% 3.9%;
@@ -70,6 +31,7 @@
     --pras-logo: brightness(0) saturate(100%) invert(100%) sepia(0%)
       saturate(7454%) hue-rotate(22deg) brightness(101%) contrast(86%);
     --shaded: 262 92% 51%;
+    --radius: 0.5rem;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -78,15 +40,56 @@
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+    --scrollbar-visibility: none;
   }
 }
 
 @layer base {
+  html {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
   * {
-    @apply border-border;
+    @apply border-border scroll-smooth;
   }
   body {
     @apply bg-background text-foreground;
+  }
+
+  button,
+  img {
+    @apply select-none;
+    -webkit-user-drag: none;
+  }
+
+  @font-face {
+    font-family: "frozito";
+    font-style: normal;
+    font-display: swap;
+    src: url(/fonts/frozito.ttf) format("truetype");
+  }
+
+  @font-face {
+    font-family: "icons";
+    src: url("/icons/icons.eot?4ca6v4");
+    src: url("/icons/icons.eot?4ca6v4#iefix") format("embedded-opentype"),
+      url("/icons/icons.ttf?4ca6v4") format("truetype"),
+      url("/icons/icons.woff?4ca6v4") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+  }
+
+  .icons {
+    font-family: "icons" !important;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   img {
@@ -98,8 +101,51 @@
     user-drag: none;
   }
 
-  ::-webkit-scrollbar {
-    display: none;
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .scrollbar-show {
+    scrollbar-width: auto;
+    -ms-overflow-style: auto;
+
+    ::-webkit-scrollbar:vertical,
+    ::-webkit-scrollbar-track:vertical {
+      @apply block w-1 cursor-pointer;
+    }
+
+    ::-webkit-scrollbar:horizontal,
+    ::-webkit-scrollbar-track:horizontal {
+      @apply block h-1 hover:bg-muted-foreground/40 hover:py-2 cursor-pointer;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      @apply bg-muted rounded-full cursor-pointer hover:my-2 hover:bg-muted/80;
+    }
+  }
+
+  .scrollbar-show-light {
+    scrollbar-width: auto;
+    -ms-overflow-style: auto;
+
+    ::-webkit-scrollbar:vertical,
+    ::-webkit-scrollbar-track:vertical {
+      @apply block w-1 cursor-pointer;
+    }
+
+    ::-webkit-scrollbar:horizontal,
+    ::-webkit-scrollbar-track:horizontal {
+      @apply block h-1 hover:bg-muted-foreground/40 hover:py-2 cursor-pointer;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      @apply bg-muted-foreground rounded-full cursor-pointer hover:my-2 hover:bg-muted-foreground/80;
+    }
   }
 
   .allow-default * {
@@ -114,8 +160,35 @@
     animation: travel 15s ease-in-out forwards infinite;
   }
 
-  strong {
+  strong:not(.markdown *),
+  b:not(.markdown *) {
     @apply text-muted-foreground bg-muted font-mono font-medium px-1 py-[2px] rounded;
+  }
+
+  .markdown {
+    h1,
+    h2 {
+      @apply border-l-[5px] border-rose-600 pl-2.5;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      a {
+        @apply no-underline hover:underline cursor-pointer;
+      }
+    }
+
+    code:not(pre code) {
+      @apply text-primary bg-muted px-1 py-[2px] rounded font-mono text-sm after:hidden before:hidden;
+    }
+
+    a:not(h1 a, h2 a, h3 a, h4 a, h5 a, h6 a) {
+      @apply text-muted-foreground hover:decoration-foreground;
+    }
   }
 
   @keyframes travel {
@@ -185,15 +258,9 @@
     animation-delay: 0.3s;
   }
 }
+
 @layer chatTheme {
   :root {
-    --chat: #ffffff;
-    --chat-muted: #e9eaed;
-    --chat-secondary: #ffffff;
-    --chat-deep: #ebeaea;
-  }
-
-  .dark {
     --chat: #282a2d;
     --chat-muted: #353535;
     --chat-secondary: #2e3033;
@@ -271,7 +338,7 @@
       @apply !bg-chat;
 
       .str-chat__message-bubble {
-        @apply !bg-background !border-solid !border !border-muted-foreground/40 dark:!border-none dark:!bg-chat-muted !text-foreground;
+        @apply !border-none !bg-chat-muted !text-foreground;
       }
 
       .str-chat__message--me .str-chat__message-bubble {
@@ -380,7 +447,7 @@
         @apply !bg-transparent !text-[13px] !text-foreground !px-3 !py-2;
 
         &:hover {
-          @apply dark:!bg-muted/50 !bg-muted;
+          @apply !bg-muted/50;
         }
       }
     }
@@ -416,7 +483,7 @@
     }
 
     .str-chat__message--highlighted {
-      @apply dark:!bg-chat-secondary !bg-gray-300 !rounded;
+      @apply !bg-chat-secondary !rounded;
     }
 
     .str-chat__quoted-message-preview {

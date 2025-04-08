@@ -6,7 +6,7 @@ import ProjectPageView from "./view";
 const ProjectPage = async () => {
   const projects = PROJECTSERIALIZER(
     await db.project.findMany({
-      orderBy: [{ updatedAt: "desc" }, { createdAt: "desc" }],
+      orderBy: [{ updated_at: "desc" }, { created_at: "desc" }],
     })
   );
   return <ProjectPageView projects={projects} />;
@@ -18,7 +18,7 @@ export default ProjectPage;
 
 export const generateMetadata = async () => {
   return metatag({
-    pageTitle: "Projects | PRAS Samin",
+    pageTitle: "Projects | PRAS",
     robots: "index, follow",
   });
 };

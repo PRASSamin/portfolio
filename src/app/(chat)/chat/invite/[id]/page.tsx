@@ -1,9 +1,9 @@
-import { currentUser } from "@clerk/nextjs/server";
 import InviteToChannelView from "./view";
-import { MyUser } from "@/types";
+import { User } from "@/types";
 import { decodeToken } from "@/utils/tokenizer";
 import { db } from "@/utils/db";
 import { notFound } from "next/navigation";
+import { Auth } from "@/utils/auth";
 
 const apiKey = process.env.NEXT_STREAM_API_KEY!;
 
@@ -11,7 +11,8 @@ type Props = Promise<{ id: string }>;
 
 const InviteToChannelPage = async ({ params }: { params: Props }) => {
   const { id } = await params;
-  const user: MyUser | null = await currentUser();
+  const auth = new Auth();
+  const user: User | null = await auth.currentUser();
 
   const inviteDetails: { id: string; token: string } | null =
     await db.chatInvite.findUnique({

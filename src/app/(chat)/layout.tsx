@@ -1,10 +1,9 @@
 import "../globals.css";
 import ChatNavBar from "./components/nav";
 import { poppins } from "@/utils/fonts";
-import { Theme } from "../context/ThemeProvider";
-import { ClerkProvider } from "@clerk/nextjs";
-import { ChatProvider } from "@/app/context/ChatProvider";
-export { metadata } from "..//layout";
+import { ChatProvider } from "@/context/ChatProvider";
+import GoogleAnaProvider from "@/context/GoogleAnaProvider";
+export { metadata } from "../layout";
 
 export default function ChatLayout({
   children,
@@ -13,22 +12,22 @@ export default function ChatLayout({
 }>) {
   return (
     <ChatProvider>
-      <ClerkProvider afterSignOutUrl="/">
-        <html
-          style={{ scrollBehavior: "smooth", overflowX: "hidden" }}
-          lang="en"
-          suppressHydrationWarning={true}
-        >
-          <Theme>
-            <body className={`${poppins.className} max-h-screen antialiased `}>
-              <ChatNavBar />
-              <main className="z-20 relative max-h-[calc(100vh-64px)]">
-                {children}
-              </main>
-            </body>
-          </Theme>
-        </html>
-      </ClerkProvider>
+      <html
+        className="no-scrollbar overflow-x-hidden scroll-smooth"
+        lang="en"
+        suppressHydrationWarning={true}
+      >
+        <GoogleAnaProvider>
+          <body
+            className={`${poppins.className} antialiased overflow-x-hidden`}
+          >
+            <ChatNavBar />
+            <main className="z-20 relative max-h-[calc(100vh-64px)]">
+              {children}
+            </main>
+          </body>
+        </GoogleAnaProvider>
+      </html>
     </ChatProvider>
   );
 }

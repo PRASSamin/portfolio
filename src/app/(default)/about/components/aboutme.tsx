@@ -1,3 +1,4 @@
+"use client";
 import {
   Gmail,
   Cheers,
@@ -7,14 +8,19 @@ import {
   Music,
   Gamepad,
   ClapperBoard,
-} from "../../../components/icons";
+} from "../../../../components/icons";
 import { WhatsApp } from "@mui/icons-material";
 import Link from "next/link";
 import { User } from "lucide-react";
-import { cn } from "@/utils/utils";
-import ProgrammerAnimation from "../../../components/ProgrammerAnim";
+import { cn } from "@/utils";
+import ProgrammerAnimation from "../../../../components/ProgrammerAnim";
+import { useInView, motion } from "motion/react";
+import { useRef } from "react";
 
-const AboutMeSection = async () => {
+const AboutMeSection = () => {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
+
   const Interests: {
     name: string;
     icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
@@ -23,42 +29,58 @@ const AboutMeSection = async () => {
     {
       name: "Movie",
       icon: ClapperBoard,
-      className: "dark:bg-red-700 bg-red-700/60 border-red-700/90",
+      className: "bg-red-700 border-red-700/90",
     },
     {
       name: "Music",
       icon: Music,
-      className: "dark:bg-green-700 bg-green-700/60 border-green-700/90",
+      className: "bg-green-700 border-green-700/90",
     },
     {
       name: "Gaming",
       icon: Gamepad,
-      className: "dark:bg-blue-700 bg-blue-700/60 border-blue-700/90",
+      className: "bg-blue-700 border-blue-700/90",
     },
     {
       name: "Conversation",
       icon: Discord,
-      className: "dark:bg-indigo-700 bg-indigo-700/60 border-indigo-700/90",
+      className: "bg-indigo-700 border-indigo-700/90",
     },
     {
       name: "Travel",
       icon: Plane,
-      className: "dark:bg-orange-700 bg-orange-700/60 border-orange-700/90",
+      className: "bg-orange-700 border-orange-700/90",
     },
     {
       name: "Football",
       icon: Football,
-      className: "dark:bg-fuchsia-700 bg-fuchsia-700/60 border-fuchsia-700/90",
+      className: "bg-fuchsia-700 border-fuchsia-700/90",
     },
     {
       name: "Heartfelt moments",
       icon: Cheers,
-      className: "dark:bg-rose-700 bg-rose-700/60 border-rose-700/90",
+      className: "bg-rose-700 border-rose-700/90",
     },
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
+
   return (
-    <div data-section="aboutme" className="flex flex-col gap-12 w-full">
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+      variants={containerVariants}
+      data-section="aboutme"
+      className="flex flex-col gap-20 md:gap-0 md:justify-between w-[calc(100vw-2rem)] lg:container mx-auto min-h-[calc(100vh-64px)] pb-20"
+    >
       <div className="flex flex-col gap-1 items-cetner">
         <h3
           data-type="title"
@@ -125,7 +147,7 @@ const AboutMeSection = async () => {
                   key={index}
                   className={cn(`rounded-full border`, className)}
                 >
-                  <span className="flex items-center gap-2 bg-transparent dark:bg-black/75 dark:backdrop-blur px-4 py-1 rounded-full capitalize font-medium">
+                  <span className="flex items-center gap-2 bg-black/75 backdrop-blur px-4 py-1 rounded-full capitalize font-medium">
                     <Icon />
                     {name}
                   </span>
@@ -138,7 +160,7 @@ const AboutMeSection = async () => {
           <ProgrammerAnimation />
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -3,18 +3,18 @@ import { useState, useEffect } from "react";
 import { useCreateChatClient } from "stream-chat-react";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
-import { MyUser } from "@/types";
+import { User } from "@/types";
 import { useRouter } from "next/navigation";
 import LoadingAnimation from "@/app/(chat)/components/loader";
 import ChatSideBar from "../components/ChatSideBar";
-import { useChat } from "@/app/context/ChatProvider";
+import { useChat } from "@/context/ChatProvider";
 import ChattingArea from "../components/ChattingArea";
 
 import "stream-chat-react/dist/css/v2/index.css";
 
 type Props = {
-  user: MyUser;
-  admin: MyUser;
+  user: User;
+  admin: User;
   apiKey: string;
 };
 
@@ -25,14 +25,16 @@ const ChatPageView = ({ user, admin, apiKey }: Props) => {
 
   const userObj = {
     id: user.id,
-    name: `${user.firstName} ${user.lastName}` || "",
-    image: user.imageUrl,
+    name: `${user.first_name} ${user.last_name}` || "",
+    image: user.avatar,
   };
 
   const client = useCreateChatClient({
     apiKey,
-    tokenOrProvider: user.publicMetadata.chatToken,
+    // @ts-expect-error: types issue
+    tokenOrProvider: user?.public_metadata?.chatToken,
     userData: userObj,
+    options: { timeout: 7000 },
   });
 
   useEffect(() => {
@@ -98,7 +100,7 @@ const ChatPageView = ({ user, admin, apiKey }: Props) => {
     if (!client) {
       timeout = setTimeout(() => {
         setIsTimeout(true);
-      }, 7000); // 15s
+      }, 7000); 
     }
 
     return () => {

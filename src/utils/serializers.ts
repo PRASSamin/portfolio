@@ -1,5 +1,4 @@
 import { format } from "date-fns";
-import { BlogType } from "@/types";
 
 export const PROJECTSERIALIZER = (projects: any) => {
   if (!projects) return null; // Handle null input
@@ -17,8 +16,11 @@ export const PROJECTSERIALIZER = (projects: any) => {
         github: project?.github,
         live: project?.live,
       },
-      createdAt: format(project.createdAt, "yyyy-MM-dd"),
-      updatedAt: format(project.updatedAt, "yyyy-MM-dd"),
+      slug: project.slug,
+      tools: project.tools,
+      content: project?.content || null,
+      created_at: project.created_at,
+      updated_at: project.updated_at,
     };
   };
 
@@ -44,8 +46,9 @@ export const BLOGSERIALIZER = (blogs: any) => {
       description: blog.description,
       content: blog.content,
       tags: blog.tags,
-      createdAt: blog.createdAt,
-      updatedAt: blog.updatedAt,
+      thumbnail: blog.thumbnail || null,
+      created_at: blog.created_at,
+      updated_at: blog.updated_at,
     };
   };
 
@@ -74,8 +77,8 @@ export const EXPERIENCESERIALIZER = (experiences: any) => {
       }`,
       start: experience?.start,
       end: experience?.end || "Present",
-      createdAt: format(experience.createdAt, "yyyy-MM-dd"),
-      updatedAt: format(experience.updatedAt, "yyyy-MM-dd"),
+      created_at: experience.created_at,
+      updated_at: experience.updated_at,
     };
   };
 
@@ -105,8 +108,8 @@ export const EDUCATIONSERIALIZER = (educations: any) => {
       }`,
       start: education?.start,
       end: education?.end || "Present",
-      createdAt: format(education.createdAt, "yyyy-MM-dd"),
-      updatedAt: format(education.updatedAt, "yyyy-MM-dd"),
+      created_at: education.created_at,
+      updated_at: education.updated_at,
     };
   };
 

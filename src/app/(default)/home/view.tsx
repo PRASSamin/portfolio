@@ -1,10 +1,11 @@
 "use client";
 import HeroSection from "./components/hero";
 import ServiceSection from "./components/services";
-import React from "react";
 import JourneySection from "./components/journey";
 import { ProjectType } from "@/types";
 import ProjectSection from "./components/project";
+import { useRef } from "react";
+import { useInView, motion } from "motion/react";
 
 type Props = {
   totalProjects: string | number;
@@ -12,18 +13,65 @@ type Props = {
 };
 
 const HomeView: React.FC<Props> = ({ totalProjects, projects }) => {
+  const heroAnimation = useSectionAnimation();
+  const serviceAnimation = useSectionAnimation();
+  const journeyAnimation = useSectionAnimation();
+  const projectAnimation = useSectionAnimation();
+
   return (
-    <div
-      className={`flex flex-col items-center w-[calc(100vw-2rem)] lg:container mx-auto`}
-    >
-      <HeroSection />
+    <div className="flex flex-col items-center w-[calc(100vw-2rem)] lg:container mx-auto">
+      <motion.div
+        ref={heroAnimation.ref}
+        initial="hidden"
+        animate={heroAnimation.isInView ? "visible" : "hidden"}
+        variants={heroAnimation.variants}
+      >
+        <HeroSection />
+      </motion.div>
       <div className="flex flex-col gap-28 w-full">
-        <ServiceSection />
-        <JourneySection totalProjects={totalProjects} />
-        <ProjectSection projects={projects} />
+        <motion.div
+          ref={serviceAnimation.ref}
+          initial="hidden"
+          animate={serviceAnimation.isInView ? "visible" : "hidden"}
+          variants={serviceAnimation.variants}
+        >
+          <ServiceSection />
+        </motion.div>
+        <motion.div
+          ref={journeyAnimation.ref}
+          initial="hidden"
+          animate={journeyAnimation.isInView ? "visible" : "hidden"}
+          variants={journeyAnimation.variants}
+        >
+          <JourneySection totalProjects={totalProjects} />
+        </motion.div>
+        <motion.div
+          ref={projectAnimation.ref}
+          initial="hidden"
+          animate={projectAnimation.isInView ? "visible" : "hidden"}
+          variants={projectAnimation.variants}
+        >
+          <ProjectSection projects={projects} />
+        </motion.div>
       </div>
     </div>
   );
 };
 
 export default HomeView;
+
+export const useSectionAnimation = ({ once = true, amount = 0.3 } = {}) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once, amount });
+
+  const variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
+
+  return { ref, isInView, variants };
+};

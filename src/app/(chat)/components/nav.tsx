@@ -1,68 +1,42 @@
 "use client";
-import ThemeSwitcher from "@/app/components/ThemeSwitcher";
 import { Button } from "@/components/ui/button";
-import { Github } from "@/app/components/icons/github";
+import { Github } from "@/components/icons/github";
 import Link from "next/link";
 import Image from "next/image";
-import { MenuLink } from "@/app/components/MenuItem";
-import {
-  Sheet,
-  SheetContent,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { MenuLink } from "@/components/MenuItem";
 import { Menu } from "lucide-react";
-import React from "react";
+import React, { useRef } from "react";
 import { usePathname } from "next/navigation";
-import { cn } from "@/utils/utils";
-import { SignedIn, UserButton } from "@clerk/nextjs";
-import { useTheme } from "next-themes";
-import { dark } from "@clerk/themes";
-import UserMenu, { Logout } from "./UserMenu";
-import { useClerk } from "@clerk/nextjs";
+import { cn } from "@/utils";
+import { UserMenu, UserMenuButton } from "../../../components/UserMenu";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { navItems } from "@/components/nav";
+import { useUser } from "@/hooks/useUser";
 
 const ChatNavBar = () => {
-  const { signOut } = useClerk();
-  const { theme } = useTheme();
+  const { isSignedIn } = useUser();
   const pathname = usePathname();
-  const navItems = [
-    {
-      href: "/",
-      name: "Home",
-    },
-    {
-      href: "/projects",
-      name: "Projects",
-    },
-    {
-      href: "/blogs",
-      name: "Blogs",
-    },
-    {
-      href: "/about",
-      name: "About",
-    },
-  ];
+  const mobileMenuRef = useRef<HTMLButtonElement>(null);
 
   React.useEffect(() => {
     if (pathname) {
-      document.getElementById("closeNav")?.click();
+      mobileMenuRef.current?.click();
     }
   }, [pathname]);
 
   return (
     <header
       className={cn(
-        "w-full h-16 bg-muted/50 backdrop-blur border-b py-4 relative z-20",
-        pathname === "/chat/nova" && "z-50 bg-black text-white border-[#27272a]"
+        "w-full h-16 bg-muted/50 backdrop-blur border-b py-4 relative z-20"
       )}
     >
       <div className="flex justify-between items-center w-[calc(100vw-2rem)] lg:container mx-auto h-full">
         <a className="h-full" href={"/"}>
           <Image
-            style={pathname === "/chat/nova" ? { filter: "invert(100%)" } : {}}
             className="h-full w-auto pras-logo"
             src={"/logo-b.svg"}
             width={250}
@@ -71,12 +45,12 @@ const ChatNavBar = () => {
           />
         </a>
         <div className="flex items-center justify-center gap-10">
-          <ul className="hidden lg:flex items-center justify-center gap-5">
+          <ul className="hidden md:flex items-center justify-center gap-5">
             {navItems.map(({ href, name }, i) => {
               return <MenuLink key={i} href={href} name={name} />;
             })}
           </ul>
-          <div className="hidden lg:block h-[40px] w-[1px] bg-muted-foreground/50" />
+          <div className="hidden md:block h-[40px] w-[1px] bg-muted-foreground/50" />
           <div className="flex gap-2 items-center justify-center">
             <Button
               className="cursor-pointer [&_svg]:size-5  p-0 aspect-square border border-muted-foreground/30 rounded group w-9 hover:w-[120px] transition-all duration-300"
@@ -88,73 +62,41 @@ const ChatNavBar = () => {
                 <span className="overflow-hidden">PRASSamin</span>
               </Link>
             </Button>
-            {pathname !== "/chat/nova" && <ThemeSwitcher />}
           </div>
-          <SignedIn>
-            <UserButton
-              userProfileMode="modal"
-              userProfileProps={{
-                appearance: {
-                  layout: {
-                    unsafe_disableDevelopmentModeWarnings: true,
-                  },
-                  baseTheme: theme === "dark" ? dark : undefined,
-                },
-              }}
-              appearance={{
-                layout: {
-                  unsafe_disableDevelopmentModeWarnings: true,
-                },
-                elements: {
-                  rootBox: "hidden lg:flex",
-                  userButtonPopoverActionButton__signOut: "hidden",
-                },
-                baseTheme: theme === "dark" ? dark : undefined,
-              }}
-            >
-              <UserButton.MenuItems>
-                <UserButton.Action
-                  labelIcon={<Logout className={`size-4`} />}
-                  label="Sign out"
-                  onClick={() => {
-                    signOut();
-                    window.location.href = `/signin?redirect_url=${encodeURIComponent(
-                      window.location.href
-                    )}`;
-                  }}
-                />
-              </UserButton.MenuItems>
-            </UserButton>
-          </SignedIn>
+          {isSignedIn && <UserMenuButton />}
 
-          <div className="block lg:hidden h-[40px] w-[1px] bg-muted-foreground/50" />
-          <Sheet>
-            <SheetTrigger className="block lg:hidden">
-              <Menu />
-            </SheetTrigger>
-            <SheetContent className="flex flex-col justify-between pt-5 pb-[15px] px-[15px]">
-              <SheetHeader>
-                <SheetTitle className="sr-only">mobile navigation</SheetTitle>
-                <ul className="flex flex-col gap-2 items-center">
-                  {navItems.map(({ href, name }, i) => {
-                    return (
-                      <MenuLink
-                        className="text-lg"
-                        key={i}
-                        href={href}
-                        name={name}
-                      />
-                    );
-                  })}
-                </ul>
-              </SheetHeader>
-              <SheetFooter>
-                <SignedIn>
-                  <UserMenu />
-                </SignedIn>
-              </SheetFooter>
-            </SheetContent>
-          </Sheet>
+          <div className="block md:hidden h-[40px] w-[1px] bg-muted-foreground/50" />
+
+          <Popover>
+            <PopoverTrigger asChild className="md:hidden">
+              <button id="navToggler" ref={mobileMenuRef}>
+                <Menu className="cursor-pointer hover:bg-muted/50 h-8 w-8 p-1 rounded duration-300 transition-all" />
+              </button>
+            </PopoverTrigger>
+            <PopoverContent className="w-80 mt-6 mr-2 bg-popover/60 backdrop-blur rounded-xl flex md:hidden flex-col gap-3">
+              {navItems.map(({ href, name, icon: Icon }) => {
+                return (
+                  <Link
+                    href={href}
+                    key={name}
+                    className="bg-muted/50 hover:bg-muted/70 p-2 rounded-lg flex items-center gap-2"
+                    onClick={() => {
+                      if (mobileMenuRef.current) {
+                        mobileMenuRef.current?.click();
+                      }
+                    }}
+                  >
+                    {Icon && (
+                      <Icon className="h-[34px] w-[34px] text-muted-foreground bg-background/50 rounded-lg p-2" />
+                    )}
+                    <span className="text-foreground text-sm">{name}</span>
+                  </Link>
+                );
+              })}
+
+              {isSignedIn && <UserMenu />}
+            </PopoverContent>
+          </Popover>
         </div>
       </div>
     </header>

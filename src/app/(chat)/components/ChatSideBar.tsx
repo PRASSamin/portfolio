@@ -1,9 +1,7 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import type { Channel as StreamChannel } from "stream-chat";
 import { MyUser } from "@/types";
-import { cn } from "@/utils/utils";
+import { cn } from "@/utils";
 import { BetterImage } from "@prass/betterimage/components";
 import {
   Sidebar,
@@ -15,7 +13,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { Attachment } from "@mui/icons-material";
-import { useChat } from "@/app/context/ChatProvider";
+import { useChat } from "@/context/ChatProvider";
 import {
   Tooltip,
   TooltipContent,
@@ -48,8 +46,8 @@ const ChatSideBar = ({ user, admin }: Props) => {
           <button
             onClick={() => setActiveChannel(cnl)}
             className={cn(
-              "flex items-center gap-2 w-full px-2 py-1.5 rounded-md dark:hover:bg-[#2C2C30] hover:bg-gray-300",
-              cnl.id === activeChannel?.id && "bg-gray-300 dark:bg-[#2C2C30]"
+              "flex items-center gap-2 w-full px-2 py-1.5 rounded-md hover:bg-[#2C2C30]",
+              cnl.id === activeChannel?.id && "bg-[#2C2C30]"
             )}
           >
             <div className="flex-shrink-0 w-[50px] h-[50px]">
@@ -100,21 +98,6 @@ const ChatSideBar = ({ user, admin }: Props) => {
                   channels.length > 0 &&
                   channels.map(renderAdminChannelButton)}
               </SidebarMenuItem> */}
-              </SidebarMenu>
-              <SidebarMenu className="hidden md:flex">
-                <Button
-                  variant="outline"
-                  className="flex flex-col bg-rose-800/70 border-rose-700 hover:bg-rose-800 dark:text-white text-rose-950 hover:text-white gap-1 h-auto"
-                  asChild
-                >
-                  <Link href="/chat/nova">
-                    <span>Who Am I?</span>
-                    <span>
-                      Ask <span className="font-bold underline">Nova</span> to
-                      Find Out!
-                    </span>
-                  </Link>
-                </Button>
               </SidebarMenu>
             </SidebarGroupContent>
           </SidebarGroup>

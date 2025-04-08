@@ -5,8 +5,8 @@ import { Slot } from "@radix-ui/react-slot";
 import { VariantProps, cva } from "class-variance-authority";
 import { PanelLeft } from "lucide-react";
 
-import { useIsMobile } from "@/hooks/use-mobile";
-import { cn } from "@/utils/utils";
+import { useIsMobile } from "@/hooks/useMobile";
+import { cn } from "@/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
@@ -21,9 +21,7 @@ import {
 const SIDEBAR_COOKIE_NAME = "sidebar:state";
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
 const SIDEBAR_WIDTH = "20rem";
-const SIDEBAR_WIDTH_MOBILE = "18rem";
 const SIDEBAR_WIDTH_ICON = "3rem";
-const SIDEBAR_KEYBOARD_SHORTCUT = "b";
 
 type SidebarContext = {
   state: "expanded" | "collapsed";
@@ -95,21 +93,6 @@ const SidebarProvider = React.forwardRef<
         : setOpen((open) => !open);
     }, [isMobile, setOpen, setOpenMobile]);
 
-    // Adds a keyboard shortcut to toggle the sidebar.
-    React.useEffect(() => {
-      const handleKeyDown = (event: KeyboardEvent) => {
-        if (
-          event.key === SIDEBAR_KEYBOARD_SHORTCUT &&
-          (event.metaKey || event.ctrlKey)
-        ) {
-          event.preventDefault();
-          toggleSidebar();
-        }
-      };
-
-      window.addEventListener("keydown", handleKeyDown);
-      return () => window.removeEventListener("keydown", handleKeyDown);
-    }, [toggleSidebar]);
 
     // We add a state so that we can do data-state="expanded" or "collapsed".
     // This makes it easier to style the sidebar with Tailwind classes.
@@ -161,6 +144,7 @@ const Sidebar = React.forwardRef<
     side?: "left" | "right";
     variant?: "sidebar" | "floating" | "inset";
     collapsible?: "offcanvas" | "icon" | "none";
+    tClassName?: string;
   }
 >(
   (
@@ -169,48 +153,13 @@ const Sidebar = React.forwardRef<
       variant = "sidebar",
       collapsible = "offcanvas",
       className,
+      tClassName,
       children,
       ...props
     },
     ref
   ) => {
-    const { isMobile, state, openMobile, setOpenMobile } = useSidebar();
-
-    // if (collapsible === "none") {
-    // return (
-    //   <div
-    //     className={cn(
-    //       "flex h-full w-[--sidebar-width] flex-col bg-sidebar text-sidebar-foreground",
-    //       className,
-    //       isMobile && "w-20"
-    //     )}
-    //     ref={ref}
-    //     {...props}
-    //   >
-    //     {children}
-    //   </div>
-    // );
-    // }
-
-    // if (isMobile) {
-    //   return (
-    //     <Sheet open={openMobile} onOpenChange={setOpenMobile} {...props}>
-    //       <SheetContent
-    //         data-sidebar="sidebar"
-    //         data-mobile="true"
-    //         className="w-[--sidebar-width] bg-sidebar p-0 text-sidebar-foreground [&>button]:hidden"
-    //         style={
-    //           {
-    //             "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
-    //           } as React.CSSProperties
-    //         }
-    //         side={side}
-    //       >
-    //         <div className="flex h-full w-full flex-col">{children}</div>
-    //       </SheetContent>
-    //     </Sheet>
-    //   );
-    // }
+    const { state } = useSidebar();
 
     return (
       <div
@@ -229,7 +178,8 @@ const Sidebar = React.forwardRef<
             "group-data-[side=right]:rotate-180",
             variant === "floating" || variant === "inset"
               ? "group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)_+_theme(spacing.4))]"
-              : "group-data-[collapsible=icon]:w-[--sidebar-width-icon]"
+              : "group-data-[collapsible=icon]:w-[--sidebar-width-icon]",
+            tClassName
           )}
         />
         <div

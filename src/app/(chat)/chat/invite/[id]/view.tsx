@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect, useCallback } from "react";
 import { useCreateChatClient } from "stream-chat-react";
-import { MyUser } from "@/types";
+import { User } from "@/types";
 import { useRouter } from "next/navigation";
 import { StreamChannel } from "@/types";
 import { BetterImage } from "@prass/betterimage/components";
@@ -10,7 +10,7 @@ import { Loader2Icon, Loader } from "lucide-react";
 
 type Props = {
   apiKey: string;
-  user: MyUser;
+  user: User;
   ownerObj: {
     id: string;
     name: string;
@@ -80,7 +80,7 @@ const InviteToChannelView = ({
   if (isLoading) {
     return (
       <div className="w-full h-[calc(100vh-64px)] flex justify-center items-center">
-        <Loader className="animate-spin !size-5" />
+        <Loader2Icon className="animate-spin !size-5" />
       </div>
     );
   }
@@ -96,7 +96,7 @@ const InviteToChannelView = ({
                   priority
                   className="aspect-square rounded-xl !w-16"
                   src={
-                    channel.data?.created_by?.image || "/placeholder-image.png"
+                    channel.data?.created_by?.image || ""
                   }
                   width={250}
                   height={250}

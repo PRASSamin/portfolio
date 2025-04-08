@@ -6,11 +6,19 @@ import { useChannelPreviewInfo } from "stream-chat-react";
 import { useChannelStateContext } from "stream-chat-react";
 import { useTranslationContext } from "stream-chat-react";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { CircleX } from "lucide-react";
 import { StreamChannel } from "@/types";
 
 import type { DefaultStreamChatGenerics } from "stream-chat-react";
+
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 export type ChannelHeaderProps = {
   /** UI component to display an avatar, defaults to [Avatar](https://github.com/GetStream/stream-chat-react/blob/master/src/components/Avatar/Avatar.tsx) component and accepts the same props as: [ChannelAvatar](https://github.com/GetStream/stream-chat-react/blob/master/src/components/Avatar/ChannelAvatar.tsx) */
@@ -98,59 +106,56 @@ export const ChannelHeader = <
           })}
         </p>
       </div>
-      <ul className={`text-white mr-4`}>
+      <ul className="mr-4 text-white">
         <li>
-          <button
-            onClick={() => setIsInvite(!isInvite)}
-            className={`dark:bg-muted bg-gray-300 rounded px-2 py-1 hover:bg-gray-300/50 dark:hover:bg-muted/50 text-foreground`}
-          >
-            Invite
-          </button>
-          {isInvite && (
-            <div
-              data-label={"invite_model"}
-              onClick={() => setIsInvite(false)}
-              className={`fixed inset-0 z-50 w-screen h-screen bg-black/50 backdrop-blur-[2px] flex justify-center items-center`}
-            >
-              <CircleX
-                className={`text-muted-foreground cursor-pointer absolute top-5 right-5`}
-                onClick={() => setIsInvite(false)}
-              />
-
-              <div
-                onClick={(e) => e.stopPropagation()}
-                className={`flex flex-col justify-center items-center bg-sidebar w-[calc(100vw-20px)] md:w-[500px] max-w-[500px] rounded-lg shadow-lg`}
-              >
-                <div
-                  data-label={`model_header`}
-                  className={`dark:bg-background bg-gray-300 text-foreground rounded-t-lg py-2 w-full`}
+          <Dialog>
+            <DialogTrigger asChild>
+              <button className="flex items-center gap-2 px-3 py-1.5 text-sm font-semibold rounded-md bg-chat-deep text-foreground hover:bg-muted transition">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-4 h-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
                 >
-                  <p className={`w-full text-center capitalize font-bold`}>
-                    Invite to this channel
-                  </p>
-                </div>
-                <div
-                  data-label={`model_content`}
-                  className={`w-full flex flex-col justify-start items-center px-2 pt-10 pb-5 gap-2`}
-                >
-                  <input
-                    readOnly={true}
-                    type="text"
-                    defaultValue={inviteUrl}
-                    className={`w-full p-2 border border-border rounded-b-lg`}
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 4v16m8-8H4"
                   />
+                </svg>
+                Invite
+              </button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px] border-border/50">
+              <DialogHeader>
+                <h2 className="text-center font-semibold text-lg mb-10">
+                  Invite to this channel
+                </h2>
+              </DialogHeader>
 
-                  <Button
-                    variant={`secondary`}
-                    onClick={() => handleCopy(inviteUrl)}
-                    className={`mt-2 font-bold bg-shaded text-white hover:bg-shaded/50 transition-all duration-150`}
-                  >
-                    Copy To Clipboard
-                  </Button>
-                </div>
+              <div className="flex flex-col gap-4">
+                <input
+                  readOnly
+                  type="text"
+                  value={inviteUrl}
+                  className="w-full px-3 py-2 border border-border/50 rounded-md bg-transparent text-sm text-foreground focus:outline-none"
+                />
               </div>
-            </div>
-          )}
+              <DialogFooter>
+                <DialogClose asChild>
+                  <Button
+                    variant="secondary"
+                    onClick={() => handleCopy(inviteUrl)}
+                    className="font-semibold bg-purple-900 text-white hover:bg-purple-900/80 transition w-full"
+                  >
+                    Copy Invite Link
+                  </Button>
+                </DialogClose>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
         </li>
       </ul>
     </div>

@@ -1,8 +1,7 @@
 // Define the route mapping from website to app
 const ROUTE_MAP: Record<string, string> = {
     "/chat": "/",
-    "/chat/nova": "/nova",
-    "/chat/invite/:cid": "/invite/:cid",
+    "/chat/invite/:id": "/invite/:id",
   };
   
   /**

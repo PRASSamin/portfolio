@@ -1,3 +1,4 @@
+"use client";
 import {
   Timeline,
   TimelineItem,
@@ -8,17 +9,79 @@ import {
   TimelineRole,
   TimelineDescription,
   TimelineConnector,
-} from "@/app/components/timeline";
+} from "@/components/ui/timeline";
 import { EducationType } from "@/types";
+import { prepareMarkdown } from "@/utils/prepMarkdown";
 import { GraduationCap } from "lucide-react";
+import { useEffect, useState, useRef } from "react";
+import { motion, useInView } from "motion/react";
 
 type Props = {
   educations: EducationType[];
 };
 
 const EducationSection = ({ educations }: Props) => {
+  const [educationsData, setEducationsData] = useState<EducationType[]>([]);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
+
+  useEffect(() => {
+    const processExperiences = async () => {
+      const processed = await Promise.all(
+        educations.map(async (exp) => ({
+          ...exp,
+          description: await prepareMarkdown(exp?.description || ""),
+          degree: await prepareMarkdown(exp?.degree),
+          school: await prepareMarkdown(exp?.school),
+          period: await prepareMarkdown(exp?.period),
+        }))
+      );
+      setEducationsData(processed);
+    };
+
+    processExperiences();
+  }, [educations]);
+
+  // Animation variants for the timeline items
+  const itemVariants = {
+    hidden: (index: number) => ({
+      y: -index * 100,
+      opacity: 0.5,
+      scale: 0.95,
+    }),
+    visible: {
+      y: 0,
+      opacity: 1,
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 20,
+        delay: 0.1,
+      },
+    },
+  };
+
+  // Container variants for staggering children
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
   return (
-    <div data-section="education" className="flex flex-col gap-12 w-full">
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+      variants={containerVariants}
+      data-section="education"
+      className="flex flex-col gap-12 w-[calc(100vw-2rem)] lg:container mx-auto mt-5"
+    >
       <div className="flex flex-col gap-1 items-left">
         <h3
           data-type="title"
@@ -40,24 +103,39 @@ const EducationSection = ({ educations }: Props) => {
         variant="outline"
         align="start"
       >
-        {educations.map((edu: EducationType) => (
-          <TimelineItem key={edu.id}>
-            <TimelineIcon icon={<GraduationCap />} />
-            <TimelineContent>
-              <div className="flex flex-col gap-0.5">
-                <TimelineTitle>{edu.school}</TimelineTitle>
-                <TimelineRole>{edu.degree}</TimelineRole>
-                <TimelinePeriod>{edu.period}</TimelinePeriod>
-              </div>
-              {edu.description && (
-                <TimelineDescription>{edu.description}</TimelineDescription>
-              )}
-            </TimelineContent>
-            <TimelineConnector />
-          </TimelineItem>
+        {educationsData.map((edu: EducationType, index: number) => (
+          <motion.div
+            key={edu.id}
+            custom={index}
+            variants={itemVariants}
+            className="relative"
+          >
+            <TimelineItem>
+              <TimelineIcon icon={<GraduationCap />} />
+              <TimelineContent>
+                <div className="flex flex-col gap-0.5">
+                  <TimelineTitle
+                    dangerouslySetInnerHTML={{ __html: edu.school }}
+                  />
+                  <TimelineRole
+                    dangerouslySetInnerHTML={{ __html: edu.degree }}
+                  />
+                  <TimelinePeriod
+                    dangerouslySetInnerHTML={{ __html: edu.period }}
+                  />
+                </div>
+                {edu.description && (
+                  <TimelineDescription
+                    dangerouslySetInnerHTML={{ __html: edu.description }}
+                  />
+                )}
+              </TimelineContent>
+              <TimelineConnector />
+            </TimelineItem>
+          </motion.div>
         ))}
       </Timeline>
-    </div>
+    </motion.div>
   );
 };
 
