@@ -80,7 +80,7 @@ export const useUser = () => {
         },
       });
 
-      await signOut();
+      signOut({ callbackUrl: "/" });
     } catch (error) {
       console.error("Error deleting user:", error);
       return null;

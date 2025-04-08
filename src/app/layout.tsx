@@ -2,7 +2,7 @@ import "./globals.css";
 import { poppins } from "@/utils/fonts";
 import { Metadata } from "next";
 import { SessionProvider } from "@/context/SessionProvider";
-import GoogleAnaProvider from "@/context/AnalyticsProvider";
+import {AnalyticsProvider} from "@/context/AnalyticsProvider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,13 +21,13 @@ export default function RootLayout({
         lang="en"
         suppressHydrationWarning={true}
       >
-        <GoogleAnaProvider>
+        <AnalyticsProvider>
           <body
             className={`${poppins.className} antialiased overflow-x-hidden`}
           >
             {children}
           </body>
-        </GoogleAnaProvider>
+        </AnalyticsProvider>
       </html>
     </SessionProvider>
   );

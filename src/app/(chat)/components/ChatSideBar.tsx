@@ -1,6 +1,6 @@
 "use client";
 import type { Channel as StreamChannel } from "stream-chat";
-import { MyUser } from "@/types";
+import { User } from "@/types";
 import { cn } from "@/utils";
 import { BetterImage } from "@prass/betterimage/components";
 import {
@@ -22,8 +22,8 @@ import {
 } from "@/components/ui/tooltip";
 
 type Props = {
-  user: MyUser;
-  admin: MyUser;
+  user: User;
+  admin: User;
 };
 
 const ChatSideBar = ({ user, admin }: Props) => {

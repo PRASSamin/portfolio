@@ -9,7 +9,7 @@ import {
 import { ChannelHeader } from "../components/stream/ChannelHeader";
 import { EmojiPicker } from "stream-chat-react/emojis";
 import { useChat } from "@/context/ChatProvider";
-import { MyUser } from "@/types";
+import { User } from "@/types";
 import { type StreamChat } from "stream-chat";
 import { init, SearchIndex } from "emoji-mart";
 import data from "@emoji-mart/data";
@@ -17,8 +17,8 @@ import { Loader } from "lucide-react";
 
 type Props = {
   client: StreamChat;
-  user: MyUser;
-  admin: MyUser;
+  user: User;
+  admin: User;
 };
 
 init({

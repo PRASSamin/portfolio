@@ -2,7 +2,7 @@ import "../globals.css";
 import NavBar from "../../components/nav";
 import Footer from "../../components/footer";
 import { poppins } from "@/utils/fonts";
-import GoogleAnaProvider from "@/context/AnalyticsProvider";
+import { AnalyticsProvider } from "@/context/AnalyticsProvider";
 
 export default async function RootLayout({
   children,
@@ -15,7 +15,7 @@ export default async function RootLayout({
       lang="en"
       suppressHydrationWarning={true}
     >
-      <GoogleAnaProvider>
+      <AnalyticsProvider>
         <body className={`${poppins.className} antialiased overflow-x-hidden`}>
           <div className="fixed top-0 z-0 hue-rotate-60 grad-travel brightness-200">
             <img
@@ -43,7 +43,7 @@ export default async function RootLayout({
           <main className="z-20 relative">{children}</main>
           <Footer />
         </body>
-      </GoogleAnaProvider>
+      </AnalyticsProvider>
     </html>
   );
 }

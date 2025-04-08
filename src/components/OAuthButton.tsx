@@ -82,7 +82,8 @@ const OAuthButton: React.FC<OAuthButtonProps> = ({
               <div className="flex items-center pt-2">
                 <button
                   onClick={() => {
-                    signOut();
+                    signOut({
+                      callbackUrl: "/",});
                   }}
                   className="text-xs text-muted-foreground underline"
                 >

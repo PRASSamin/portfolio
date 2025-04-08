@@ -1,4 +1,4 @@
-import GoogleAnaProvider from "@/context/AnalyticsProvider";
+import {AnalyticsProvider} from "@/context/AnalyticsProvider";
 import "../globals.css";
 import { poppins } from "@/utils/fonts";
 
@@ -11,7 +11,7 @@ export default async function RootLayout({
       lang="en"
       suppressHydrationWarning={true}
     >
-      <GoogleAnaProvider>
+      <AnalyticsProvider>
         <body className={`${poppins.className} antialiased overflow-x-hidden`}>
           {/* Dark Overlay */}
           <div className="w-screen h-screen bg-black fixed inset-0 z-[-1]" />
@@ -27,7 +27,7 @@ export default async function RootLayout({
             {children}
           </main>
         </body>
-      </GoogleAnaProvider>
+      </AnalyticsProvider>
     </html>
   );
 }

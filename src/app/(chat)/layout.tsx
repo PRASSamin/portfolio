@@ -2,7 +2,7 @@ import "../globals.css";
 import ChatNavBar from "./components/nav";
 import { poppins } from "@/utils/fonts";
 import { ChatProvider } from "@/context/ChatProvider";
-import GoogleAnaProvider from "@/context/AnalyticsProvider";
+import {AnalyticsProvider} from "@/context/AnalyticsProvider";
 export { metadata } from "../layout";
 
 export default function ChatLayout({
@@ -17,7 +17,7 @@ export default function ChatLayout({
         lang="en"
         suppressHydrationWarning={true}
       >
-        <GoogleAnaProvider>
+        <AnalyticsProvider>
           <body
             className={`${poppins.className} antialiased overflow-x-hidden`}
           >
@@ -26,7 +26,7 @@ export default function ChatLayout({
               {children}
             </main>
           </body>
-        </GoogleAnaProvider>
+        </AnalyticsProvider>
       </html>
     </ChatProvider>
   );

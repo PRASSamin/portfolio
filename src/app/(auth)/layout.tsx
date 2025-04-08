@@ -2,7 +2,7 @@ import "../globals.css";
 import { poppins } from "@/utils/fonts";
 import { SessionProvider } from "@/context/SessionProvider";
 import { Toaster } from "@/components/ui/sonner";
-import GoogleAnaProvider from "@/context/AnalyticsProvider";
+import {AnalyticsProvider} from "@/context/AnalyticsProvider";
 export { metadata } from "@/app/layout";
 
 export default function AuthLayout({
@@ -17,7 +17,7 @@ export default function AuthLayout({
         lang="en"
         suppressHydrationWarning={true}
       >
-        <GoogleAnaProvider>
+        <AnalyticsProvider>
           <body
             className={`${poppins.className} antialiased overflow-x-hidden bg-background`}
           >
@@ -26,7 +26,7 @@ export default function AuthLayout({
               {children}
             </main>
           </body>
-        </GoogleAnaProvider>
+        </AnalyticsProvider>
       </html>
     </SessionProvider>
   );
