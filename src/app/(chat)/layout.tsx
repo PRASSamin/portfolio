@@ -2,7 +2,7 @@ import "../globals.css";
 import ChatNavBar from "./components/nav";
 import { poppins } from "@/utils/fonts";
 import { ChatProvider } from "@/context/ChatProvider";
-import GoogleAnaProvider from "@/context/GoogleAnaProvider";
+import GoogleAnaProvider from "@/context/AnalyticsProvider";
 export { metadata } from "../layout";
 
 export default function ChatLayout({

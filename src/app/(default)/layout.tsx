@@ -2,7 +2,7 @@ import "../globals.css";
 import NavBar from "../../components/nav";
 import Footer from "../../components/footer";
 import { poppins } from "@/utils/fonts";
-import GoogleAnaProvider from "@/context/GoogleAnaProvider";
+import GoogleAnaProvider from "@/context/AnalyticsProvider";
 
 export default async function RootLayout({
   children,

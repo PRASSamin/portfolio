@@ -1,4 +1,5 @@
 import Script from "next/script";
+import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 
 const GoogleAnaProvider = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -21,6 +22,7 @@ const GoogleAnaProvider = ({ children }: { children: React.ReactNode }) => {
         `}
       </Script>
       {children}
+      <VercelAnalytics />
     </>
   );
 };

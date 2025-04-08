@@ -2,7 +2,7 @@ import "./globals.css";
 import { poppins } from "@/utils/fonts";
 import { Metadata } from "next";
 import { SessionProvider } from "@/context/SessionProvider";
-import GoogleAnaProvider from "@/context/GoogleAnaProvider";
+import GoogleAnaProvider from "@/context/AnalyticsProvider";
 
 export const metadata: Metadata = {
   title: "Create Next App",

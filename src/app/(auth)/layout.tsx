@@ -2,7 +2,7 @@ import "../globals.css";
 import { poppins } from "@/utils/fonts";
 import { SessionProvider } from "@/context/SessionProvider";
 import { Toaster } from "@/components/ui/sonner";
-import GoogleAnaProvider from "@/context/GoogleAnaProvider";
+import GoogleAnaProvider from "@/context/AnalyticsProvider";
 export { metadata } from "@/app/layout";
 
 export default function AuthLayout({

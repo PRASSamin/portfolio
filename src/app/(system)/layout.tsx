@@ -1,4 +1,4 @@
-import GoogleAnaProvider from "@/context/GoogleAnaProvider";
+import GoogleAnaProvider from "@/context/AnalyticsProvider";
 import "../globals.css";
 import { poppins } from "@/utils/fonts";
 
