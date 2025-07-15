@@ -29,7 +29,7 @@ const AdminBlogView: React.FC<{ blogs: BlogType[] }> = ({ blogs }) => {
     <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 relative">
       {blogs.map((blog) => (
         <ContextMenu key={blog.id}>
-          <ContextMenuTrigger isLeftClickTrigger>
+          <ContextMenuTrigger>
             <BlogCardView
               blog={blog}
               selected={selected}

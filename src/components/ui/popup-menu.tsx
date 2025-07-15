@@ -77,12 +77,7 @@ export const PopupMenuContent = ({
   }, [open, setOpen]);
 
   return createPortal(
-    <Transition
-      in={open}
-      timeout={150}
-      unmountOnExit
-      nodeRef={nodeRef} 
-    >
+    <Transition in={open} timeout={150} unmountOnExit nodeRef={nodeRef}>
       {(state) => (
         <div
           ref={nodeRef}
@@ -98,7 +93,7 @@ export const PopupMenuContent = ({
             state === "exited" && "opacity-0 scale-50",
             className
           )}
-          style={{ left: position.x, top: position.y, state:  }}
+          style={{ left: position.x, top: position.y }}
         >
           {children}
         </div>
