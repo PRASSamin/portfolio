@@ -11,38 +11,13 @@ const ContextMenu = ContextMenuPrimitive.Root;
 
 const ContextMenuTrigger = React.forwardRef<
   React.ElementRef<typeof ContextMenuPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof ContextMenuPrimitive.Trigger> & {
-    isLeftClickTrigger?: boolean;
-  }
->(({ children, isLeftClickTrigger, ...props }, forwardedRef) => {
-  const triggerRef = useRef<HTMLSpanElement | null>(null);
-
-  // Sync forwarded ref with local ref
-  React.useImperativeHandle(
-    forwardedRef,
-    () => triggerRef.current as HTMLSpanElement
-  );
+  React.ComponentPropsWithoutRef<typeof ContextMenuPrimitive.Trigger>
+>(({ children, ...props }, ref) => {
 
   return (
     <ContextMenuPrimitive.Trigger
-      ref={triggerRef}
+      ref={ref}
       {...props}
-      onClick={(e) => {
-        if (isLeftClickTrigger && !e.ctrlKey && triggerRef.current) {
-          e.preventDefault(); // Prevent default left-click behavior
-
-          // Create and dispatch a `contextmenu` event to simulate right-click
-          const event = new MouseEvent("contextmenu", {
-            bubbles: true,
-            cancelable: true,
-            view: window,
-            clientX: e.clientX, // Preserve cursor position
-            clientY: e.clientY,
-          });
-
-          triggerRef.current.dispatchEvent(event);
-        }
-      }}
     >
       {children}
     </ContextMenuPrimitive.Trigger>

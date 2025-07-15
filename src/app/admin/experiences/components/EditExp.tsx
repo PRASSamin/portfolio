@@ -82,7 +82,7 @@ const EditExperience = ({
 
     try {
       const { data } = await axios.put(
-        `/api/admin/handle/experience`,
+        `${window.location.pathname}/api`,
         formData,
         {
           headers: {

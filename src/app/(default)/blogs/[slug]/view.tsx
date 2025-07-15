@@ -5,11 +5,12 @@ import { formatDate } from "@/utils";
 import { BetterImage } from "@prass/betterimage/components";
 import React, { useRef } from "react";
 import { motion, useInView } from "motion/react";
+import { Eye } from "lucide-react";
 
-const BlogPageView: React.FC<{ blog: BlogType; content: string }> = ({
-  blog,
-  content,
-}) => {
+const BlogPageView: React.FC<{
+  blog: BlogType & { views: number };
+  content: string;
+}> = ({ blog, content }) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
@@ -122,7 +123,7 @@ const BlogPageView: React.FC<{ blog: BlogType; content: string }> = ({
             blog?.thumbnail ? "-mt-28" : "mt-5"
           }`}
         >
-          <div className="prose-invert prose !max-w-[100ch] flex flex-col gap-6">
+          <div className="prose-invert prose !max-w-[100ch] w-full flex flex-col gap-6">
             {/* Blog Header */}
             <div className="h-full flex flex-col justify-between border-none not-prose">
               <motion.h2
@@ -152,14 +153,10 @@ const BlogPageView: React.FC<{ blog: BlogType; content: string }> = ({
                     </span>
                   </div>
                   <div className="flex gap-2 items-center">
-                    {blog.tags.slice(0, 2).map((tag, i) => (
-                      <span
-                        key={i}
-                        className="px-2.5 py-0.5 bg-rose-800/50 border border-rose-700 rounded-full text-[13px] text-rose-500 font-semibold select-none"
-                      >
-                        {tag}
-                      </span>
-                    ))}
+                    <span className="px-2.5 flex gap-1.5 items-center text-[13px] ">
+                      <Eye className="text-muted-foreground/70" size={16} />
+                      <span>{blog.views} views</span>
+                    </span>
                   </div>
                 </div>
                 {/* Line */}

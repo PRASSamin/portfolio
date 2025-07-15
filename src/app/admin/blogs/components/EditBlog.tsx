@@ -73,7 +73,7 @@ const EditBlog = ({
 
     setIsSaving(true);
     try {
-      await axios.put(`/api/admin/handle/blog`, formData, {
+      await axios.put(`${window.location.pathname}/api`, formData, {
         headers: { "x-api-key": API_KEY, "x-blog-id": blog.id },
       });
       setCurrentPage(0);
@@ -93,7 +93,7 @@ const EditBlog = ({
       <Dialog>
         <DialogTrigger
           onClick={(e) => e.stopPropagation()}
-          className="gap-2 group  flex select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-accent hover:bg-muted cursor-pointer w-full"
+          className="gap-2 group flex select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-accent hover:bg-muted cursor-pointer w-full"
         >
           <FilePenLine
             size={18}

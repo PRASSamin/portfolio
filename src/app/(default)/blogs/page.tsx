@@ -1,17 +1,12 @@
-import { db } from "@/utils/db";
-import { BLOGSERIALIZER } from "@/utils/serializers";
-import { BlogType } from "@/types";
 import { metatag } from "@/utils/metatag";
 import BlogsView from "./view";
+import { db } from "@/utils/db";
+
+const LIMIT = 20;
 
 const BlogsPage = async () => {
-  const allBlogs: BlogType[] = BLOGSERIALIZER(
-    await db.blog.findMany({
-      orderBy: [{ updated_at: "desc" }, { created_at: "desc" }],
-    })
-  );
-
-  return <BlogsView allBlogs={allBlogs} />;
+  const totalPage = Math.ceil((await db.blog.count()) / LIMIT);
+  return <BlogsView totalPages={totalPage} LIMIT={LIMIT} />;
 };
 
 BlogsPage.displayName = "BlogsPage";

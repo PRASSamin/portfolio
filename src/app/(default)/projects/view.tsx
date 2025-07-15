@@ -9,10 +9,9 @@ import {
 } from "@/components/ui/card";
 import { BetterImage } from "@prass/betterimage/components";
 import ExpandableText from "../../../components/ReadMore";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useInView, motion } from "motion/react";
-import useShortcut from "@/hooks/useShortcut";
-import { SearchIcon } from "lucide-react";
+import { Check, Eye, ListFilterPlus, Loader2, SearchIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import {
   Tooltip,
@@ -25,42 +24,69 @@ import { SlowMotionVideo } from "@mui/icons-material";
 import { Button } from "@/components/ui/button";
 import { Github } from "@/components/icons";
 import Link from "next/link";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
+  Command,
+  CommandGroup,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
+import { cn } from "@/utils";
+import axios from "axios";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 
-interface Props {
-  projects: ProjectType[];
-}
-
-const ProjectPageView: React.FC<Props> = ({ projects }) => {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const isInView = useInView(containerRef, { once: true, amount: 0.3 });
+const ProjectPageView = ({
+  totalPages,
+  LIMIT,
+}: {
+  totalPages: number;
+  LIMIT: number;
+}) => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchResult, setSearchResult] =
-    useState<Array<ProjectType>>(projects);
+  const [projects, setProjects] = useState<ProjectType[]>([]);
+  const [page, setPage] = useState(1);
+  const [isFetching, setIsFetching] = useState(false);
+  const [total, setTotal] = useState(totalPages);
+
   const searchRef = useRef<HTMLInputElement | null>(null);
   const [isSearchActive, setIsSearchActive] = useState<boolean>(false);
+  const [sort, setSort] = useState("created_at-desc");
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const isInView = useInView(containerRef, { once: true, amount: 0.3 });
 
-  useShortcut(["alt", "s"], () => {
-    if (searchRef.current) {
-      searchRef.current.focus();
+  const fetchProjects = useCallback(async () => {
+    setIsFetching(true);
+    try {
+      const [sortBy, order] = sort.split("-");
+      const { data } = await axios.get(`${window.location.pathname}/api`, {
+        params: { limit: LIMIT, page, search: searchQuery, sortBy, order },
+      });
+
+      console.log(data);
+
+      setProjects(data.projects || []);
+      setTotal(data.totalPages || totalPages);
+    } catch (err) {
+      console.error("Failed to fetch projects", err);
+    } finally {
+      setIsFetching(false);
     }
-  });
+  }, [page, searchQuery, sort]);
 
   useEffect(() => {
-    let allProjects = projects;
-
-    if (searchQuery.trim() !== "") {
-      allProjects = allProjects.filter(
-        (project) =>
-          project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          project?.description
-            ?.toLowerCase()
-            .includes(searchQuery.toLowerCase()) ||
-          project.category.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-    }
-
-    setSearchResult(allProjects);
-  }, [searchQuery, projects]);
+    fetchProjects();
+  }, [fetchProjects]);
 
   const containerVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -72,8 +98,22 @@ const ProjectPageView: React.FC<Props> = ({ projects }) => {
   };
 
   const searchVariants = {
-    init: { width: 40 },
-    final: { width: "auto", transition: { duration: 0.5, ease: "easeOut" } },
+    init: { width: 40, opacity: 0 },
+    final: {
+      width: "auto",
+      opacity: 1,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
+
+  const goToPage = (newPage: number) => {
+    if (newPage > 0 && newPage <= total) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+      setPage(newPage);
+    }
   };
 
   return (
@@ -83,7 +123,7 @@ const ProjectPageView: React.FC<Props> = ({ projects }) => {
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         variants={containerVariants}
-        className="my-8 min-h-[calc(100vh-45px-64px-(32px*2))] w-[calc(100vw-2rem)] lg:container mx-auto flex flex-col gap-10 items-center"
+        className="my-8 overflow-auto min-h-[calc(100vh-45px-64px-(32px*2))] w-[calc(100vw-2rem)] lg:container mx-auto flex flex-col gap-8 items-center"
       >
         <div className="flex flex-col gap-1 items-center">
           <h1 className="text-4xl lg:text-6xl font-black leading-normal">
@@ -98,39 +138,104 @@ const ProjectPageView: React.FC<Props> = ({ projects }) => {
         </div>
 
         {/* Search Input */}
-        {searchResult.length >= 0 && (
+        <div className="flex items-center gap-3">
           <motion.div
             initial="init"
             variants={searchVariants}
             animate={isInView ? "final" : "init"}
-            className="relative overflow-hidden"
+            className="relative"
           >
             <SearchIcon className="absolute top-1/2 left-3 transform -translate-y-1/2 text-muted-foreground z-10" />
             <Input
-              type="text"
               ref={searchRef}
               placeholder="Search..."
-              className="w-[calc(100vw-2rem)] sm:w-[500px] border border-border/70 rounded-xl pl-11 py-6 outline-none ring-0 bg-background/50 backdrop-blur focus-visible:ring-0"
+              className="w-[calc(100vw-2rem)] sm:w-[500px] border border-border/70 rounded-xl pl-11 py-6 bg-background/50 backdrop-blur"
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                setPage(1);
+              }}
               onFocus={() => setIsSearchActive(true)}
               onBlur={() => setIsSearchActive(false)}
             />
             {!isSearchActive && (
-              <span className="absolute top-1/2 right-3 transform -translate-y-1/2 text-muted-foreground z-10 text-xs font-medium font-mono mt-0.5">
+              <span className="absolute top-1/2 right-3 transform -translate-y-1/2 text-muted-foreground text-xs font-mono">
                 ALT + S
               </span>
             )}
           </motion.div>
-        )}
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button
+                variant="outline"
+                className="h-[48px] p-0 aspect-square [&_svg]:size-5 "
+              >
+                <ListFilterPlus />
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="p-0">
+              <Command>
+                <CommandList>
+                  <CommandGroup>
+                    {[...Array(4).keys()].map((i) => {
+                      const order = {
+                        Newest: "created_at-desc",
+                        Oldest: "created_at-asc",
+                        "Most Viewed": "views-desc",
+                        "Least Viewed": "views-asc",
+                      };
+                      return (
+                        <CommandItem
+                          key={i}
+                          value={Object.values(order)[i]}
+                          onSelect={(currentValue) => {
+                            setSort(currentValue === sort ? "" : currentValue);
+                            setPage(1);
+                          }}
+                        >
+                          {Object.keys(order)[i]}
+                          {isFetching ? (
+                            <Loader2
+                              className={cn(
+                                "ml-auto animate-spin",
+                                sort === Object.values(order)[i]
+                                  ? "opacity-100"
+                                  : "opacity-0"
+                              )}
+                            />
+                          ) : (
+                            <Check
+                              className={cn(
+                                "ml-auto",
+                                sort === Object.values(order)[i]
+                                  ? "opacity-100"
+                                  : "opacity-0"
+                              )}
+                            />
+                          )}
+                        </CommandItem>
+                      );
+                    })}
+                  </CommandGroup>
+                </CommandList>
+              </Command>
+            </PopoverContent>
+          </Popover>
+        </div>
 
-        {searchResult.length <= 0 ? (
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center items-center">
-            <p className="text-muted-foreground">No projects found</p>
-          </div>
+        {projects.length <= 0 ? (
+          isFetching ? (
+            <div className="text-muted-foreground text-lg text-center min-h-[40vh]">
+              <Loader2 className="animate-spin" />
+            </div>
+          ) : (
+            <div className="text-muted-foreground text-lg text-center mt-10 min-h-[40vh]">
+              No projects found
+            </div>
+          )
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
-            {searchResult.map((project, i) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 w-full">
+            {projects.map((project, i) => (
               <Link
                 href={`/projects/${project.slug}`}
                 key={project.id}
@@ -138,37 +243,54 @@ const ProjectPageView: React.FC<Props> = ({ projects }) => {
               >
                 {/* Background Overlay */}
                 <div className="absolute inset-0 w-full h-full bg-transparent group-hover:bg-background/60 border border-dashed transition-all duration-300 ease-linear backdrop-blur rounded-xl"></div>
+
                 <Card
                   className={`
-            h-full w-full flex flex-col bg-background/60 backdrop-blur 
-            justify-between transition-all duration-300 overflow-hidden border-dashed 
-            group-hover:[transform:perspective(1000px)_rotateX(-2deg)_rotateY(3deg)] 
-            group-hover:[transform-origin:top_left]
-          `}
+          h-full w-full flex flex-col bg-background/60 backdrop-blur 
+          justify-between transition-all duration-300 overflow-hidden border-dashed 
+          group-hover:[transform:perspective(1000px)_rotateX(-2deg)_rotateY(3deg)] 
+          group-hover:[transform-origin:top_left]
+        `}
                 >
                   <CardHeader className="p-4 h-full justify-between">
-                    <CardTitle className="flex items-center gap-2 relative min-h-56">
+                    <CardTitle className="flex items-center gap-2 relative min-h-56 aspect-[16/12]">
                       <BetterImage
-                        className="rounded-md"
+                        className="rounded-md object-cover"
                         width={250}
                         height={250}
                         src={project.image}
                         alt={project.title}
                       />
-                      <span
-                        title="Category"
-                        className="absolute top-2 right-2 bg-[#31004d]/50 text-white backdrop-blur px-2 py-1 rounded text-sm"
-                      >
-                        {project.category}
-                      </span>
-                      {i === 0 && (
-                        <span className="absolute top-2 left-2 bg-lime-500/70 text-white backdrop-blur px-2 py-1 rounded text-sm">
-                          New
+
+                      {/* Category & Views */}
+                      <div className="absolute top-2 right-2 flex gap-2">
+                        <span
+                          title="Category"
+                          className="bg-[#31004d]/50 text-white backdrop-blur px-2 py-1 rounded text-sm"
+                        >
+                          {project.category}
                         </span>
-                      )}
+                      </div>
+
+                      <div className="absolute top-1 left-2 bg-background/50 rounded py-1 px-2 flex items-center gap-1.5 text-foreground/80">
+                        <Eye size={16} />
+                        <span className="text-sm">{project.views || "0"}</span>
+                      </div>
                     </CardTitle>
+
                     <CardDescription className="text-md flex flex-col">
-                      <h2 className="text-white">{project.title}</h2>
+                      <div className="flex items-center gap-2 mt-2">
+                        {i === 0 &&
+                          new Date(project.updated_at || project.created_at) >
+                            new Date(
+                              new Date().getTime() - 3 * 24 * 60 * 60 * 1000 // 3 days
+                            ) && (
+                            <span className="bg-muted text-foreground border px-1.5 py-0.5 rounded text-[10px] tracking-wide uppercase">
+                              New
+                            </span>
+                          )}
+                        <h2 className="text-white">{project.title}</h2>
+                      </div>
                       <ExpandableText
                         text={project?.description || ""}
                         maxLength={80}
@@ -178,6 +300,7 @@ const ProjectPageView: React.FC<Props> = ({ projects }) => {
                       />
                     </CardDescription>
                   </CardHeader>
+
                   <CardFooter className="flex gap-1 items-center justify-between p-4 pt-0">
                     <div className="w-full flex flex-col">
                       <div className="flex gap-2 flex-wrap w-full rounded-sm pb-2">
@@ -199,39 +322,42 @@ const ProjectPageView: React.FC<Props> = ({ projects }) => {
                           </Tooltip>
                         ))}
                       </div>
-                      <div className="flex gap-2 w-full rounded-sm pt-2">
-                        {project?.link?.github && (
-                          <Button
-                            asChild
-                            className="w-full bg-pink-700/50 hover:bg-pink-700/70 border-pink-600"
-                            variant={"outline"}
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            <Link
-                              className="flex items-center"
-                              target="_blank"
-                              href={project.link.github}
+
+                      <div className="flex gap-2 w-full rounded-sm pt-2 items-center justify-between">
+                        <div className="flex gap-2">
+                          {project?.link?.github && (
+                            <Button
+                              asChild
+                              className="bg-pink-700/50 hover:bg-pink-700/70 border-pink-600"
+                              variant={"outline"}
+                              onClick={(e) => e.stopPropagation()}
                             >
-                              <Github /> Github
-                            </Link>
-                          </Button>
-                        )}
-                        {project?.link?.live && (
-                          <Button
-                            asChild
-                            className="w-full bg-purple-700/30 hover:bg-purple-700/50 border-purple-600"
-                            variant={"outline"}
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            <Link
-                              className="flex items-center"
-                              target="_blank"
-                              href={project.link.live}
+                              <Link
+                                className="flex items-center"
+                                target="_blank"
+                                href={project.link.github}
+                              >
+                                <Github /> Github
+                              </Link>
+                            </Button>
+                          )}
+                          {project?.link?.live && (
+                            <Button
+                              asChild
+                              className="bg-purple-700/30 hover:bg-purple-700/50 border-purple-600"
+                              variant={"outline"}
+                              onClick={(e) => e.stopPropagation()}
                             >
-                              <SlowMotionVideo /> Live
-                            </Link>
-                          </Button>
-                        )}
+                              <Link
+                                className="flex items-center"
+                                target="_blank"
+                                href={project.link.live}
+                              >
+                                <SlowMotionVideo /> Live
+                              </Link>
+                            </Button>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </CardFooter>
@@ -239,6 +365,55 @@ const ProjectPageView: React.FC<Props> = ({ projects }) => {
               </Link>
             ))}
           </div>
+        )}
+
+        {/* Pagination */}
+        {total > 1 && (
+          <Pagination>
+            <PaginationContent>
+              <PaginationItem>
+                <PaginationPrevious
+                  disabled={page === 1}
+                  onClick={() => goToPage(page - 1)}
+                />
+              </PaginationItem>
+
+              {[...Array(total)].map((_, index) => {
+                const pageNum = index + 1;
+                const isActive = page === pageNum;
+                if (
+                  pageNum === 1 ||
+                  pageNum === total ||
+                  Math.abs(pageNum - page) <= 1
+                ) {
+                  return (
+                    <PaginationItem key={pageNum}>
+                      <PaginationLink
+                        isActive={isActive}
+                        onClick={() => goToPage(pageNum)}
+                      >
+                        {pageNum}
+                      </PaginationLink>
+                    </PaginationItem>
+                  );
+                } else if (pageNum === page - 2 || pageNum === page + 2) {
+                  return (
+                    <PaginationItem key={`ellipsis-${pageNum}`}>
+                      <span className="px-2 text-muted-foreground">...</span>
+                    </PaginationItem>
+                  );
+                }
+                return null;
+              })}
+
+              <PaginationItem>
+                <PaginationNext
+                  disabled={page === total}
+                  onClick={() => goToPage(page + 1)}
+                />
+              </PaginationItem>
+            </PaginationContent>
+          </Pagination>
         )}
       </motion.div>
     </TooltipProvider>

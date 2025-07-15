@@ -35,7 +35,7 @@ const DeleteProject = ({
     setIsDeleting(ids[0]);
 
     try {
-      const response = await axios.delete("/api/admin/handle/project", {
+      const response = await axios.delete(`${window.location.pathname}/api`, {
         headers: {
           "x-api-key": API_KEY,
         },

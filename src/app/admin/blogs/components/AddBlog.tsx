@@ -66,7 +66,7 @@ const AddBlog = ({
     setIsAdding(true);
 
     try {
-      await axios.post(`/api/admin/handle/blog`, formData, {
+      await axios.post(`${window.location.pathname}/api`, formData, {
         headers: { "x-api-key": API_KEY },
       });
       setCurrentPage(0);
@@ -75,7 +75,7 @@ const AddBlog = ({
       resetState();
       dialogCloseRef.current?.click();
     } catch (error) {
-     console.error("Error updating blog:", error);
+      console.error("Error updating blog:", error);
       toast.error("Failed to save blog");
     } finally {
       setIsAdding(false);

@@ -2,7 +2,6 @@
 import React, { useRef } from "react";
 import { ProjectType } from "@/types";
 import ExpandableText from "../../../../components/ReadMore";
-import { formatDate } from "@/utils";
 import { BetterImage } from "@prass/betterimage/components";
 import {
   Tooltip,
@@ -13,13 +12,14 @@ import {
 import { getFontIcon } from "@/utils/getFontIcon";
 import Link from "next/link";
 import { Github } from "@/components/icons";
-import { LinkIcon } from "lucide-react";
+import { Eye, LinkIcon } from "lucide-react";
 import { motion, useInView } from "motion/react";
+import { formatDate } from "@/utils";
 
-const ProjectView: React.FC<{ project: ProjectType; content: string }> = ({
-  project,
-  content,
-}) => {
+const ProjectView: React.FC<{
+  project: ProjectType & { views: number };
+  content: string;
+}> = ({ project, content }) => {
   const contentRef = useRef<HTMLDivElement | null>(null);
   const isInView = useInView(contentRef, { once: true, amount: 0.1 });
 
@@ -125,7 +125,7 @@ const ProjectView: React.FC<{ project: ProjectType; content: string }> = ({
             project?.image ? "-mt-28" : "mt-5"
           }`}
         >
-          <div className="prose-invert prose !max-w-[100ch] flex flex-col gap-6">
+          <div className="prose-invert prose !max-w-[100ch] w-full flex flex-col gap-6">
             {/* Project Header */}
             <div className="h-full flex flex-col justify-between border-none not-prose">
               <motion.h2
@@ -143,28 +143,33 @@ const ProjectView: React.FC<{ project: ProjectType; content: string }> = ({
               </motion.div>
               <motion.div
                 variants={childVariants}
-                className="flex gap-5 mt-12 mb-4"
+                className="flex gap-5 mt-12 mb-4 justify-between flex-row-reverse"
               >
-                {project.link?.github && (
-                  <Link
-                    target="_blank"
-                    href={project.link.github}
-                    className="flex gap-1.5 items-center text-sm hover:underline text-muted-foreground hover:text-foreground "
-                  >
-                    <Github size={16} />
-                    <span className="mt-0.5">View on GitHub</span>
-                  </Link>
-                )}
-                {project.link?.live && (
-                  <Link
-                    target="_blank"
-                    href={project.link.live}
-                    className="flex gap-1.5 items-center text-sm hover:underline text-muted-foreground hover:text-foreground"
-                  >
-                    <LinkIcon size={16} />
-                    <span className="mt-0.5">Live Link</span>
-                  </Link>
-                )}
+                <span className="text-sm text-muted-foreground font-mono">
+                  {formatDate(project.created_at, project.updated_at)}
+                </span>
+                <div className="flex gap-5">
+                  {project.link?.github && (
+                    <Link
+                      target="_blank"
+                      href={project.link.github}
+                      className="flex gap-1.5 items-center text-sm hover:underline text-muted-foreground hover:text-foreground "
+                    >
+                      <Github size={16} />
+                      <span className="mt-0.5">View on GitHub</span>
+                    </Link>
+                  )}
+                  {project.link?.live && (
+                    <Link
+                      target="_blank"
+                      href={project.link.live}
+                      className="flex gap-1.5 items-center text-sm hover:underline text-muted-foreground hover:text-foreground"
+                    >
+                      <LinkIcon size={16} />
+                      <span className="mt-0.5">Live Link</span>
+                    </Link>
+                  )}
+                </div>
               </motion.div>
               <motion.div
                 variants={childVariants}
@@ -173,8 +178,14 @@ const ProjectView: React.FC<{ project: ProjectType; content: string }> = ({
                 <div className="h-[1px] bg-border w-full" />
                 <div className="flex justify-between">
                   <div className="flex items-center gap-1">
-                    <span className="text-sm text-muted-foreground font-mono">
-                      {formatDate(project.created_at, project.updated_at)}
+                    <span className="flex gap-1.5 items-center text-[13px]">
+                      <Eye className="text-muted-foreground/70" size={16} />
+                      <span>
+                        {project?.views || (
+                          <span className="font-frozito">–––</span>
+                        )}{" "}
+                        views
+                      </span>
                     </span>
                   </div>
                   <div className="flex items-center justify-center gap-2.5">

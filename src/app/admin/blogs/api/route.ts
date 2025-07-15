@@ -89,7 +89,7 @@ export async function PUT(request: NextRequest) {
       );
     }
 
-    const updatedBlog: Partial<BlogType> = {
+    const updatedBlog = {
       title,
       description,
       thumbnail,

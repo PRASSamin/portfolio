@@ -1,16 +1,22 @@
 import { metatag } from "@/utils/metatag";
 import AdminBlogView from "./view";
-import { cache } from "react";
 import { db } from "@/utils/db";
 import { BLOGSERIALIZER } from "@/utils/serializers";
 
-const Blogs = cache(async () => {
+const Blogs = async () => {
   const p = await db.blog.findMany({
     orderBy: [{ updated_at: "desc" }, { created_at: "desc" }],
+    include: {
+      _count: {
+        select: {
+          views: true,
+        },
+      },
+    },
   });
   if (p.length === 0) return [];
   return BLOGSERIALIZER(p);
-});
+};
 
 export const generateMetadata = () => {
   return metatag({

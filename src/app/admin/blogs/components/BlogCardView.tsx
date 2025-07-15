@@ -1,3 +1,5 @@
+"use client";
+import { useEffect } from "react";
 import ExpandableText from "@/components/ReadMore";
 import {
   Card,
@@ -9,6 +11,7 @@ import {
 import { BlogType } from "@/types";
 import { cn } from "@/utils";
 import { BetterImage } from "@prass/betterimage/components";
+import { Eye } from "lucide-react";
 
 const BlogCardView = ({
   blog,
@@ -32,6 +35,11 @@ const BlogCardView = ({
     });
   };
 
+  useEffect(() => {
+    document.getElementById("context-menu")
+  }, [])
+  
+
   return (
     <div
       className={cn(
@@ -49,7 +57,7 @@ const BlogCardView = ({
         className={cn(
           `
           h-full w-full flex flex-col bg-background/60 backdrop-blur 
-          justify-between transition-all duration-300 overflow-hidden border-dashed
+          justify-between transition-all duration-300 overflow-hidden border-dashed 
         `,
           selected.has(blog.id) ? "bg-muted/40" : ""
         )}
@@ -81,6 +89,10 @@ const BlogCardView = ({
               expandable={false}
             />
           </CardDescription>
+          <div className="absolute top-1 left-2 bg-background/50 rounded py-1 px-2 flex items-center gap-1.5 text-muted-foreground">
+            <Eye size={16} />
+            <span className="text-sm ">{blog.views}</span>
+          </div>
         </CardHeader>
         <CardFooter className="flex flex-wrap gap-2 items-center p-4 pt-3">
           {blog.tags.map((tag, i) => (

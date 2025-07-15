@@ -71,7 +71,7 @@ const AddEducation = ({
 
     try {
       const { data } = await axios.post(
-        `/api/admin/handle/education`,
+        `${window.location.pathname}/api`,
         formData,
         {
           headers: { "x-api-key": API_KEY },

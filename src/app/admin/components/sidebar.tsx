@@ -5,6 +5,7 @@ import {
   GraduationCap,
   Home,
   Library,
+  Users
 } from "lucide-react";
 
 import {
@@ -47,6 +48,11 @@ const items = [
     title: "Experience",
     url: "/admin/experiences",
     icon: Building2,
+  },
+  {
+    title: "Members",
+    url: "/admin/members",
+    icon: Users,
   },
 ];
 

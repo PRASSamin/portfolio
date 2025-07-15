@@ -53,8 +53,46 @@ model Project {
   slug        String   @unique
   tools       Int[]
   content     String? 
+  views       ProjectViews[]
   created_at  DateTime @default(now()) 
   updated_at  DateTime @updatedAt
+}
+
+model ProjectViews {
+  id          Int      @id @default(autoincrement()) 
+  project_id  Int
+  ip_address  String
+  created_at  DateTime @default(now()) 
+  updated_at  DateTime @updatedAt
+  project     Project     @relation(fields: [project_id], references: [id], onDelete: Cascade)
+
+  @@index([project_id])
+  @@index([project_id, ip_address])
+}
+
+model Blog {
+  id          Int      @id @default(autoincrement()) 
+  title       String
+  slug        String   @unique
+  tags        String[]
+  content     String
+  description String
+  thumbnail   String?
+  views       BlogViews[]
+  created_at  DateTime @default(now()) 
+  updated_at  DateTime @updatedAt
+}
+
+model BlogViews {
+  id          Int      @id @default(autoincrement()) 
+  blog_id     Int
+  ip_address  String
+  created_at  DateTime @default(now()) 
+  updated_at  DateTime @updatedAt
+  blog        Blog     @relation(fields: [blog_id], references: [id], onDelete: Cascade)
+
+  @@index([blog_id])
+  @@index([blog_id, ip_address])
 }
 
 model Experience {
@@ -77,18 +115,6 @@ model Education {
   start       DateTime
   end         DateTime?
   created_at  DateTime @default(now()) 
-  updated_at  DateTime @updatedAt
-}
-
-model Blog {
-  id          Int      @id @default(autoincrement()) 
-  title       String
-  slug        String   @unique
-  tags        String[]
-  content     String
-  description String
-  thumbnail   String?
-  created_at   DateTime @default(now()) 
   updated_at  DateTime @updatedAt
 }
 

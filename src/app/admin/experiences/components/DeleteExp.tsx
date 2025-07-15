@@ -30,7 +30,7 @@ const DeleteExperience = ({
   const handleDelete = async () => {
     setIsDeleting(true);
     try {
-      const response = await axios.delete("/api/admin/handle/experience", {
+      const response = await axios.delete(`${window.location.pathname}/api`, {
         headers: {
           "x-api-key": API_KEY,
         },

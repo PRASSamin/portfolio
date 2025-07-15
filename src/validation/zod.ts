@@ -14,8 +14,8 @@ export const ProjectSchema = z.object({
 export const BlogSchema = z.object({
   title: z.string().min(1, "Title is required"),
   tags: z.array(z.string()).default([]),
-  content: z.string().min(1, "Content is required"),
-  description: z.string().min(1, "Description is required"),
+  content: z.string().optional(),
+  description: z.string().optional(),
   thumbnail: z.string().url("Invalid Thumbnail URL").nullable().optional(),
 });
 

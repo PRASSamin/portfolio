@@ -1,15 +1,12 @@
 import { db } from "@/utils/db";
 import { metatag } from "@/utils/metatag";
-import { PROJECTSERIALIZER } from "@/utils/serializers";
 import ProjectPageView from "./view";
 
+const LIMIT = 20;
+
 const ProjectPage = async () => {
-  const projects = PROJECTSERIALIZER(
-    await db.project.findMany({
-      orderBy: [{ updated_at: "desc" }, { created_at: "desc" }],
-    })
-  );
-  return <ProjectPageView projects={projects} />;
+  const totalPage = Math.ceil((await db.project.count()) / LIMIT);
+  return <ProjectPageView totalPages={totalPage} LIMIT={LIMIT} />;
 };
 
 ProjectPage.displayName = "ProjectPage";

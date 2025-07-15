@@ -1,79 +1,95 @@
 "use client";
 import { ProjectType } from "@/types";
 import { Button } from "@/components/ui/button";
-import {
-  ContextMenu,
-  ContextMenuContent,
-  ContextMenuItem,
-  ContextMenuLabel,
-  ContextMenuRadioGroup,
-  ContextMenuSeparator,
-  ContextMenuTrigger,
-} from "@/components/ui/context-menu";
 import { useRouter } from "next/navigation";
-import { Eye, Plus, Trash2 } from "lucide-react";
-import { useState } from "react";
+import { Plus, Trash2 } from "lucide-react";
+import { useRef, useState } from "react";
 import QuickActionsBar from "@/components/ui/quick-actions-bar";
 import DeleteProject from "./components/DeleteProject";
 import ProjectCardView from "./components/ProjectCardView";
-import EditProject from "./components/EditProject";
 import { cn } from "@/utils";
 import AddProject from "./components/AddProject";
-import Link from "next/link";
+import {
+  PopupMenu,
+  PopupMenuContent,
+  PopupMenuItem,
+  PopupMenuTrigger,
+} from "@/components/ui/popup-menu";
 
 const AdminProjectView: React.FC<{ projects: ProjectType[] }> = ({
   projects,
 }) => {
   const router = useRouter();
   const [selected, setSelected] = useState<Set<string | number>>(new Set());
+  const contextMenuRef = useRef<HTMLDivElement>(null);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 relative">
       {projects.map((project) => (
-        <ContextMenu key={project.id}>
-          <ContextMenuTrigger isLeftClickTrigger>
+        <PopupMenu key={project.id}>
+          <PopupMenuTrigger className="inline-block p-2 border rounded cursor-pointer">
             <ProjectCardView
               project={project}
               selected={selected}
               setSelected={setSelected}
             />
-          </ContextMenuTrigger>
-          <ContextMenuContent className="w-56">
-            <ContextMenuLabel inset>Actions</ContextMenuLabel>
-            <ContextMenuSeparator />
-            <ContextMenuRadioGroup>
-              <ContextMenuItem asChild>
-                <Link
-                  href={"/projects/" + project.slug}
-                  className="gap-2 group  flex select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-accent hover:bg-muted cursor-pointer w-full"
-                >
-                  <Eye
-                    size={18}
-                    className="group-hover:text-yellow-400 transition-all duration-300"
-                  />
-                  View
-                </Link>
-              </ContextMenuItem>
-              <ContextMenuItem asChild>
-                <EditProject
-                  project={project}
-                  onUpdate={(updated) => updated && router.refresh()}
-                />
-              </ContextMenuItem>
-              <ContextMenuItem asChild>
-                <DeleteProject projects={projects} ids={new Set([project.id])}>
-                  <button className="gap-2 group flex select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-accent hover:bg-muted cursor-pointer w-full">
-                    <Trash2
-                      size={18}
-                      className="group-hover:text-red-500 transition-all duration-300"
-                    />
-                    Delete
-                  </button>
-                </DeleteProject>
-              </ContextMenuItem>
-            </ContextMenuRadioGroup>
-          </ContextMenuContent>
-        </ContextMenu>
+          </PopupMenuTrigger>
+
+          <PopupMenuContent>
+            <PopupMenuItem onSelect={() => alert("Edit")}>Edit</PopupMenuItem>
+            <PopupMenuItem onSelect={() => alert("Delete")}>
+              Delete
+            </PopupMenuItem>
+          </PopupMenuContent>
+        </PopupMenu>
+        // <ContextMenu open={isOpen} setOpen={setIsOpen} key={project.id}>
+        //   <ContextMenuTrigger ref={contextMenuRef}>
+        //     <ProjectCardView
+        //       project={project}
+        //       selected={selected}
+        //       setSelected={setSelected}
+        //     />
+        //   </ContextMenuTrigger>
+        //   <ContextMenuContent className="w-56">
+        //     <ContextMenuLabel inset>Actions</ContextMenuLabel>
+        //     <ContextMenuSeparator />
+        //     <ContextMenuRadioGroup>
+        //       <ContextMenuItem asChild>
+        //         <Link
+        //           href={"/projects/" + project.slug}
+        //           className="gap-2 group  flex select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-accent hover:bg-muted cursor-pointer w-full"
+        //         >
+        //           <Eye
+        //             size={18}
+        //             className="group-hover:text-yellow-400 transition-all duration-300"
+        //           />
+        //           View
+        //         </Link>
+        //       </ContextMenuItem>
+        //       <ContextMenuItem asChild>
+        //         <EditProject
+        //           onEditClick={() => {
+        //             setIsOpen(false);
+        //           }}
+        //           project={project}
+        //           onUpdate={(updated) => updated && router.refresh()}
+        //         />
+        //       </ContextMenuItem>
+        //       <ContextMenuItem asChild>
+        //         <DeleteProject projects={projects} ids={new Set([project.id])}>
+        //           <button className="gap-2 group flex select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-accent hover:bg-muted cursor-pointer w-full">
+        //             <Trash2
+        //               size={18}
+        //               className="group-hover:text-red-500 transition-all duration-300"
+        //             />
+        //             Delete
+        //           </button>
+        //         </DeleteProject>
+        //       </ContextMenuItem>
+        //     </ContextMenuRadioGroup>
+        //   </ContextMenuContent>
+        // </ContextMenu>
       ))}
 
       <QuickActionsBar

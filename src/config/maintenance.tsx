@@ -14,66 +14,56 @@ export const maintenanceNotice: MaintenanceNotice = {
   enabled: true,
   end: {
     date: "2025-04-30",
-    probability: "high",
+    probability: "low",
   },
   message: (
     <span className="text-gray-300 leading-relaxed">
-      Our platform is currently undergoing{" "}
-      <span className="text-purple-400 font-semibold">
-        scheduled maintenance{" "}
-      </span>
-      to bring you the next generation of innovation. This major update will
-      introduce{" "}
-      <span className="text-cyan-400 font-semibold">
-        significant enhancements,{" "}
-      </span>
-      ensuring a{" "}
-      <span className="text-green-400 font-semibold">seamless experience </span>
-      with superior{" "}
-      <span className="text-yellow-400 font-semibold">performance</span>.
+      <span className="text-purple-400 font-bold text-xl">PRAS Samin</span> is
+      currently upgrading this site to deliver a more powerful, personal, and
+      polished experience.
       <br />
       <br />
-      <span className="text-gray-400 italic">
-        We appreciate your patience and can&apos;t wait to unveil what&apos;s
-        coming!
-      </span>
+      This domain is the official digital identity of{" "}
+      <span className="text-cyan-400 font-semibold">PRAS</span> — developer,
+      open-source creator.
+      <br />
+      <br />
+      <span className="text-yellow-400 font-semibold">
+        Migration is in progress...
+      </span>{" "}
+      but the grind never stops.
     </span>
   ),
   additionalInfo: (
-    <div>
+    <div className="mt-6">
       <span className="text-purple-400 font-bold text-lg">
-        🚀 Next Release Highlights
+        In the Meantime:
       </span>
       <ul className="mt-3 text-gray-300 list-disc list-inside space-y-2">
         <li>
-          🔥 <span className="text-pink-400 font-semibold">Revamped UI</span> -
-          A modern and sleek design for a better user experience.
+          GitHub:{" "}
+          <a
+            className="text-blue-400 hover:underline"
+            href="https://github.com/PRASSamin"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            github.com/prassamin
+          </a>
         </li>
         <li>
-          ⚡{" "}
-          <span className="text-blue-400 font-semibold">
-            Maximized Performance
-          </span>{" "}
-          - Blazing fast speeds with optimized efficiency.
+          Contact:{" "}
+          <a
+            className="text-blue-400 hover:underline"
+            href="mailto:prassamin@gmail.com"
+          >
+            prassamin@gmail.com
+          </a>
         </li>
-        <li>
-          💬{" "}
-          <span className="text-green-400 font-semibold">
-            Real-time Chat System
-          </span>{" "}
-          - Seamless communication with instant messaging.
+        <li className="italic text-gray-400">
+          This domain verifies that I am PRAS. No clone, no placeholder — just
+          me.
         </li>
-        <li>
-          🤖{" "}
-          <span className="text-yellow-400 font-semibold">AI-Powered Chat</span>{" "}
-          - Smart conversations with AI integration.
-        </li>
-        <li>
-          🔒{" "}
-          <span className="text-red-400 font-semibold">Enhanced Security</span>{" "}
-          - Strengthened protection for user data.
-        </li>
-        <li>✨ And much more to explore!</li>
       </ul>
     </div>
   ),

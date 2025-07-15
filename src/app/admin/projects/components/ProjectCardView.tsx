@@ -12,6 +12,7 @@ import { ProjectType } from "@/types";
 import { cn } from "@/utils";
 import { SlowMotionVideo } from "@mui/icons-material";
 import { BetterImage } from "@prass/betterimage/components";
+import { Eye } from "lucide-react";
 import Link from "next/link";
 
 const ProjectCardView = ({
@@ -43,7 +44,6 @@ const ProjectCardView = ({
       )}
       data-id={project.id}
       onClick={(e) => {
-        e.preventDefault();
         if (e.ctrlKey) {
           onProjectClick(project.id);
         }
@@ -64,12 +64,10 @@ const ProjectCardView = ({
               src={project.image}
               alt={project.title}
             />
-            <span
-              title="Category"
-              className="absolute top-2 right-2 bg-[#31004d]/50 text-white backdrop-blur px-2 py-1 rounded text-sm"
-            >
-              {project.category}
-            </span>
+            <div className="absolute top-2 right-2 bg-background/50 rounded py-1 px-2 flex items-center gap-1.5 text-muted-foreground">
+              <Eye size={16} />
+              <span className="text-sm ">{project.views}</span>
+            </div>
           </CardTitle>
           <CardDescription className="text-md flex flex-col">
             <h2 className="text-white">{project.title}</h2>

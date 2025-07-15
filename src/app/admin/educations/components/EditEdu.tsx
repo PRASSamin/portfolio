@@ -81,7 +81,7 @@ const EditEducation = ({
     setIsSaving(true);
     try {
       const { data } = await axios.put(
-        `/api/admin/handle/education`,
+        `${window.location.pathname}/api`,
         formData,
         {
           headers: { "x-api-key": API_KEY, "x-education-id": education.id },

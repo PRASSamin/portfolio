@@ -62,6 +62,7 @@ export type ProjectType = {
   slug: string;
   tools: Array<number>;
   content?: string;
+  views: number;
   category: string;
   created_at: Date;
   updated_at: Date;
@@ -115,6 +116,7 @@ export type BlogType = {
   description: string;
   tags: string[];
   thumbnail?: string;
+  views: number;
   created_at: Date;
   updated_at: Date;
 };

@@ -20,9 +20,11 @@ import { ProjectSchema } from "@/validation/zod";
 const EditProject = ({
   project,
   onUpdate,
+  onEditClick,
 }: {
   project: ProjectType;
   onUpdate?: (updated: boolean) => void;
+  onEditClick?: () => void;
 }) => {
   const [formData, setFormData] = useState<Partial<RawProjectType>>({
     title: project.title,
@@ -37,6 +39,7 @@ const EditProject = ({
   const [isSaving, setIsSaving] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const dialogCloseRef = useRef<HTMLButtonElement>(null);
+  const dialogTriggerRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     setFormData({
@@ -82,7 +85,7 @@ const EditProject = ({
 
     setIsSaving(true);
     try {
-      await axios.put(`/api/admin/handle/project`, formData, {
+      await axios.put(`${window.location.pathname}/api`, formData, {
         headers: { "x-api-key": API_KEY, "x-project-id": project.id },
       });
       setCurrentPage(0);
@@ -101,7 +104,11 @@ const EditProject = ({
     <TooltipProvider>
       <Dialog>
         <DialogTrigger
-          onClick={(e) => e.stopPropagation()}
+          ref={dialogTriggerRef}
+          onClick={(e) => {
+            e.stopPropagation();
+            onEditClick?.();
+          }}
           className="gap-2 group  flex select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-accent hover:bg-muted cursor-pointer w-full"
         >
           <FilePenLine

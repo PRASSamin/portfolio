@@ -74,7 +74,7 @@ const AddProject = ({
     setIsAdding(true);
 
     try {
-      await axios.post(`/api/admin/handle/project`, formData, {
+      await axios.post(`${window.location.pathname}/api`, formData, {
         headers: { "x-api-key": API_KEY },
       });
       setCurrentPage(0);

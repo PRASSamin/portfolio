@@ -68,7 +68,7 @@ const AddExperience = ({
 
     try {
       const { data } = await axios.post(
-        `/api/admin/handle/experience`,
+        `${window.location.pathname}/api`,
         formData,
         { headers: { "x-api-key": API_KEY } }
       );

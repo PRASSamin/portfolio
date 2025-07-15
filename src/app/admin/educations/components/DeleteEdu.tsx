@@ -31,7 +31,7 @@ const DeleteEdu = ({
     setIsDeleting(true);
 
     try {
-      const response = await axios.delete("/api/admin/handle/education", {
+      const response = await axios.delete(`${window.location.pathname}/api`, {
         headers: {
           "x-api-key": API_KEY,
         },

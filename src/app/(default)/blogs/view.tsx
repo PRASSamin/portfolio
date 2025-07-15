@@ -1,5 +1,14 @@
 "use client";
+
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import axios from "axios";
+import Link from "next/link";
+import { motion, useInView } from "motion/react";
+import { Check, Eye, ListFilterPlus, Loader2, SearchIcon } from "lucide-react";
+
+import { BetterImage } from "@prass/betterimage/components";
 import ExpandableText from "@/components/ReadMore";
+
 import {
   Card,
   CardDescription,
@@ -8,50 +17,89 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { BlogType } from "@/types";
-import { formatDate } from "@/utils";
-import Link from "next/link";
-import React, { useEffect, useRef, useState } from "react";
-import { SearchIcon } from "lucide-react";
-import useShortcut from "@/hooks/useShortcut";
-import { BetterImage } from "@prass/betterimage/components";
-import { motion, useInView } from "motion/react";
+import { Button } from "@/components/ui/button";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
+  Command,
+  CommandGroup,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
 
-const BlogsView: React.FC<{ allBlogs: Array<BlogType> }> = ({ allBlogs }) => {
+import { BlogType } from "@/types";
+import { cn, formatDate } from "@/utils";
+
+const TAG_PREVIEW_LIMIT = 5;
+
+const BlogsView = ({
+  totalPages,
+  LIMIT,
+}: {
+  totalPages: number;
+  LIMIT: number;
+}) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
-  const [filteredBlogs, setFilteredBlogs] = useState(allBlogs);
+  const [blogs, setBlogs] = useState<BlogType[]>([]);
+  const [filteredBlogs, setFilteredBlogs] = useState<BlogType[]>([]);
+  const [page, setPage] = useState(1);
+  const [isFetching, setIsFetching] = useState(false);
+  const [total, setTotal] = useState(totalPages);
+
   const searchRef = useRef<HTMLInputElement | null>(null);
   const [isSearchActive, setIsSearchActive] = useState<boolean>(false);
+  const [showAllTags, setShowAllTags] = useState<boolean>(false);
+  const [sort, setSort] = useState("created_at-desc");
   const containerRef = useRef<HTMLDivElement | null>(null);
   const isInView = useInView(containerRef, { once: true, amount: 0.3 });
 
-  useShortcut(["alt", "s"], () => {
-    if (searchRef.current) {
-      searchRef.current.focus();
+  const fetchBlogs = useCallback(async () => {
+    setIsFetching(true);
+    try {
+      const [sortBy, order] = sort.split("-");
+      const { data } = await axios.get(`${window.location.pathname}/api`, {
+        params: { limit: LIMIT, page, search: searchQuery, sortBy, order },
+      });
+
+      setBlogs(data.blogs || []);
+      setTotal(data.totalPages || totalPages);
+    } catch (err) {
+      console.error("Failed to fetch blogs", err);
+    } finally {
+      setIsFetching(false);
     }
-  });
+  }, [page, searchQuery, sort]);
 
   useEffect(() => {
-    let blogs = allBlogs;
+    fetchBlogs();
+  }, [fetchBlogs]);
 
-    if (searchQuery.trim() !== "") {
-      blogs = blogs.filter(
-        (blog) =>
-          blog.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          blog.description.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-    }
+  useEffect(() => {
+    let result = blogs;
 
     if (selectedTag) {
-      blogs = blogs.filter((blog) => blog.tags.includes(selectedTag));
+      result = result.filter((blog) => blog.tags.includes(selectedTag));
     }
 
-    setFilteredBlogs(blogs);
-  }, [searchQuery, selectedTag, allBlogs]);
+    setFilteredBlogs(result);
+  }, [blogs, selectedTag]);
 
-  // Extract unique tags for filtering
-  const tags = Array.from(new Set(allBlogs.flatMap((blog) => blog.tags)));
+  const tags = useMemo(
+    () => Array.from(new Set(blogs.flatMap((b) => b.tags))),
+    [blogs]
+  );
 
   const containerVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -63,8 +111,22 @@ const BlogsView: React.FC<{ allBlogs: Array<BlogType> }> = ({ allBlogs }) => {
   };
 
   const searchVariants = {
-    init: { width: 40 },
-    final: { width: "auto", transition: { duration: 0.5, ease: "easeOut" } },
+    init: { width: 40, opacity: 0 },
+    final: {
+      width: "auto",
+      opacity: 1,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
+
+  const goToPage = (newPage: number) => {
+    if (newPage > 0 && newPage <= total) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+      setPage(newPage);
+    }
   };
 
   return (
@@ -73,9 +135,8 @@ const BlogsView: React.FC<{ allBlogs: Array<BlogType> }> = ({ allBlogs }) => {
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       variants={containerVariants}
-      className="my-8 min-h-[calc(100vh-45px-64px-(32px*2))] w-[calc(100vw-2rem)] lg:container mx-auto flex flex-col gap-8 items-center"
+      className="my-8 overflow-auto min-h-[calc(100vh-45px-64px-(32px*2))] w-[calc(100vw-2rem)] lg:container mx-auto flex flex-col gap-8 items-center"
     >
-      {/* Header */}
       <div className="flex flex-col gap-2 items-center">
         <h1 className="text-4xl lg:text-6xl font-black leading-normal">
           My{" "}
@@ -89,68 +150,146 @@ const BlogsView: React.FC<{ allBlogs: Array<BlogType> }> = ({ allBlogs }) => {
         </p>
       </div>
 
-      {/* Search Input */}
-      <motion.div
-        initial="init"
-        variants={searchVariants}
-        animate={isInView ? "final" : "init"}
-        className="relative overflow-hidden"
-      >
-        <SearchIcon className="absolute top-1/2 left-3 transform -translate-y-1/2 text-muted-foreground z-10" />
-        <Input
-          type="text"
-          ref={searchRef}
-          placeholder="Search..."
-          className="w-[calc(100vw-2rem)] sm:w-[500px] border border-border/70 rounded-xl pl-11 py-6 outline-none ring-0 bg-background/50 backdrop-blur focus-visible:ring-0"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          onFocus={() => setIsSearchActive(true)}
-          onBlur={() => setIsSearchActive(false)}
-        />
-        {!isSearchActive && (
-          <span className="absolute top-1/2 right-3 transform -translate-y-1/2 text-muted-foreground z-10 text-xs font-medium font-mono mt-0.5">
-            ALT + S
-          </span>
-        )}
-      </motion.div>
+      <div className="flex items-center gap-3">
+        <motion.div
+          initial="init"
+          variants={searchVariants}
+          animate={isInView ? "final" : "init"}
+          className="relative"
+        >
+          <SearchIcon className="absolute top-1/2 left-3 transform -translate-y-1/2 text-muted-foreground z-10" />
+          <Input
+            ref={searchRef}
+            placeholder="Search..."
+            className="w-[calc(100vw-2rem)] sm:w-[500px] border border-border/70 rounded-xl pl-11 py-6 bg-background/50 backdrop-blur"
+            value={searchQuery}
+            onChange={(e) => {
+              setSearchQuery(e.target.value);
+              setPage(1);
+            }}
+            onFocus={() => setIsSearchActive(true)}
+            onBlur={() => setIsSearchActive(false)}
+          />
+          {!isSearchActive && (
+            <span className="absolute top-1/2 right-3 transform -translate-y-1/2 text-muted-foreground text-xs font-mono">
+              ALT + S
+            </span>
+          )}
+        </motion.div>
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button
+              variant="outline"
+              className="h-[48px] p-0 aspect-square [&_svg]:size-5 "
+            >
+              <ListFilterPlus />
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="p-0">
+            <Command>
+              <CommandList>
+                <CommandGroup>
+                  {[...Array(4).keys()].map((i) => {
+                    const order = {
+                      Newest: "created_at-desc",
+                      Oldest: "created_at-asc",
+                      "Most Viewed": "views-desc",
+                      "Least Viewed": "views-asc",
+                    };
+                    return (
+                      <CommandItem
+                        key={i}
+                        value={Object.values(order)[i]}
+                        onSelect={(currentValue) => {
+                          setSort(currentValue === sort ? "" : currentValue);
+                          setPage(1);
+                        }}
+                      >
+                        {Object.keys(order)[i]}
+                        {isFetching ? (
+                          <Loader2
+                            className={cn(
+                              "ml-auto animate-spin",
+                              sort === Object.values(order)[i]
+                                ? "opacity-100"
+                                : "opacity-0"
+                            )}
+                          />
+                        ) : (
+                          <Check
+                            className={cn(
+                              "ml-auto",
+                              sort === Object.values(order)[i]
+                                ? "opacity-100"
+                                : "opacity-0"
+                            )}
+                          />
+                        )}
+                      </CommandItem>
+                    );
+                  })}
+                </CommandGroup>
+              </CommandList>
+            </Command>
+          </PopoverContent>
+        </Popover>
+      </div>
 
-      {/* Tag Filter */}
-      <div className="flex flex-col gap-2 items-center w-full">
-        <h2 className="text-sm text-start sm:text-center w-full">
-          Choose a topic
-        </h2>
-        <div className="flex flex-wrap gap-2 justify-start sm:justify-center w-full">
-          <button
-            className={`px-2.5 py-1 rounded-md text-sm font-semibold transition-all ${
-              !selectedTag
-                ? "bg-rose-700/30 text-rose-500"
-                : "bg-muted/60 text-muted-foreground"
-            }`}
-            onClick={() => setSelectedTag(null)}
-          >
-            All
-          </button>
-          {tags.map((tag) => (
+      {tags.length > 0 && (
+        <div className="flex flex-col gap-2 items-center w-full">
+          <h2 className="text-sm text-start sm:text-center w-full">
+            Choose a topic
+          </h2>
+          <div className="flex flex-wrap gap-2 justify-start sm:justify-center w-full">
             <button
-              key={tag}
-              className={`px-2.5 py-1 rounded-md text-sm font-semibold transition-all duration-300 ease-linear ${
-                selectedTag === tag
+              className={`px-2.5 py-1 rounded-md text-sm font-semibold transition-all ${
+                !selectedTag
                   ? "bg-rose-700/30 text-rose-500"
                   : "bg-muted/60 text-muted-foreground"
               }`}
-              onClick={() => setSelectedTag(tag)}
+              onClick={() => setSelectedTag(null)}
             >
-              {tag}
+              All
             </button>
-          ))}
+            {tags
+              .slice(0, showAllTags ? tags.length : TAG_PREVIEW_LIMIT)
+              .map((tag) => (
+                <button
+                  key={tag}
+                  className={`px-2.5 py-1 rounded-md text-sm font-semibold transition-all duration-300 ease-linear ${
+                    selectedTag === tag
+                      ? "bg-rose-700/30 text-rose-500"
+                      : "bg-muted/60 text-muted-foreground"
+                  }`}
+                  onClick={() => setSelectedTag(tag)}
+                >
+                  {tag}
+                </button>
+              ))}
+            {tags.length > TAG_PREVIEW_LIMIT && (
+              <button
+                key="more"
+                className={`px-2.5 py-1 rounded-md text-sm font-semibold transition-all duration-300 ease-linear bg-muted/60 text-muted-foreground`}
+                onClick={() => setShowAllTags(!showAllTags)}
+              >
+                {(showAllTags ? "-" : "+") + (tags.length - TAG_PREVIEW_LIMIT)}
+              </button>
+            )}
+          </div>
         </div>
-      </div>
+      )}
 
-      {/* Blogs Grid */}
+      {/* Blog Cards */}
       {filteredBlogs.length === 0 ? (
-        <div className="text-muted-foreground text-lg text-center mt-10">
-          No blogs found
-        </div>
+        isFetching ? (
+          <div className="text-muted-foreground text-lg text-center min-h-[40vh]">
+            <Loader2 className="animate-spin" />
+          </div>
+        ) : (
+          <div className="text-muted-foreground text-lg text-center mt-10 min-h-[40vh]">
+            No blogs found
+          </div>
+        )
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full gap-4">
           {filteredBlogs.map((blog, i) => (
@@ -159,24 +298,16 @@ const BlogsView: React.FC<{ allBlogs: Array<BlogType> }> = ({ allBlogs }) => {
               href={`/blogs/${blog.slug}`}
               className="w-full flex items-center justify-center gap-3 relative group"
             >
-              {/* Background Overlay */}
-              <div className="absolute inset-0 w-full h-full bg-transparent group-hover:bg-background/60 border border-dashed transition-all duration-300 ease-linear backdrop-blur rounded-xl"></div>
+              <div className="absolute inset-0 w-full h-full bg-transparent group-hover:bg-background/60 border border-dashed backdrop-blur rounded-xl"></div>
 
-              {/* Blog Card */}
-              <Card
-                className={`
-          h-full w-full flex flex-col bg-background/60 backdrop-blur 
-          justify-between transition-all duration-300 overflow-hidden border-dashed 
-          group-hover:[transform:perspective(1000px)_rotateX(-2deg)_rotateY(3deg)] 
-          group-hover:[transform-origin:top_left]
-        `}
-              >
+              <Card className="h-full w-full flex flex-col bg-background/60 backdrop-blur justify-between border-dashed transition-all duration-300 overflow-hidden group-hover:[transform:perspective(1000px)_rotateX(-2deg)_rotateY(3deg)] group-hover:[transform-origin:top_left]">
                 <CardHeader className="p-0 h-full">
-                  {blog?.thumbnail && (
+                  {blog.thumbnail && (
                     <div
                       className="border border-dashed rounded-t-lg overflow-hidden h-36"
                       style={{
-                        maskImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0))`,
+                        maskImage:
+                          "linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.3), rgba(0,0,0,0))",
                       }}
                     >
                       <BetterImage
@@ -188,23 +319,17 @@ const BlogsView: React.FC<{ allBlogs: Array<BlogType> }> = ({ allBlogs }) => {
                       />
                     </div>
                   )}
-                  <CardTitle className="flex flex-col gap-2 relative px-4 pb-0">
+                  <CardTitle className="px-4 pb-0 pt-2">
                     <h2 className="text-white text-xl truncate">
                       {blog.title}
                     </h2>
-                    <div className="flex items-center gap-1">
+                    <div className="flex items-center gap-2 mt-1">
                       {i === 0 &&
-                        ((blog.created_at &&
-                          new Date(blog.created_at) >
-                            new Date(
-                              new Date().getTime() - 5 * 24 * 60 * 60 * 1000
-                            )) ||
-                          (blog.updated_at &&
-                            new Date(blog.updated_at) >
-                              new Date(
-                                new Date().getTime() - 5 * 24 * 60 * 60 * 1000
-                              ))) && (
-                          <span className="bg-background text-muted-foreground border-muted border backdrop-blur px-1.5 py-1 rounded-[2px] text-xs">
+                        new Date(blog.updated_at || blog.created_at) >
+                          new Date(
+                            new Date().getTime() - 3 * 24 * 60 * 60 * 1000
+                          ) && (
+                          <span className="bg-muted text-foreground border px-1.5 py-0.5 rounded text-[10px] tracking-wide uppercase">
                             New
                           </span>
                         )}
@@ -213,19 +338,23 @@ const BlogsView: React.FC<{ allBlogs: Array<BlogType> }> = ({ allBlogs }) => {
                       </span>
                     </div>
                   </CardTitle>
-                  <CardDescription className="text-md pt-3 flex flex-col px-4">
+                  <CardDescription className="text-md pt-3 px-4">
                     <ExpandableText
                       text={blog.description}
                       maxLength={200}
                       expandable={false}
                     />
                   </CardDescription>
+                  <div className="absolute top-1 left-2 bg-background/50 rounded py-1 px-2 flex items-center gap-1.5 text-foreground/80">
+                    <Eye size={16} />
+                    <span className="text-sm">{blog.views || "0"}</span>
+                  </div>
                 </CardHeader>
-                <CardFooter className="flex flex-wrap gap-2 items-center p-4 pt-3">
+                <CardFooter className="flex flex-wrap gap-2 p-4 pt-3">
                   {blog.tags.map((tag, i) => (
                     <span
                       key={i}
-                      className="px-2.5 py-1 bg-rose-800/50 border border-rose-700 rounded-full text-xs text-rose-500 font-semibold capitalize select-none"
+                      className="px-2.5 py-1 bg-rose-800/50 border border-rose-700 rounded-full text-xs text-rose-500 font-semibold capitalize"
                     >
                       {tag}
                     </span>
@@ -235,6 +364,55 @@ const BlogsView: React.FC<{ allBlogs: Array<BlogType> }> = ({ allBlogs }) => {
             </Link>
           ))}
         </div>
+      )}
+
+      {/* Pagination */}
+      {total > 1 && (
+        <Pagination>
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationPrevious
+                disabled={page === 1}
+                onClick={() => goToPage(page - 1)}
+              />
+            </PaginationItem>
+
+            {[...Array(total)].map((_, index) => {
+              const pageNum = index + 1;
+              const isActive = page === pageNum;
+              if (
+                pageNum === 1 ||
+                pageNum === total ||
+                Math.abs(pageNum - page) <= 1
+              ) {
+                return (
+                  <PaginationItem key={pageNum}>
+                    <PaginationLink
+                      isActive={isActive}
+                      onClick={() => goToPage(pageNum)}
+                    >
+                      {pageNum}
+                    </PaginationLink>
+                  </PaginationItem>
+                );
+              } else if (pageNum === page - 2 || pageNum === page + 2) {
+                return (
+                  <PaginationItem key={`ellipsis-${pageNum}`}>
+                    <span className="px-2 text-muted-foreground">...</span>
+                  </PaginationItem>
+                );
+              }
+              return null;
+            })}
+
+            <PaginationItem>
+              <PaginationNext
+                disabled={page === total}
+                onClick={() => goToPage(page + 1)}
+              />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
       )}
     </motion.div>
   );

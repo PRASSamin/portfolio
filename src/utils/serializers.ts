@@ -19,6 +19,7 @@ export const PROJECTSERIALIZER = (projects: any) => {
       slug: project.slug,
       tools: project.tools,
       content: project?.content || null,
+      views: project?._count?.views || null,
       created_at: project.created_at,
       updated_at: project.updated_at,
     };
@@ -47,6 +48,7 @@ export const BLOGSERIALIZER = (blogs: any) => {
       content: blog.content,
       tags: blog.tags,
       thumbnail: blog.thumbnail || null,
+      views: blog?._count?.views || null,
       created_at: blog.created_at,
       updated_at: blog.updated_at,
     };

@@ -35,7 +35,7 @@ const DeleteBlog = ({
     setIsDeleting(ids[0]);
 
     try {
-      const response = await axios.delete("/api/admin/handle/blog", {
+      const response = await axios.delete(`${window.location.pathname}/api`, {
         headers: {
           "x-api-key": API_KEY,
         },
@@ -46,9 +46,7 @@ const DeleteBlog = ({
       });
 
       if (response.status === 200) {
-        toast.success(
-          `${response.data.count} blog(s) deleted successfully!`
-        );
+        toast.success(`${response.data.count} blog(s) deleted successfully!`);
         setIds?.(new Set());
         router.refresh();
       } else {

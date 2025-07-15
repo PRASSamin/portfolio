@@ -57,7 +57,7 @@ export default async function middleware(request: NextRequest) {
     }
   }
 
-  // Admin API Protection 
+  // Admin API Protection
   if (isAdminApiRoute(request)) {
     const apiKey = request.headers.get("x-api-key");
 
