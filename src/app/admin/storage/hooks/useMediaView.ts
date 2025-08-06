@@ -47,7 +47,9 @@ export const useMediaView = () => {
       if (response.status === 200) {
         toast.success(
           `Successfully deleted ${isFolder ? "folder" : "file"}: ${
-            isFolder ? deleteTarget.__meta.name : deleteTarget.display_name
+            isFolder
+              ? deleteTarget.__meta.name
+              : deleteTarget.secure_url.split("/").pop()
           }`
         );
         if (isFolder) {

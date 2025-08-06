@@ -33,11 +33,11 @@ export async function DELETE(request: NextRequest) {
   try {
     await cloudinary.api.delete_folder(path);
     return NextResponse.json({ success: true });
-  } catch (error) {
+  } catch (error: any) {
     console.error("Cloudinary API Error:", error);
     return NextResponse.json(
-      { error: "Failed to delete Cloudinary folder." },
-      { status: 500 }
+      { error: error?.error?.message || "Failed to delete the folder." },
+      { status: error?.error?.http_code || 500 }
     );
   }
 }
