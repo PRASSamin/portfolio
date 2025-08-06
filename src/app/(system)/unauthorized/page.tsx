@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/hooks/useRouter";
 
 export default function UnauthorizedPage() {
   const router = useRouter();

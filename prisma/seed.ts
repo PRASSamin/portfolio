@@ -2,86 +2,49 @@ import { db } from "@/utils/db";
 import { faker } from "@faker-js/faker";
 
 async function main() {
-  // for (let i = 0; i < 200; i++) {
-  //   const firstName = faker.person.firstName()
-  //   const lastName = faker.person.lastName()
-  //   const fullName = `${firstName} ${lastName}`
-  //   const email = faker.internet.email({ firstName, lastName })
-  //   const avatar = faker.image.avatarGitHub()
-  //   const username = faker.internet.userName({ firstName, lastName })
-  //   const user = await db.user.create({
-  //     data: {
-  //       username,
-  //       first_name: firstName,
-  //       last_name: lastName,
-  //       full_name: fullName,
-  //       avatar,
-  //       email,
-  //       role: 'USER',
-  //       public_metadata: {
-  //         chatToken: faker.string.uuid(),
-  //       },
-  //       connected_accounts: {
-  //         create: {
-  //           oauth_id: faker.string.uuid(),
-  //           provider: 'google',
-  //           provider_data: {
-  //             name: fullName,
-  //             email,
-  //             picture: avatar,
-  //             sub: faker.string.uuid(),
-  //             iss: 'https://accounts.google.com',
-  //             email_verified: true,
-  //           },
-  //         },
-  //       },
-  //     },
-  //   })
-  //   console.log(`Created user: ${user.full_name}`)
-  // }
-  // await db.education.createMany({
-  //   data: [
-  //     {
-  //       degree: "Diploma In Engineering",
-  //       field: "Computer Technology",
-  //       school: "Noakhali Ideal Polytechnic Institute",
-  //       start: new Date("2020-01-01"),
-  //       end: new Date("2025-01-04"),
-  //       description:
-  //         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-  //     },
-  //     {
-  //       degree: "Secondary School Certificate",
-  //       field: "Business Studies",
-  //       school: "Harinarayanpur Union High School",
-  //       start: new Date("2018-01-01"),
-  //       end: new Date("2020-01-01"),
-  //       description:
-  //         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-  //     },
-  //     {
-  //       degree: "Junior School Certificate",
-  //       field: "N/A",
-  //       school: "Harinarayanpur Union High School",
-  //       start: new Date("2016-01-01"),
-  //       end: new Date("2018-01-01"),
-  //       description:
-  //         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-  //     },
-  //   ],
-  // });
-  // await db.experience.createMany({
-  //   data: [
-  //     {
-  //       company: "Divine IT Limited",
-  //       role: "Software Engineer Intern",
-  //       start: new Date("2024-07-01"),
-  //       end: new Date("2024-11-30"),
-  //       description:
-  //         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-  //     },
-  //   ],
-  // });
+  await db.education.createMany({
+    data: [
+      {
+        degree: "Diploma In Engineering",
+        field: "Computer Technology",
+        school: "Noakhali Ideal Polytechnic Institute",
+        start: new Date("2020-01-01"),
+        end: new Date("2025-01-04"),
+        description:
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+      },
+      {
+        degree: "Secondary School Certificate",
+        field: "Business Studies",
+        school: "Harinarayanpur Union High School",
+        start: new Date("2018-01-01"),
+        end: new Date("2020-01-01"),
+        description:
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+      },
+      {
+        degree: "Junior School Certificate",
+        field: "N/A",
+        school: "Harinarayanpur Union High School",
+        start: new Date("2016-01-01"),
+        end: new Date("2018-01-01"),
+        description:
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+      },
+    ],
+  });
+  await db.experience.createMany({
+    data: [
+      {
+        company: "Divine IT Limited",
+        role: "Software Engineer Intern",
+        start: new Date("2024-07-01"),
+        end: new Date("2024-11-30"),
+        description:
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+      },
+    ],
+  });
   // await db.project.createMany({
   //   data: [
   //     {
@@ -659,70 +622,59 @@ async function main() {
   // });
 
   // Function to generate a single blog object
-  // function generateBlog() {
-  //   const title = faker.lorem.words({ min: 2, max: 7 });
-  //   const slug = title
-  //     .toLowerCase()
-  //     .replace(/[^a-z0-9]+/g, "-")
-  //     .replace(/(^-|-$)/g, "");
-  //   const description = faker.lorem.paragraph({ min: 2, max: 4 });
-  //   const thumbnail = faker.image.urlLoremFlickr({
-  //     category: "technology",
-  //     width: 826,
-  //   });
-  //   const content = `# ${title}\n\n${faker.lorem.paragraphs({
-  //     min: 3,
-  //     max: 6,
-  //   })}`;
-  //   const tags = Array.from(
-  //     { length: faker.number.int({ min: 1, max: 5 }) },
-  //     () => faker.lorem.word().toLowerCase()
-  //   );
-
-  //   return {
-  //     title,
-  //     slug,
-  //     description,
-  //     thumbnail,
-  //     content,
-  //     tags,
-  //   };
-  // }
   function generateBlog() {
-    const title = faker.lorem.words({ min: 2, max: 5 });
+    const title = faker.lorem.words({ min: 2, max: 7 });
     const slug = title
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/(^-|-$)/g, "");
     const description = faker.lorem.paragraph({ min: 2, max: 4 });
-    const image = faker.image.personPortrait();
+    const thumbnail = faker.image.urlPicsumPhotos({blur:0, grayscale: false, width: 1024, height: 720});
     const content = `# ${title}\n\n${faker.lorem.paragraphs({
       min: 3,
       max: 6,
     })}`;
-    const category = faker.lorem.word();
-    const githubUrl = faker.internet.url();
-    const liveUrl = faker.internet.url();
+    const tags = Array.from(
+      { length: faker.number.int({ min: 1, max: 5 }) },
+      () => faker.lorem.word().toLowerCase()
+    );
 
     return {
       title,
       slug,
       description,
-      image,
+      thumbnail,
       content,
-      category,
-      github: githubUrl,
-      live: liveUrl,
+      tags,
     };
   }
+  // function generateBlog() {
+  //   const title = faker.lorem.words({ min: 2, max: 5 });
+  //   const slug = title
+  //     .toLowerCase()
+  //     .replace(/[^a-z0-9]+/g, "-")
+  //     .replace(/(^-|-$)/g, "");
+  //   const description = faker.lorem.paragraph({ min: 2, max: 4 });
+  //   const image = faker.image.personPortrait();
+  //   const content = `# ${title}\n\n${faker.lorem.paragraphs({
+  //     min: 3,
+  //     max: 6,
+  //   })}`;
+  //   const category = faker.lorem.word();
+  //   const githubUrl = faker.internet.url();
+  //   const liveUrl = faker.internet.url();
 
-  for (let i = 0; i < 200; i++) {
-    await db.project.create({
-      data: generateBlog(),
-    });
-
-    console.log(`Project ${i + 1} created`);
-  }
+  //   return {
+  //     title,
+  //     slug,
+  //     description,
+  //     image,
+  //     content,
+  //     category,
+  //     github: githubUrl,
+  //     live: liveUrl,
+  //   };
+  // }
 }
 
 main()

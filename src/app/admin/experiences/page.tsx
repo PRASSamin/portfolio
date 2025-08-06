@@ -14,7 +14,7 @@ const Experiences = cache(async () => {
 
 export const generateMetadata = () => {
   return metatag({
-    pageTitle: "Experiences | Admin",
+    title: "Experiences | Admin",
     robots: "noindex, nofollow",
   });
 };

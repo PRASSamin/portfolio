@@ -1,15 +1,15 @@
 "use client";
-import HeroSection from "./components/hero";
-import ServiceSection from "./components/services";
-import JourneySection from "./components/journey";
-import { ProjectType } from "@/types";
-import ProjectSection from "./components/project";
+import HeroSection from "./components/Hero";
+import ServiceSection from "./components/Services";
+import JourneySection from "./components/Journey";
+import ProjectSection from "./components/Projects";
 import { useRef } from "react";
-import { useInView, motion } from "motion/react";
+import { useInView, motion, Variants } from "motion/react";
+import { QueryProjects } from "@/utils/getProjects";
 
 type Props = {
   totalProjects: string | number;
-  projects: ProjectType[];
+  projects: QueryProjects["projects"];
 };
 
 const HomeView: React.FC<Props> = ({ totalProjects, projects }) => {
@@ -64,7 +64,7 @@ export const useSectionAnimation = ({ once = true, amount = 0.3 } = {}) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once, amount });
 
-  const variants = {
+  const variants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,

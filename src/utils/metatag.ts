@@ -1,72 +1,63 @@
+import { BASE_URL } from "@/constants/env";
 import { headers } from "next/headers";
 
-type Props = {
-  pageTitle: string;
-  robots: string;
-  keywords?: string[];
-  description?: string;
-};
-
-type MetaType = {
-  title: string;
-  canonical: string | null;
-  description?: string;
-  keywords: string[];
-  openGraph: {
-    title: string;
-    url: string | null;
-    siteName: string;
-    images: {
-      url: string;
-      width: number;
-      height: number;
-    }[];
-    locale: string;
-    type: string;
-  };
-  twitter: {
-    title: string;
-    creator: string;
-    images: string[];
-  };
-  alternates: {
-    canonical: string | null;
-    languages: { [key: string]: string | null };
-  };
-  robots: string;
-  structuredData: {
-    name: string;
-    url: string | null;
-  };
-};
-
 export const metatag = async ({
-  pageTitle,
-  robots,
-  keywords,
+  title,
+  robots = "index, follow",
+  keywords = [],
+  image,
   description,
-}: Props) => {
+}: {
+  title: string;
+  robots?: string;
+  keywords?: string[];
+  image?: string;
+  description?: string;
+}) => {
   const headersList = await headers();
-  const pageUrl = headersList.get("x-current-url");
-  const fav = "https://pras.me/logo-512x512.png";
+  const url = headersList.get("x-current-url");
+  const fav = image || `${BASE_URL}/logo-512x512.png`;
 
   const fixedKeywords = [
-    "pras",
-    "pras samin",
-    "pras samin portfolio",
-    "portfolio",
+    "PRAS",
+    "Fetchy",
+    "Video Downloader",
+    "Free Video Downloader",
+    "Download Video",
+    "Download Video Free",
+    "Tiktok Video Downloader",
+    "Tiktok",
+    "Tiktok Downloader",
+    "Tiktok Music Downloader",
+    "Tiktok Music",
+    "Tiktok Photo Downloader",
+    "Facebook Video Downloader",
+    "Facebook",
+    "Facebook Downloader",
+    "Facebook Story Downloader",
+    "Facebook Reel Downloader",
+    "download Facebook stories",
+    "save Facebook story video",
+    "Facebook story saver",
+    "HD Facebook story download",
+    "Instagram Video Downloader",
+    "Instagram",
+    "Instagram Downloader",
+    "Instagram Photo Downloader",
+    "Instagram Reel Downloader",
+    "Free Downloader",
   ];
 
-  const margedkeywords = fixedKeywords.concat(keywords || []);
+  const margedkeywords = fixedKeywords.concat(keywords);
 
-  const meta: MetaType = {
-    title: pageTitle,
-    canonical: pageUrl,
+  const m: any = {
+    title: title,
+    canonical: url,
     keywords: margedkeywords,
     openGraph: {
-      title: pageTitle,
-      url: pageUrl,
-      siteName: pageTitle,
+      title: title,
+      url: url,
+      siteName: title,
       images: [
         {
           url: fav,
@@ -78,24 +69,21 @@ export const metatag = async ({
       type: "website",
     },
     twitter: {
-      title: pageTitle,
+      title: title,
       creator: "@prassamin78",
       images: [fav],
     },
     alternates: {
-      canonical: pageUrl,
-      languages: { "en-US": pageUrl },
+      canonical: url,
+      languages: { "en-US": url },
     },
     robots: robots,
     structuredData: {
-      name: pageTitle,
-      url: pageUrl,
+      name: title,
+      url: url,
     },
   };
 
-  if (description) {
-    meta["description"] = description;
-  }
-
-  return meta;
+  if (description) m.description = description;
+  return m;
 };

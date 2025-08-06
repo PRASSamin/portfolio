@@ -1,8 +1,8 @@
-import EducationSection from "./components/education";
-import ExperienceSection from "./components/experience";
-import ExpertiseSection from "./components/expertise";
-import SocialSection from "./components/social";
-import AboutMeSection from "./components/aboutme";
+import EducationSection from "./components/Education";
+import ExperienceSection from "./components/Experience";
+import ExpertiseSection from "./components/Expertise";
+import SocialSection from "./components/Social";
+import AboutMeSection from "./components/AboutMe";
 import { metatag } from "@/utils/metatag";
 import { db } from "@/utils/db";
 import { EDUCATIONSERIALIZER, EXPERIENCESERIALIZER } from "@/utils/serializers";
@@ -16,10 +16,10 @@ const AboutPage = async () => {
   );
 
   return (
-    <div className={`flex flex-col items-center pt-5 pb-14 overflow-hidden`}>
+    <div className={`flex flex-col items-center pb-14 overflow-hidden`}>
       <AboutMeSection />
-      <EducationSection educations={educations} />
-      <ExperienceSection experiences={exps} />
+      {educations.length > 0 && <EducationSection educations={educations} />}
+      {exps.length > 0 && <ExperienceSection experiences={exps} />}
       <ExpertiseSection />
       <SocialSection />
     </div>
@@ -30,7 +30,7 @@ export default AboutPage;
 
 export const generateMetadata = () => {
   return metatag({
-    pageTitle: "About | PRAS",
+    title: "About | PRAS",
     robots: "index, follow",
   });
 };

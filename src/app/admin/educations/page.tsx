@@ -14,7 +14,7 @@ const Educations = cache(async () => {
 
 export const generateMetadata = () => {
   return metatag({
-    pageTitle: "Educations | Admin",
+    title: "Educations | Admin",
     robots: "noindex, nofollow",
   });
 };

@@ -1,13 +1,13 @@
-import {AnalyticsProvider} from "@/context/AnalyticsProvider";
+import { AnalyticsProvider } from "@/context/AnalyticsProvider";
 import "../globals.css";
-import { poppins } from "@/utils/fonts";
+import { poppins } from "@/constants/fonts";
 
 export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
-      className="no-scrollbar overflow-x-hidden scroll-smooth"
+      className="scrollbar-hidden overflow-x-hidden scroll-smooth"
       lang="en"
       suppressHydrationWarning={true}
     >
@@ -17,7 +17,7 @@ export default async function RootLayout({
           <div className="w-screen h-screen bg-black fixed inset-0 z-[-1]" />
 
           {/* Gradient Background with Animation */}
-          <div className="fixed inset-0 bg-gradient-to-br from-[#6a00f4] via-[#ff0080] to-[#ff6600] opacity-40 blur-3xl" />
+          <div className="fixed inset-0 bg-linear-to-br from-[#6a00f4] via-[#ff0080] to-[#ff6600] opacity-40 blur-3xl" />
 
           {/* Glassmorphism Overlay */}
           <div className="fixed inset-0 backdrop-blur-[50px] bg-black/40 z-10" />

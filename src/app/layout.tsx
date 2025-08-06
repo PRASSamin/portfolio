@@ -1,8 +1,13 @@
 import "./globals.css";
-import { poppins } from "@/utils/fonts";
+import { poppins } from "@/constants/fonts";
 import { Metadata } from "next";
-import { SessionProvider } from "@/context/SessionProvider";
-import {AnalyticsProvider} from "@/context/AnalyticsProvider";
+import { AnalyticsProvider } from "@/context/AnalyticsProvider";
+import { RootProvider } from "fumadocs-ui/provider";
+import { Suspense } from "react";
+import { Progress } from "@/components/Progress";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { Toaster } from "@/components/ui/sonner";
+import GlobalKeyBinderProvider from "@/context/GlobalKeyBinderProvider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,20 +20,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <SessionProvider>
-      <html
-        className="no-scrollbar overflow-x-hidden scroll-smooth"
-        lang="en"
-        suppressHydrationWarning={true}
-      >
+    <html
+      className="scrollbar-hidden overflow-x-hidden scroll-smooth dark"
+      lang="en"
+      suppressHydrationWarning={true}
+    >
+      <TooltipProvider>
         <AnalyticsProvider>
           <body
             className={`${poppins.className} antialiased overflow-x-hidden`}
           >
-            {children}
+            <Suspense fallback={null}>
+              <Progress />
+            </Suspense>
+            <Toaster />
+            <RootProvider search={{ enabled: false }}>
+              <GlobalKeyBinderProvider>{children}</GlobalKeyBinderProvider>
+            </RootProvider>
           </body>
         </AnalyticsProvider>
-      </html>
-    </SessionProvider>
+      </TooltipProvider>
+    </html>
   );
 }

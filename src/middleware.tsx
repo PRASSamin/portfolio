@@ -1,28 +1,14 @@
 import { NextResponse, NextRequest } from "next/server";
-import { getToken } from "next-auth/jwt";
 import { maintenanceNotice } from "./config/maintenance";
-import { getChatAppRoute } from "./utils/getChatAppRoute";
-import { API_KEY, NEXT_AUTH_SECRET } from "./constants/env";
-import { Auth } from "./utils/auth";
-import { createRouteMatcher } from "./utils/routerMatcher";
+import { createRouteMatcher } from "./utils/router-matcher";
+import axios from "axios";
 
-const isPrivateRoute = createRouteMatcher(["/chat.*", "/me.*"]);
-const isAdminRoute = createRouteMatcher(["/admin.*"]);
-const isAdminApiRoute = createRouteMatcher(["/api/admin.*"]);
+const isAdminRoute = createRouteMatcher(["/admin.*", "/api/admin.*"]);
 
 export default async function middleware(request: NextRequest) {
   const headers = new Headers(request.headers);
   headers.set("x-current-url", request.nextUrl.href);
-  const callbackPath = request.nextUrl.searchParams.get("callbackUrl");
   const { pathname } = request.nextUrl;
-  const auth = new Auth();
-
-  // Authentication session from NextAuth
-  const session = await getToken({ req: request, secret: NEXT_AUTH_SECRET });
-
-  if (session && callbackPath) {
-    return NextResponse.redirect(new URL(callbackPath, request.url));
-  }
 
   // Maintenance mode check (redirects all non-static requests)
   const staticMediaRegex =
@@ -45,42 +31,30 @@ export default async function middleware(request: NextRequest) {
     );
   }
 
-  // Deep linking to chat app
-  if (pathname.startsWith("/chat")) {
-    const userAgent = request.headers.get("user-agent") || "";
-    const isAndroid = /Android/i.test(userAgent);
-
-    if (isAndroid) {
-      const deepLinkPath = getChatAppRoute(pathname).replace(/^\//, "");
-      const deepLink = `qubitchat://${deepLinkPath}`;
-      return NextResponse.redirect(deepLink);
-    }
-  }
-
-  // Admin API Protection
-  if (isAdminApiRoute(request)) {
-    const apiKey = request.headers.get("x-api-key");
-
-    if (!apiKey || apiKey !== API_KEY || session?.role !== "ADMIN") {
-      return NextResponse.json(
-        { error: "Unauthorized: Invalid API key" },
-        { status: 401 }
-      );
-    }
-  }
-
-  // Protect admin pages
+  // Admin Protection
   if (isAdminRoute(request)) {
-    if (session?.role !== "ADMIN") {
+    const token = request.cookies.get("_auth_data");
+
+    if (!token)
+      return NextResponse.rewrite(new URL("/unauthorized", request.url), {
+        headers,
+      });
+
+    try {
+      const _ = await axios.post(
+        new URL("/api/auth/verify", request.url).href,
+        {},
+        {
+          headers: {
+            cookie: request.headers.get("cookie"),
+          },
+        }
+      );
+    } catch (error) {
       return NextResponse.rewrite(new URL("/unauthorized", request.url), {
         headers,
       });
     }
-  }
-
-  // Protect private user pages
-  if (isPrivateRoute(request)) {
-    return auth.protect(request, { headers });
   }
 
   return NextResponse.next({ headers });

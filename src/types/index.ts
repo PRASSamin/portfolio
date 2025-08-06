@@ -1,87 +1,14 @@
-import { JsonValue } from "@prisma/client/runtime/library";
 import type { Channel, UserResponse, ChannelData } from "stream-chat";
 
-export interface ConnectedAccount {
-  id: string;
-  user_id: string;
-  oauth_id: string;
-  provider: "google" | "github";
-  provider_data: JsonValue;
-  created_at: Date;
-}
-
-export interface DBUser extends Record<string, any> {
-  id: string;
+export interface UserType {
   username: string;
-  first_name?: string | null;
-  last_name?: string | null;
-  full_name?: string | null;
-  avatar?: string | null;
+  id: string;
+  avatar_url: string;
+  name: string;
   email: string;
+  bio: string;
   role: string;
-  connected_accounts: ConnectedAccount[];
-  public_metadata: JsonValue;
-  created_at: Date;
-  updated_at: Date;
 }
-
-export interface User extends DBUser {
-  update: (
-    updates: Partial<{ first_name: string; last_name: string; avatar: string }>
-  ) => Promise<any>;
-  delete: () => Promise<null>;
-  reload: () => Promise<void>;
-}
-
-export interface StreamChannel extends Channel {
-  data:
-    | (ChannelData & {
-        created_by?:
-          | (UserResponse & {
-              name?: string;
-              image?: string;
-            })
-          | null
-          | undefined;
-      })
-    | undefined;
-  metadata?: {
-    inviteToken: string;
-  };
-}
-
-export type ProjectType = {
-  id: number;
-  title: string;
-  description?: string;
-  image: string;
-  link: {
-    github?: string;
-    live?: string;
-  };
-  slug: string;
-  tools: Array<number>;
-  content?: string;
-  views: number;
-  category: string;
-  created_at: Date;
-  updated_at: Date;
-};
-
-export type RawProjectType = {
-  id: number;
-  title: string;
-  description?: string;
-  image: string;
-  github?: string;
-  live?: string;
-  slug: string;
-  tools: Array<number>;
-  content?: string;
-  category: string;
-  created_at: Date;
-  updated_at: Date;
-};
 
 export type ExperienceType = {
   id: number;
@@ -108,15 +35,28 @@ export type EducationType = {
   updated_at: Date;
 };
 
-export type BlogType = {
-  id: number;
-  title: string;
-  slug: string;
-  content: string;
-  description: string;
-  tags: string[];
-  thumbnail?: string;
-  views: number;
-  created_at: Date;
-  updated_at: Date;
-};
+export interface CloudinaryFile {
+  asset_id: string;
+  public_id: string;
+  format: string;
+  version: number;
+  resource_type: string;
+  type: string;
+  created_at: string;
+  bytes: number;
+  width: number;
+  height: number;
+  asset_folder: string;
+  display_name: string;
+  url: string;
+  secure_url: string;
+}
+
+export interface CloudinaryFolder {
+  __meta: {
+    name: string;
+    path: string;
+  };
+  files?: CloudinaryFile[];
+  [key: string]: any;
+}

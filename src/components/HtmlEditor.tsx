@@ -7,7 +7,7 @@ const HtmlEditor: React.FC<EditorProps> = ({ ...props }) => {
     <div className="overflow-hidden rounded-md h-full border">
       <Editor
         height="100%"
-        defaultLanguage="html"
+        defaultLanguage="markdown"
         theme="vs-dark"
         onMount={(editor, monaco) => {
           emmetHTML(monaco);

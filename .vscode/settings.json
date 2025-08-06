@@ -1,5 +1,5 @@
 {
   "WillLuke.nextjs.addTypesOnSave": true,
   "WillLuke.nextjs.hasPrompted": true,
-  "svg.preview.background": "editor"
+  "json.schemaDownload.enable": true,
 }

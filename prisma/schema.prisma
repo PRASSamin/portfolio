@@ -42,58 +42,46 @@ model ConnectedAccount {
   @@unique([provider, oauth_id])
 }
 
-model Project {
-  id          Int      @id @default(autoincrement()) 
-  title       String   
-  description String? 
-  image       String   
-  github      String?
-  live        String?  
-  category    String
-  slug        String   @unique
-  tools       Int[]
-  content     String? 
-  views       ProjectViews[]
-  created_at  DateTime @default(now()) 
-  updated_at  DateTime @updatedAt
+model ProjectStat {
+  slug       String           @id
+  views      ProjectViewTracker[]
+  totalViews Int              @default(0)
+
+  createdAt  DateTime         @default(now())
+  updatedAt  DateTime         @updatedAt
 }
 
-model ProjectViews {
-  id          Int      @id @default(autoincrement()) 
-  project_id  Int
-  ip_address  String
-  created_at  DateTime @default(now()) 
-  updated_at  DateTime @updatedAt
-  project     Project     @relation(fields: [project_id], references: [id], onDelete: Cascade)
-
-  @@index([project_id])
-  @@index([project_id, ip_address])
+model ProjectViewTracker {
+  id         Int      @id @default(autoincrement())
+  slug       String
+  visitorId  String
+  lastSeen   DateTime @updatedAt
+  count      Int      @default(1)
+  country    String
+  projectStat   ProjectStat @relation(fields: [slug], references: [slug])
+  @@unique([slug, visitorId])
 }
 
-model Blog {
-  id          Int      @id @default(autoincrement()) 
-  title       String
-  slug        String   @unique
-  tags        String[]
-  content     String
-  description String
-  thumbnail   String?
-  views       BlogViews[]
-  created_at  DateTime @default(now()) 
-  updated_at  DateTime @updatedAt
+model BlogStat {
+  slug       String           @id
+  views      BlogViewTracker[]
+  totalViews Int              @default(0)
+
+  createdAt  DateTime         @default(now())
+  updatedAt  DateTime         @updatedAt
 }
 
-model BlogViews {
-  id          Int      @id @default(autoincrement()) 
-  blog_id     Int
-  ip_address  String
-  created_at  DateTime @default(now()) 
-  updated_at  DateTime @updatedAt
-  blog        Blog     @relation(fields: [blog_id], references: [id], onDelete: Cascade)
-
-  @@index([blog_id])
-  @@index([blog_id, ip_address])
+model BlogViewTracker {
+  id         Int      @id @default(autoincrement())
+  slug       String
+  visitorId  String
+  lastSeen   DateTime @updatedAt
+  count      Int      @default(1)
+  country    String
+  blogStat   BlogStat @relation(fields: [slug], references: [slug])
+  @@unique([slug, visitorId])
 }
+
 
 model Experience {
   id          Int      @id @default(autoincrement()) 

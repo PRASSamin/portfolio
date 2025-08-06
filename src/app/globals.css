@@ -1,6 +1,114 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "fumadocs-ui/css/neutral.css";
+@import "fumadocs-ui/css/preset.css";
+
+@plugin "tailwindcss-animate";
+@plugin "@tailwindcss/typography";
+
+@custom-variant hover (&:hover);
+
+@theme {
+  --transition-duration-1500: 1500ms;
+  --transition-duration-2000: 2000ms;
+  --transition-duration-3000: 3000ms;
+
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-shaded: hsl(var(--shaded));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+
+  --color-sidebar: hsl(var(--sidebar-background));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+
+  --color-chat: var(--chat);
+  --color-chat-muted: var(--chat-muted);
+  --color-chat-secondary: var(--chat-secondary);
+  --color-chat-deep: var(--chat-deep);
+  --color-chat-primary: var(--chat-primary);
+  --color-chat-accent: var(--chat-accent);
+  --color-chat-border: var(--chat-border);
+  --color-chat-text: var(--chat-text);
+  --color-chat-muted-text: var(--chat-muted-text);
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --font-frozito: frozito;
+  --font-icons: icons;
+
+  --animate-grad-travel: travel 15s ease-in-out forwards infinite;
+
+  @keyframes travel {
+    0%,
+    100% {
+      top: 0;
+      left: 0;
+      filter: hue-rotate(0deg);
+      rotate: -90deg;
+    }
+    50% {
+      top: 100%;
+      left: 100%;
+      filter: hue-rotate(360deg);
+      rotate: 360deg;
+    }
+  }
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
 
 @layer base {
   :root {
@@ -44,6 +152,45 @@
   }
 }
 
+@utility scrollbar-auto {
+  scrollbar-width: auto;
+  -ms-overflow-style: auto;
+
+  &::-webkit-scrollbar,
+  &::-webkit-scrollbar-track {
+    @apply block w-1.5 cursor-pointer;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    @apply block h-1 hover:!bg-muted-foreground/40 !bg-muted-foreground/30 hover:py-2 cursor-pointer rounded-full;
+  }
+}
+
+@utility scrollbar-hidden {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility pras-logo {
+  filter: var(--pras-logo);
+}
+
+@utility icons {
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @apply font-icons;
+}
+
 @layer base {
   html {
     scrollbar-width: none;
@@ -61,6 +208,20 @@
   img {
     @apply select-none;
     -webkit-user-drag: none;
+  }
+
+  img {
+    @apply select-none;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+  }
+
+  strong,
+  b {
+    @apply text-muted-foreground bg-muted font-mono font-medium px-1 py-[2px] rounded;
   }
 
   @font-face {
@@ -81,470 +242,39 @@
     font-display: block;
   }
 
-  .icons {
-    font-family: "icons" !important;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  #nd-tocnav {
+    display: none;
   }
 
-  img {
-    @apply select-none;
-    -webkit-user-drag: none;
-    -khtml-user-drag: none;
-    -moz-user-drag: none;
-    -o-user-drag: none;
-    user-drag: none;
+  .fd-scroll-container {
+    @apply scrollbar-auto;
   }
 
-  .popup-in {
-    animation: popupIn 200ms ease-out forwards;
-  }
-
-  .popup-out {
-    animation: popupOut 200ms ease-out forwards;
-  }
-
-  @keyframes popupIn {
-    from {
-      opacity: 0;
-      transform: scale(0.5);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  @keyframes popupOut {
-    from {
-      opacity: 1;
-      transform: scale(1);
-    }
-    to {
-      opacity: 0;
-      transform: scale(0.5);
-    }
-  }
-
-  .no-scrollbar {
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-
-    ::-webkit-scrollbar {
-      display: none;
-    }
-  }
-
-  .scrollbar-show {
+  .scrollbar-auto-light {
     scrollbar-width: auto;
     -ms-overflow-style: auto;
-
-    ::-webkit-scrollbar:vertical,
-    ::-webkit-scrollbar-track:vertical {
-      @apply block w-1 cursor-pointer;
-    }
-
-    ::-webkit-scrollbar:horizontal,
-    ::-webkit-scrollbar-track:horizontal {
-      @apply block h-1 hover:bg-muted-foreground/40 hover:py-2 cursor-pointer;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      @apply bg-muted rounded-full cursor-pointer hover:my-2 hover:bg-muted/80;
-    }
   }
 
-  .scrollbar-show-light {
-    scrollbar-width: auto;
-    -ms-overflow-style: auto;
-
-    ::-webkit-scrollbar:vertical,
-    ::-webkit-scrollbar-track:vertical {
-      @apply block w-1 cursor-pointer;
-    }
-
-    ::-webkit-scrollbar:horizontal,
-    ::-webkit-scrollbar-track:horizontal {
-      @apply block h-1 hover:bg-muted-foreground/40 hover:py-2 cursor-pointer;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      @apply bg-muted-foreground rounded-full cursor-pointer hover:my-2 hover:bg-muted-foreground/80;
-    }
+  .scrollbar-auto-light::-webkit-scrollbar:vertical,
+  .scrollbar-auto-light::-webkit-scrollbar-track:vertical {
+    @apply block w-1 cursor-pointer;
   }
 
-  .allow-default * {
-    all: revert;
+  .scrollbar-auto-light::-webkit-scrollbar:horizontal,
+  .scrollbar-auto-light::-webkit-scrollbar-track:horizontal {
+    @apply block h-1 hover:bg-muted-foreground/40 hover:py-2 cursor-pointer;
   }
 
-  .pras-logo {
-    filter: var(--pras-logo);
-  }
-
-  .grad-travel {
-    animation: travel 15s ease-in-out forwards infinite;
-  }
-
-  strong:not(.markdown *),
-  b:not(.markdown *) {
-    @apply text-muted-foreground bg-muted font-mono font-medium px-1 py-[2px] rounded;
-  }
-
-  .markdown {
-    h1,
-    h2 {
-      @apply border-l-[5px] border-rose-600 pl-2.5;
-    }
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      a {
-        @apply no-underline hover:underline cursor-pointer;
-      }
-    }
-
-    code:not(pre code) {
-      @apply text-primary bg-muted px-1 py-[2px] rounded font-mono text-sm after:hidden before:hidden;
-    }
-
-    a:not(h1 a, h2 a, h3 a, h4 a, h5 a, h6 a) {
-      @apply text-muted-foreground hover:decoration-foreground;
-    }
-  }
-
-  @keyframes travel {
-    0% {
-      top: 0;
-      left: 0;
-      filter: hue-rotate(0deg);
-      rotate: -90deg;
-    }
-    50% {
-      top: 100%;
-      left: 100%;
-      filter: hue-rotate(360deg);
-      rotate: 360deg;
-    }
-    100% {
-      top: 0;
-      left: 0;
-      filter: hue-rotate(0deg);
-      rotate: -90deg;
-    }
-  }
-
-  @keyframes circle7124 {
-    0% {
-      top: 60px;
-      height: 5px;
-      border-radius: 50px 50px 25px 25px;
-      transform: scaleX(1.7);
-    }
-
-    40% {
-      height: 20px;
-      border-radius: 50%;
-      transform: scaleX(1);
-    }
-
-    100% {
-      top: 0%;
-    }
-  }
-
-  @keyframes shadow046 {
-    0% {
-      transform: scaleX(1.5);
-    }
-
-    40% {
-      transform: scaleX(1);
-      opacity: 0.7;
-    }
-
-    100% {
-      transform: scaleX(0.2);
-      opacity: 0.4;
-    }
-  }
-
-  .shadow:nth-child(4) {
-    left: 45%;
-    animation-delay: 0.2s;
-  }
-
-  .shadow:nth-child(5) {
-    left: auto;
-    right: 15%;
-    animation-delay: 0.3s;
+  .scrollbar-auto-light::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground rounded-full cursor-pointer hover:my-2 hover:bg-muted-foreground/80;
   }
 }
 
-@layer chatTheme {
-  :root {
-    --chat: #282a2d;
-    --chat-muted: #353535;
-    --chat-secondary: #2e3033;
-    --chat-deep: #18191b;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
-
-  .str-chat {
-    input,
-    textarea {
-      @apply !bg-transparent !text-foreground;
-    }
-
-    .str-chat__thread-container {
-      @apply !absolute !inset-0;
-
-      .str-chat__thread-start {
-        @apply !hidden;
-      }
-
-      .str-chat__close-thread-button {
-        @apply !flex !items-center !justify-center !rounded-full !bg-transparent hover:!bg-chat-deep !transition-all !duration-300;
-
-        svg {
-          @apply !w-6 !h-6;
-
-          path {
-            @apply !fill-muted-foreground;
-          }
-        }
-      }
-    }
-    .str-chat__channel-header,
-    .str-chat__thread-header,
-    .str-chat__thread-container {
-      box-shadow: 0 7px 9px #00000008, 0 1px 0 #00000008 !important;
-      @apply !bg-chat-secondary !z-50 !text-sidebar-foreground !border-0;
-
-      .str-chat__channel-header-info {
-        @apply !text-muted-foreground;
-      }
-    }
-
-    .str-chat-react__modal__inner {
-      &:has(.image-gallery) {
-        @apply !w-[calc(100%-2rem)] md:!w-[80%] !rounded-lg;
-      }
-
-      &:not(:has(.image-gallery)) {
-        @apply !w-[calc(100%-2rem)] md:!w-[50%] !bg-chat-secondary !text-sidebar-foreground !rounded-lg !shadow-md !py-5;
-      }
-
-      .str-chat__edit-message-form-options {
-        @apply !flex !justify-between !w-full;
-      }
-
-      button:not(.image-gallery-icon) {
-        @apply !w-full !capitalize !py-2 !rounded;
-
-        &:hover {
-          @apply !bg-muted !font-medium !transition-all !duration-300;
-        }
-      }
-    }
-
-    .str-chat__thread-container .str-chat__message-list-main-panel {
-      @apply !h-full;
-
-      .str-chat__parent-message-li {
-        @apply !border-muted-foreground/50;
-      }
-    }
-
-    .str-chat__list,
-    .str-chat__empty-channel {
-      @apply !bg-chat;
-
-      .str-chat__message-bubble {
-        @apply !border-none !bg-chat-muted !text-foreground;
-      }
-
-      .str-chat__message--me .str-chat__message-bubble {
-        @apply !border-none !bg-chat-deep !text-foreground;
-      }
-
-      .str-chat__message-reaction {
-        @apply !bg-chat-muted !text-foreground;
-      }
-    }
-
-    .str-chat__date-separator-line {
-      @apply !bg-muted-foreground/50;
-    }
-
-    .str-chat__message-attachment-file--item {
-      @apply !bg-transparent !text-foreground;
-      .str-chat__message-attachment-download-icon path {
-        @apply !fill-foreground;
-      }
-    }
-
-    .str-chat__message .str-chat__message-options {
-      button {
-        &:hover {
-          @apply !bg-chat-muted !text-foreground;
-        }
-
-        &:active {
-          @apply !bg-[#3a0085] !text-foreground;
-        }
-      }
-    }
-
-    .str-chat__list-notifications {
-      @apply !bg-transparent !m-0 !px-4 !absolute !bottom-16 !left-1/2 !-translate-x-1/2 !z-50 !w-[calc(100vw-2rem)] md:!w-auto;
-
-      .str-chat__message-notification {
-        width: 100px !important;
-      }
-    }
-
-    .str-chat__avatar-image {
-      @apply !bg-transparent;
-    }
-
-    .str-chat__message-input {
-      box-shadow: -1px -7px 9px #00000008, 0px -7px #00000008 !important;
-      @apply !bg-chat-secondary !text-foreground !px-0;
-
-      .str-chat__attachment-preview-file {
-        @apply !bg-muted !text-foreground !border-none;
-      }
-
-      .str-chat__attachment-preview-delete {
-        @apply !w-5 !aspect-square !top-0 !right-2 !bg-transparent !text-foreground !border-none;
-
-        &:hover {
-          @apply !bg-transparent;
-        }
-      }
-
-      .str-chat__message-textarea-container {
-        @apply !border-2 !border-muted-foreground/20 !transition-all !duration-300;
-
-        &:focus-within {
-          --border: var(--str-chat__message-send-color);
-          @apply !border-[var(--border)];
-        }
-      }
-
-      .str-chat__suggestion-list-container {
-        @apply !bg-chat-muted !text-foreground;
-
-        .str-chat__suggestion-list {
-          .str-chat__suggestion-item--selected {
-            @apply !bg-primary-foreground/50;
-          }
-        }
-      }
-
-      span {
-        @apply !text-foreground;
-      }
-    }
-
-    .str-chat__reaction-selector .str-chat__message-reactions-options {
-      @apply !bg-chat-muted !text-foreground;
-
-      li button {
-        @apply !bg-transparent !text-foreground;
-      }
-
-      .str-chat__message-reaction-emoji div {
-        --str-chat__sprite-image-height: var(
-          --str-chat__stream-emoji-size,
-          25px
-        ) !important;
-      }
-    }
-
-    .str-chat__message-actions-box {
-      @apply !bg-chat-muted shadow-[0_0_8px_#000c] !rounded-sm;
-
-      .str-chat__message-actions-list-item-button {
-        @apply !bg-transparent !text-[13px] !text-foreground !px-3 !py-2;
-
-        &:hover {
-          @apply !bg-muted/50;
-        }
-      }
-    }
-
-    .str-chat__message--deleted-inner {
-      @apply !bg-chat-muted !text-foreground/70;
-    }
-
-    .str-chat__unread-messages-separator {
-      @apply !bg-chat-muted !text-foreground;
-    }
-
-    .str-chat__quoted-message-preview-header {
-      @apply !border-t !px-2;
-
-      .str-chat__quoted-message-reply-to-message {
-        @apply !text-left;
-      }
-
-      .str-chat__quoted-message-remove {
-        @apply !flex !items-center !justify-end;
-      }
-    }
-
-    .str-chat__message-text {
-      .str-chat__quoted-message-preview {
-        @apply !opacity-50 !cursor-pointer !transition-all !duration-300;
-
-        &:hover {
-          @apply !opacity-100;
-        }
-      }
-    }
-
-    .str-chat__message--highlighted {
-      @apply !bg-chat-secondary !rounded;
-    }
-
-    .str-chat__quoted-message-preview {
-      @apply !w-full;
-
-      .str-chat__avatar {
-        @apply !hidden;
-      }
-
-      .str-chat__quoted-message-bubble {
-        @apply !bg-transparent !text-foreground !p-0;
-      }
-    }
-
-    .str-chat__message-attachment {
-      @apply !p-0;
-      background: transparent !important;
-    }
-
-    .str-chat__modal__close-button {
-      @apply !bg-transparent !text-foreground !p-0 !m-0 !w-6 !h-6 !rounded-full !absolute !top-5 !right-5;
-
-      svg {
-        rect,
-        circle {
-          @apply !fill-none;
-        }
-        path {
-          @apply !fill-muted-foreground cursor-pointer;
-        }
-      }
-    }
+  body {
+    @apply bg-background text-foreground;
   }
 }

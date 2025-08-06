@@ -1,51 +1,37 @@
 import { metatag } from "@/utils/metatag";
 import AdminDashboardView from "./dashboard/view";
-import { db } from "@/utils/db";
-
-// const Experiences = cache(async () => {
-//   const p = await db.experience.findMany({
-//     orderBy: [{ start: "desc" }],
-//   });
-//   if (p.length === 0) return [];
-//   return EXPERIENCESERIALIZER(p);
-// });
+import { getBlogs } from "@/utils/get-blogs";
+import { getProjects } from "@/utils/getProjects";
 
 export const generateMetadata = () => {
   return metatag({
-    pageTitle: "Dashboard | Admin",
+    title: "Dashboard | Admin",
     robots: "noindex, nofollow",
   });
 };
 
 const AdminDashboardPage = async () => {
-  const userCount = await db.user.count();
-  const recentMembers = await db.user.findMany({
-    orderBy: [{ created_at: "desc" }],
-    take: 5,
-    include: {
-      connected_accounts: true,
-    },
-  });
+  const [blogs, projects] = await Promise.all([
+    getBlogs({ limit: "all", sortBy: "views" }),
+    getProjects({ limit: "all", sortBy: "views" }),
+  ]);
 
-  const blogs = await db.blog.findMany({
-    orderBy: { created_at: "desc" },
-    include: {
-      _count: {
-        select: { views: true },
-      },
-    },
-  });
+  // Sum total views from the full lists
+  const totalBlogViews = blogs.blogs.reduce(
+    (sum, b) => sum + (b.views || 0),
+    0
+  );
+  const totalProjectViews = projects.projects.reduce(
+    (sum, p) => sum + (p.views || 0),
+    0
+  );
+  const totalViews = totalBlogViews + totalProjectViews;
 
   return (
     <AdminDashboardView
-      totalMembers={userCount}
-      recentMembers={recentMembers}
-      blogViews={blogs.map((blog) => ({
-        id: blog.id,
-        title: blog.title,
-        created_at: blog.created_at,
-        views: blog._count.views,
-      }))}
+      totalViews={totalViews}
+      blogViews={blogs.blogs}
+      projectViews={projects.projects}
     />
   );
 };
