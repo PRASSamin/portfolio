@@ -13,35 +13,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
-model User {
-  id            String            @id @default(cuid()) 
-  username      String            @unique
-  first_name    String
-  last_name     String
-  full_name     String
-  avatar        String?
-  email         String           @unique
-  public_metadata      Json?            
-  role          String            @default("USER")
-  connected_accounts ConnectedAccount[]
-  created_at    DateTime          @default(now())
-  updated_at    DateTime          @updatedAt
-}
-
-model ConnectedAccount {
-  id            String    @id @default(cuid())
-  user_id       String
-  oauth_id      String    
-  provider      String    
-  provider_data Json?
-  created_at    DateTime  @default(now())
-  user          User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  
-  @@index([user_id])
-  @@unique([provider, oauth_id])
-}
-
 model ProjectStat {
   slug       String           @id
   views      ProjectViewTracker[]
@@ -102,13 +73,6 @@ model Education {
   description String?
   start       DateTime
   end         DateTime?
-  created_at  DateTime @default(now()) 
-  updated_at  DateTime @updatedAt
-}
-
-model ChatInvite {
-  id          String   @id @default(uuid())
-  token       String
   created_at  DateTime @default(now()) 
   updated_at  DateTime @updatedAt
 }
