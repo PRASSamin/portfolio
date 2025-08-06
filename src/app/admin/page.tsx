@@ -1,7 +1,7 @@
 import { metatag } from "@/utils/metatag";
 import AdminDashboardView from "./dashboard/view";
 import { getBlogs } from "@/utils/get-blogs";
-import { getProjects } from "@/utils/getProjects";
+import { getProjects } from "@/utils/get-projects";
 
 export const generateMetadata = () => {
   return metatag({

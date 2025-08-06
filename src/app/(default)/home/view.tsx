@@ -5,7 +5,7 @@ import JourneySection from "./components/Journey";
 import ProjectSection from "./components/Projects";
 import { useRef } from "react";
 import { useInView, motion, Variants } from "motion/react";
-import { QueryProjects } from "@/utils/getProjects";
+import { QueryProjects } from "@/utils/get-projects";
 
 type Props = {
   totalProjects: string | number;

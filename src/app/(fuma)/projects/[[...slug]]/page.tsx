@@ -16,7 +16,7 @@ import { geolocation, ipAddress } from "@vercel/functions";
 import { NextRequest } from "next/server";
 import Footer from "@/components/Footer";
 import { getBlogs } from "@/utils/get-blogs";
-import { getProjects } from "@/utils/getProjects";
+import { getProjects } from "@/utils/get-projects";
 import Link from "next/link";
 import { Github } from "@/components/icons";
 import {

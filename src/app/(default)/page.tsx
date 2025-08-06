@@ -1,6 +1,6 @@
 import { GITHUB_API_KEY } from "@/constants/env";
 import HomeView from "./home/view";
-import { getProjects } from "@/utils/getProjects";
+import { getProjects } from "@/utils/get-projects";
 import { metatag } from "@/utils/metatag";
 import { cache } from "react";
 
@@ -37,12 +37,7 @@ export default async function Home() {
     limit: 4,
     sortBy: "created_at",
   });
-  return (
-    <HomeView
-      totalProjects={repoCount}
-      projects={projects.projects}
-    />
-  );
+  return <HomeView totalProjects={repoCount} projects={projects.projects} />;
 }
 
 Home.DisplayName = "Home";

@@ -45,7 +45,7 @@ import {
 } from "@/components/ui/pagination";
 import { debounce } from "@/utils/debounce";
 import { useKeybindy } from "@keybindy/react";
-import { QueryProjects } from "@/utils/getProjects";
+import { QueryProjects } from "@/utils/get-projects";
 import Footer from "@/components/Footer";
 import Background from "@/components/Background";
 

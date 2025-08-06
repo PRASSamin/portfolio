@@ -1,7 +1,7 @@
 import NavigationBar from "@/components/NavigationBar";
 import AdminSidebar from "./components/AdminSidebar";
 import { Toaster } from "@/components/ui/sonner";
-import { getUser } from "@/utils/getUser";
+import { getUser } from "@/utils/get-user";
 
 const AdminRoot = async ({
   children,

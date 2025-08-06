@@ -21,7 +21,7 @@ import { Link } from "@/components/Link";
 import { GitHub, SlowMotionVideo } from "@mui/icons-material";
 import { motion, useInView, Variants } from "motion/react";
 import { useRef } from "react";
-import { QueryProjects } from "@/utils/getProjects";
+import { QueryProjects } from "@/utils/get-projects";
 
 const MotionCarouselItem = motion.create(CarouselItem);
 
