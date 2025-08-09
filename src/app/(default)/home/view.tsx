@@ -51,7 +51,9 @@ const HomeView: React.FC<Props> = ({ totalProjects, projects }) => {
           animate={projectAnimation.isInView ? "visible" : "hidden"}
           variants={projectAnimation.variants}
         >
-          <ProjectSection projects={projects} />
+          {projects && projects.length > 0 && (
+            <ProjectSection projects={projects} />
+          )}
         </motion.div>
       </div>
     </div>

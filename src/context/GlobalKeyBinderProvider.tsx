@@ -1,6 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Keybindy, ShortcutLabel, KeybindyShortcut } from "@keybindy/react";
+import {
+  Keybindy,
+  ShortcutLabel,
+  KeybindyShortcut,
+  useKeybindy,
+} from "@keybindy/react";
 import axios from "axios";
 import { toast } from "sonner";
 import { HelpCircle, Loader2, X } from "lucide-react";
@@ -20,6 +25,7 @@ const GlobalKeyBinderProvider = ({
   const routerWithProgress = useRouterWithProgress();
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
+  const binder = useKeybindy();
 
   useEffect(() => {
     setMounted(true);
@@ -86,7 +92,7 @@ const GlobalKeyBinderProvider = ({
       },
     },
     {
-      keys: ["Ctrl", "Shift", "A"],
+      keys: [["Ctrl", "Shift", "A"]],
       handler: () => {
         routerWithProgress.push("/admin");
       },
@@ -100,6 +106,25 @@ const GlobalKeyBinderProvider = ({
     },
   ];
 
+  const formatKey = (key: string) => {
+    const isMac =
+      typeof navigator !== "undefined" && /Mac/.test(navigator.userAgent);
+    switch (key.toLowerCase()) {
+      case "meta":
+        return isMac ? "⌘" : "Win";
+      case "ctrl":
+        return "Ctrl";
+      case "shift":
+        return "⇧";
+      case "alt":
+        return isMac ? "⌥" : "Alt";
+      case "enter":
+        return "↵";
+      default:
+        return key.toUpperCase();
+    }
+  };
+
   return (
     <Keybindy shortcuts={shortcuts}>
       {children}
@@ -110,7 +135,7 @@ const GlobalKeyBinderProvider = ({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.3 }}
-            className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50"
+            className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[51]"
           >
             <div className="px-4 py-2.5 bg-background/95 backdrop-blur-sm border border-border/50 shadow-lg rounded-xl flex items-center gap-2.5 transition-all duration-300 hover:shadow-xl hover:bg-background/100 group">
               <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />
@@ -150,26 +175,68 @@ const GlobalKeyBinderProvider = ({
                   <X className="h-5 w-5 text-muted-foreground" />
                 </button>
               </div>
-              <div className="p-4 space-y-4">
+              <div className="p-4">
                 {/* Shortcut List */}
-                <ul className="space-y-2">
-                  {shortcuts.map((shortcut, index) => {
-                    if (shortcut.options?.data?.hidden === "true") return;
-                    return (
-                      <li
-                        key={index}
-                        className="flex items-center justify-between text-sm"
-                      >
-                        <span className="text-muted-foreground">
-                          {shortcut.options?.data?.description}
-                        </span>
-                        <ShortcutLabel keys={shortcut.keys as any} />
-                      </li>
-                    );
-                  })}
-                </ul>
+                {binder &&
+                  (() => {
+                    const grouped = binder
+                      .getCheatSheet()
+                      ?.reduce(
+                        (acc: { [key: string]: any[] }, shortcut: any) => {
+                          if (shortcut?.hidden === "true") return acc;
+                          const group = shortcut.group || "General";
+                          if (!acc[group]) {
+                            acc[group] = [];
+                          }
+                          acc[group].push(shortcut);
+                          return acc;
+                        },
+                        {}
+                      );
 
-                {/* 💥 Promo Area */}
+                    if (!grouped) return null;
+
+                    return Object.entries(grouped).map(
+                      ([group, shortcuts], i) => (
+                        <div key={group} className={i > 0 ? "mt-4" : ""}>
+                          <p className="text-sm font-medium text-foreground mb-2">
+                            {group}
+                          </p>
+                          <ul className="space-y-2">
+                            {shortcuts.map((shortcut: any, index) => (
+                              <li
+                                key={index}
+                                className="flex items-center justify-between text-sm"
+                              >
+                                <p
+                                  className="text-muted-foreground"
+                                  dangerouslySetInnerHTML={{
+                                    __html: shortcut?.description,
+                                  }}
+                                />
+                                <ShortcutLabel
+                                  className="!bg-transparent !border-0 flex gap-2"
+                                  keys={shortcut.keys}
+                                  render={(keys) => {
+                                    return keys.map((key) => (
+                                      <span
+                                        key={Math.random()}
+                                        className="text-xs font-medium text-foreground rounded px-2 py-1 bg-muted border-muted uppercase"
+                                      >
+                                        {formatKey(key as any)}
+                                      </span>
+                                    ));
+                                  }}
+                                />
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )
+                    );
+                  })()}
+
+                {/* Promo Area */}
                 <div className="pt-4 mt-4 border-t border-border text-xs text-muted-foreground flex items-center justify-center">
                   <span>
                     Powered by{" "}

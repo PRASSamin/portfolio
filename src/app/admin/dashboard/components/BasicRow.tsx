@@ -21,7 +21,7 @@ const BasicRowView = ({ totalViews }: { totalViews: number }) => {
 
       {/* Vercel Analytics Redirect Card */}
       <Link
-        href="https://vercel.com/your-username/your-project/analytics" // TODO: Replace with actual URL
+        href="https://vercel.com/prassami/pras/analytics"
         target="_blank"
         rel="noopener noreferrer"
         className="group"

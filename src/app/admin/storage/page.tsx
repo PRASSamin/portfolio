@@ -3,7 +3,7 @@ import AdminMediaView from "./view";
 
 export const generateMetadata = () => {
   return metatag({
-    title: "Media | Admin",
+    title: "Storage | Admin",
     robots: "noindex, nofollow",
   });
 };

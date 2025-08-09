@@ -17,6 +17,7 @@ import { getMDXComponents, mdxComponents } from "@/mdx-components";
 import { debounce } from "@/utils/debounce";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
+import { Keybindy } from "@keybindy/react";
 
 type EducationFormProps = {
   initialData: Partial<EducationType>;
@@ -126,7 +127,40 @@ const EduForm = ({
   };
 
   return (
-    <>
+    <Keybindy
+      shortcuts={[
+        {
+          keys: ["Enter"],
+          handler(event, state) {
+            if (currentPage === 1) {
+              handleSubmit();
+            } else {
+              setCurrentPage((prev) => prev + 1);
+            }
+          },
+          options: {
+            data: {
+              description: currentPage === 0 ? "Next" : "Submit",
+              group: "On this page",
+            },
+          },
+        },
+        {
+          keys: ["Ctrl", "Enter"],
+          handler(event, state) {
+            if (currentPage === 1) {
+              setCurrentPage((prev) => prev - 1);
+            }
+          },
+          options: {
+            data: {
+              description: currentPage === 0 ? "Previous" : "Previous",
+              group: "On this page",
+            },
+          },
+        },
+      ]}
+    >
       <div className="relative overflow-hidden w-full h-full">
         <motion.div
           className="flex w-[200%]"
@@ -224,7 +258,7 @@ const EduForm = ({
           </Button>
         )}
       </div>
-    </>
+    </Keybindy>
   );
 };
 

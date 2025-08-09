@@ -13,6 +13,7 @@ import { toast } from "sonner";
 import { ExperienceType } from "@/types";
 import { useRouter } from "next/navigation";
 import ExperienceForm from "./ExperienceForm";
+import { Keybindy } from "@keybindy/react";
 
 const AddExperience = ({
   onAdded,
@@ -60,7 +61,22 @@ const AddExperience = ({
   };
 
   return (
-    <TooltipProvider>
+    <Keybindy
+      shortcuts={[
+        {
+          keys: ["Alt", "N"],
+          handler: async () => {
+            setIsOpen(true);
+          },
+          options: {
+            data: {
+              description: `Add New Experience`,
+              group: "On this page",
+            },
+          },
+        },
+      ]}
+    >
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogTrigger onClick={(e) => e.stopPropagation()} asChild>
           {children}
@@ -84,7 +100,7 @@ const AddExperience = ({
           )}
         </DialogContent>
       </Dialog>
-    </TooltipProvider>
+    </Keybindy>
   );
 };
 

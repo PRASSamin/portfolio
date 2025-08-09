@@ -9,12 +9,13 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import { Keybindy } from "@keybindy/react";
 import { Loader2 } from "lucide-react";
 import { ChangeEvent } from "react";
 
 interface DialogProps {
-    isOpen: boolean;
-    onOpenChange: (isOpen: boolean) => void;
+  isOpen: boolean;
+  onOpenChange: (isOpen: boolean) => void;
 }
 
 interface DeleteConfirmationDialogProps extends DialogProps {
@@ -30,44 +31,51 @@ export const DeleteConfirmationDialog = ({
   isDeleting,
   targetName,
 }: DeleteConfirmationDialogProps) => (
-  <Dialog open={isOpen} onOpenChange={onOpenChange}>
-    <DialogContent
-      onClick={(e) => e.stopPropagation()}
-      className="sm:max-w-[425px]"
-    >
-      <DialogHeader>
-        <DialogTitle>Confirm Deletion</DialogTitle>
-        <DialogDescription>
-          Are you sure you want to permanently delete <strong>{targetName}</strong>? This action cannot be undone.
-        </DialogDescription>
-      </DialogHeader>
-      <DialogFooter className="flex justify-end gap-1 mt-10">
-        <DialogClose asChild>
+  <Keybindy>
+    <Dialog open={isOpen} onOpenChange={onOpenChange}>
+      <DialogContent
+        onClick={(e) => e.stopPropagation()}
+        className="sm:max-w-[425px]"
+      >
+        <DialogHeader>
+          <DialogTitle>Confirm Deletion</DialogTitle>
+          <DialogDescription>
+            Are you sure you want to permanently delete{" "}
+            <strong>{targetName}</strong>? This action cannot be undone.
+          </DialogDescription>
+        </DialogHeader>
+        <DialogFooter className="flex justify-end gap-1 mt-10">
+          <DialogClose asChild>
+            <Button
+              variant="secondary"
+              disabled={isDeleting}
+              className="cursor-pointer"
+            >
+              Cancel
+            </Button>
+          </DialogClose>
           <Button
-            variant="secondary"
+            onClick={onConfirm}
             disabled={isDeleting}
-            className="cursor-pointer"
+            className="bg-red-500/20 border border-red-500/40 rounded-lg text-red-500 hover:bg-red-500/30 transition-all duration-300 cursor-pointer"
           >
-            Cancel
+            {isDeleting ? (
+              <Loader2 className="animate-spin" size={16} />
+            ) : (
+              "Delete"
+            )}
           </Button>
-        </DialogClose>
-        <Button
-          onClick={onConfirm}
-          disabled={isDeleting}
-          className="bg-red-500/20 border border-red-500/40 rounded-lg text-red-500 hover:bg-red-500/30 transition-all duration-300 cursor-pointer"
-        >
-          {isDeleting ? <Loader2 className="animate-spin" size={16} /> : "Delete"}
-        </Button>
-      </DialogFooter>
-    </DialogContent>
-  </Dialog>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  </Keybindy>
 );
 
 interface RenameDialogProps extends DialogProps {
-    onConfirm: () => void;
-    isRenaming: boolean;
-    value: string;
-    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onConfirm: () => void;
+  isRenaming: boolean;
+  value: string;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const RenameDialog = ({
@@ -94,10 +102,10 @@ export const RenameDialog = ({
 );
 
 interface AddFolderDialogProps extends DialogProps {
-    onConfirm: () => void;
-    value: string;
-    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-    isAdding: boolean;
+  onConfirm: () => void;
+  value: string;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  isAdding: boolean;
 }
 
 export const AddFolderDialog = ({
@@ -114,11 +122,7 @@ export const AddFolderDialog = ({
         <DialogTitle>Add New Folder</DialogTitle>
       </DialogHeader>
       <div className="grid gap-4 py-4">
-        <Input
-          placeholder="Folder name"
-          value={value}
-          onChange={onChange}
-        />
+        <Input placeholder="Folder name" value={value} onChange={onChange} />
       </div>
       <Button onClick={onConfirm} disabled={isAdding}>
         {isAdding ? "Adding..." : "Add Folder"}

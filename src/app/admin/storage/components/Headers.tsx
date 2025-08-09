@@ -44,8 +44,11 @@ export const FolderHeader = ({
         {folderData.__meta.name}
       </span>
       <DropdownMenu>
-        <DropdownMenuTrigger asChild onClick={handleMenuClick}>
-          <button className="p-1 rounded-md hover:bg-muted opacity-0 group-hover:opacity-100 focus-visible:opacity-100">
+        <DropdownMenuTrigger asChild>
+          <button
+            className="p-1 rounded-md hover:bg-muted opacity-0 group-hover:opacity-100 focus-visible:opacity-100"
+            onClick={handleMenuClick}
+          >
             <MoreHorizontal className="size-4" />
           </button>
         </DropdownMenuTrigger>
@@ -139,8 +142,11 @@ export const FileHeader = ({
         {truncate(file.secure_url.split("/").pop() || "")}
       </span>
       <DropdownMenu>
-        <DropdownMenuTrigger asChild onClick={handleMenuClick}>
-          <button className="p-1 rounded-md hover:bg-muted opacity-0 group-hover:opacity-100 focus-visible:opacity-100 cursor-pointer">
+        <DropdownMenuTrigger asChild>
+          <button
+            className="p-1 rounded-md hover:bg-muted opacity-0 group-hover:opacity-100 focus-visible:opacity-100 cursor-pointer"
+            onClick={handleMenuClick}
+          >
             <MoreHorizontal className="size-4" />
           </button>
         </DropdownMenuTrigger>

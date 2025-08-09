@@ -145,7 +145,7 @@ const AdminExpView = ({ experiences }: { experiences: ExperienceType[] }) => {
             <Button
               variant="outline"
               size="icon"
-              className="bg-muted-foreground/20 hover:bg-muted-foreground/30 text-white aspect-square p-0 border-0"
+              className="bg-muted-foreground/20 hover:bg-muted-foreground/30 text-white aspect-square p-0 border-0 cursor-pointer"
             >
               <Plus size={20} />
             </Button>

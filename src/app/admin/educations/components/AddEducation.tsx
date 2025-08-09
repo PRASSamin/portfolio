@@ -13,6 +13,7 @@ import { toast } from "sonner";
 import { EducationType } from "@/types";
 import EduForm from "./EducationForm";
 import { useRouter } from "next/navigation";
+import { Keybindy } from "@keybindy/react";
 
 const AddEducation = ({
   onAdded,
@@ -58,7 +59,22 @@ const AddEducation = ({
   };
 
   return (
-    <TooltipProvider>
+    <Keybindy
+      shortcuts={[
+        {
+          keys: ["Alt", "N"],
+          handler: async () => {
+            setIsOpen(true);
+          },
+          options: {
+            data: {
+              description: `Add New Education`,
+              group: "On this page",
+            },
+          },
+        },
+      ]}
+    >
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogTrigger onClick={(e) => e.stopPropagation()} asChild>
           {children}
@@ -82,7 +98,7 @@ const AddEducation = ({
           )}
         </DialogContent>
       </Dialog>
-    </TooltipProvider>
+    </Keybindy>
   );
 };
 

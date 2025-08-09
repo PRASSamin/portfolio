@@ -1,5 +1,3 @@
-import type { Channel, UserResponse, ChannelData } from "stream-chat";
-
 export interface UserType {
   username: string;
   id: string;

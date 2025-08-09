@@ -32,7 +32,7 @@ export const useMediaView = () => {
     setDeleteTarget(item);
   };
 
-  const executeDelete = async () => {
+  const executeDelete = async (item?: any) => {
     if (!deleteTarget) return;
     setIsDeleting(true);
 
