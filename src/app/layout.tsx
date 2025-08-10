@@ -8,6 +8,7 @@ import { Progress } from "@/components/Progress";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/sonner";
 import GlobalKeyBinderProvider from "@/context/GlobalKeyBinderProvider";
+import { ThemeProvider } from "@/context/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,25 +20,39 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const themeScript = `
+    (function() {
+      try {
+        const theme = localStorage.getItem('_ui_theme') || 'aurora';
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  `;
+
   return (
     <html
       className="scrollbar-hidden overflow-x-hidden scroll-smooth dark"
       lang="en"
       suppressHydrationWarning={true}
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <TooltipProvider>
         <AnalyticsProvider>
-          <body
-            className={`${poppins.className} antialiased overflow-x-hidden`}
-          >
-            <Suspense fallback={null}>
-              <Progress />
-            </Suspense>
-            <Toaster />
-            <RootProvider search={{ enabled: false }}>
-              <GlobalKeyBinderProvider>{children}</GlobalKeyBinderProvider>
-            </RootProvider>
-          </body>
+          <ThemeProvider>
+            <body
+              className={`${poppins.className} antialiased overflow-x-hidden`}
+            >
+              <Suspense fallback={null}>
+                <Progress />
+              </Suspense>
+              <Toaster />
+              <RootProvider search={{ enabled: false }}>
+                <GlobalKeyBinderProvider>{children}</GlobalKeyBinderProvider>
+              </RootProvider>
+            </body>
+          </ThemeProvider>
         </AnalyticsProvider>
       </TooltipProvider>
     </html>

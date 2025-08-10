@@ -1,4 +1,32 @@
-import { format } from "date-fns";
+import { format, differenceInMonths, parseISO } from "date-fns";
+
+const getDuration = (
+  startDate: Date | string,
+  endDate: Date | string | null
+) => {
+  const start = typeof startDate === "string" ? parseISO(startDate) : startDate;
+  const end = !endDate
+    ? new Date()
+    : typeof endDate === "string"
+    ? parseISO(endDate)
+    : endDate;
+
+  const months = differenceInMonths(end, start);
+  const years = Math.floor(months / 12);
+  const remainingMonths = months % 12;
+
+  const yearsText =
+    years > 0 ? `${years} ${years === 1 ? "year" : "years"}` : "";
+  const monthsText =
+    remainingMonths > 0
+      ? `${remainingMonths} ${remainingMonths === 1 ? "month" : "months"}`
+      : "";
+
+  if (years > 0 && remainingMonths > 0) {
+    return `${yearsText}, ${monthsText}`;
+  }
+  return yearsText || monthsText;
+};
 
 export const EXPERIENCESERIALIZER = (experiences: any) => {
   if (!experiences) return null; // Handle null input
@@ -13,7 +41,7 @@ export const EXPERIENCESERIALIZER = (experiences: any) => {
       description: experience?.description,
       period: `${format(experience.start, "MMMM yyyy")} - ${
         format(experience?.end, "MMMM yyyy") || "Present"
-      }`,
+      } • ${getDuration(experience.start, experience?.end)}`,
       start: experience?.start,
       end: experience?.end || "Present",
       created_at: experience.created_at,

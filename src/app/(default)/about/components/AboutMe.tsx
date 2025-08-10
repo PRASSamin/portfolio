@@ -56,11 +56,6 @@ const AboutMeSection = () => {
       icon: Football,
       className: "bg-fuchsia-700 border-fuchsia-700/90",
     },
-    {
-      name: "Heartfelt moments",
-      icon: Cheers,
-      className: "bg-rose-700 border-rose-700/90",
-    },
   ];
   const [height, setHeight] = useState(0);
 
@@ -92,7 +87,7 @@ const AboutMeSection = () => {
           data-type="title"
           className="text-center text-4xl lg:text-6xl font-semibold text-foreground"
         >
-          <span className="from-[#5EA2EF] to-[#0072F5] text-4xl lg:text-6xl bg-clip-text text-transparent bg-linear-to-b">
+          <span className="from-theme-primary to-theme-secondary text-4xl lg:text-6xl bg-clip-text text-transparent bg-linear-to-b">
             About
           </span>{" "}
           Me

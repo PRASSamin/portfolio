@@ -51,7 +51,7 @@ export default function Page() {
             Welcome
             {/* <span className="line-through opacity-5">to</span> */}{" "}
             <Link href={"/"}>
-              <span className="font-frozito text-transparent bg-clip-text bg-linear-to-r from-rose-500 to-violet-500">
+              <span className="font-frozito text-transparent bg-clip-text bg-linear-to-r from-theme-primary to-theme-secondary">
                 PRAS
               </span>
             </Link>

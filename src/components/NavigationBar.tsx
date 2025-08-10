@@ -13,6 +13,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { HomeIcon, FolderGit2, Library, User } from "lucide-react";
+import { ThemeSwitcher } from "./ThemeSwitcher";
 
 export const navItems = [
   {
@@ -59,7 +60,7 @@ const NavigationBar: FC<React.ComponentPropsWithoutRef<"header">> = ({
   return (
     <header
       className={cn(
-        "w-full h-16 bg-background/70 backdrop-blur-sm border-b py-4 relative z-20",
+        "w-full h-16 bg-background/50 backdrop-blur-sm border-b border-border/50 py-4 relative z-20",
         className
       )}
       {...props}
@@ -81,16 +82,19 @@ const NavigationBar: FC<React.ComponentPropsWithoutRef<"header">> = ({
             })}
           </ul>
           <div className="hidden md:block h-[40px] w-px bg-muted-foreground/50" />
-          <Button
-            className="cursor-pointer [&_svg]:size-5  p-0 aspect-square border border-muted-foreground/30 rounded group w-9 hover:w-[120px] transition-all duration-300 hidden md:flex"
-            variant={"ghost"}
-            asChild
-          >
-            <Link target="_blank" href={"https://github.com/PRASSamin"}>
-              <Github className="ml-2 group-hover:ml-0 transition-all duration-300" />
-              <span className="overflow-hidden">PRASSamin</span>
-            </Link>
-          </Button>
+          <div className="hidden md:flex items-center gap-2">
+            <ThemeSwitcher />
+            <Button
+              className="cursor-pointer [&_svg]:size-5  p-0 aspect-square  rounded group w-9 hover:w-[120px] transition-all duration-300 hidden md:flex"
+              variant={"ghost"}
+              asChild
+            >
+              <Link target="_blank" href={"https://github.com/PRASSamin"}>
+                <Github className="ml-2 group-hover:ml-0 transition-all duration-300" />
+                <span className="overflow-hidden">PRASSamin</span>
+              </Link>
+            </Button>
+          </div>
           <Popover>
             <PopoverTrigger asChild className="md:hidden">
               <button ref={mobileMenuRef}>

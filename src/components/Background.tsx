@@ -3,28 +3,29 @@ import React from "react";
 const Background = () => {
   return (
     <>
-      <div className="fixed top-0 z-0 hue-rotate-60 animate-grad-travel brightness-200">
-        <img
-          className="w-[500px] shadow-black/5 rounded-large"
-          src={"/purple.png"}
-          alt="gradient"
-        />
-      </div>
-      <div className="fixed xl:-top-[30%] -right-[60%] 2xl:-top-[60%] 2xl:-right-[45%] z-0 rotate-12">
-        <img
-          className=" shadow-black/5 rounded-large"
-          src={"/pink-purple-grad.png"}
-          alt="gradient"
-        />
-      </div>
-      <div className="fixed -bottom-[30%] -left-[30%] z-0 ">
-        <img
-          className=" shadow-black/5  rounded-large"
-          src={"/purple.png"}
-          alt="gradient"
-        />
-      </div>
-      <div className="w-full backdrop-blur-[50px] bg-black/50 fixed top-0 left-0 h-screen z-1" />
+      {/* Gradient Blob 1 */}
+      <div
+        className="fixed top-0 -left-1/4 w-[500px] bg-gradient-1 h-[500px] rounded-full z-0 hue-rotate-60 animate-grad-travel brightness-150 "
+        style={{
+          // filter: "blur(100px)",
+        }}
+      />
+      {/* Gradient Blob 2 */}
+      <div
+        className="fixed -top-1/4 -right-1/4 w-[600px] bg-gradient-2 h-[600px] rounded-full z-0 rotate-12"
+        style={{
+          // filter: "blur(120px)",
+        }}
+      />
+      {/* Gradient Blob 3 */}
+      <div
+        className="fixed -bottom-1/4 -left-1/3 bg-gradient-3 w-[500px] h-[500px] rounded-full z-0"
+        style={{
+          // filter: "blur(100px)",
+        }}
+      />
+      {/* Glassmorphism Overlay */}
+      <div className="w-full backdrop-blur-[100px] bg-black/50 fixed top-0 left-0 h-screen z-1" />
     </>
   );
 };

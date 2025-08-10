@@ -13,6 +13,18 @@ import { AnimatePresence, motion } from "motion/react";
 import { useRouter } from "next/navigation";
 import { useRouter as useRouterWithProgress } from "@/hooks/useRouter";
 import { usePathname } from "next/navigation";
+import { themes, useTheme } from "./ThemeProvider";
+
+export const isTypingInFormElement = () => {
+  if (typeof document === "undefined") return false;
+  const activeElement = document.activeElement;
+  const tagName = activeElement?.tagName?.toLowerCase();
+  const isInput =
+    tagName === "input" || tagName === "textarea" || tagName === "select";
+  const isContentEditable =
+    activeElement?.getAttribute("contenteditable") === "true";
+  return isInput || isContentEditable;
+};
 
 const GlobalKeyBinderProvider = ({
   children,
@@ -26,6 +38,7 @@ const GlobalKeyBinderProvider = ({
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
   const binder = useKeybindy();
+  const { setTheme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
@@ -67,6 +80,7 @@ const GlobalKeyBinderProvider = ({
     {
       keys: ["G"],
       handler: async () => {
+        if (isTypingInFormElement()) return;
         routerWithProgress.push("https://github.com/prassamin");
       },
       options: {
@@ -100,11 +114,27 @@ const GlobalKeyBinderProvider = ({
         preventDefault: true,
         data: {
           description: "Navigate to admin panel",
-          hidden: mounted && !pathname.startsWith("/admin") ? "true" : "false",
+          hidden: mounted && !pathname.startsWith("/admin") ? true : false,
         },
       },
     },
   ];
+
+  Array.from(Object.keys(themes)).forEach((theme, index) => {
+    shortcuts.push({
+      keys: [`F${index + 1}` as any],
+      handler: () => {
+        setTheme(theme as any);
+      },
+      options: {
+        preventDefault: true,
+        data: {
+          description: `Set theme to ${theme}`,
+          hidden: true,
+        },
+      },
+    });
+  });
 
   const formatKey = (key: string) => {
     const isMac =
@@ -120,6 +150,10 @@ const GlobalKeyBinderProvider = ({
         return isMac ? "⌥" : "Alt";
       case "enter":
         return "↵";
+      case "arrow right":
+        return "↬";
+      case "arrow left":
+        return "↫";
       default:
         return key.toUpperCase();
     }
@@ -152,7 +186,7 @@ const GlobalKeyBinderProvider = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm pointer-events-all"
             onClick={() => setIsHelpOpen(false)}
           >
             <motion.div
@@ -175,7 +209,7 @@ const GlobalKeyBinderProvider = ({
                   <X className="h-5 w-5 text-muted-foreground" />
                 </button>
               </div>
-              <div className="p-4">
+              <div className="p-4 pb-0 overflow-auto max-h-[calc(100vh-200px)] scrollbar-auto">
                 {/* Shortcut List */}
                 {binder &&
                   (() => {
@@ -183,7 +217,7 @@ const GlobalKeyBinderProvider = ({
                       .getCheatSheet()
                       ?.reduce(
                         (acc: { [key: string]: any[] }, shortcut: any) => {
-                          if (shortcut?.hidden === "true") return acc;
+                          if (shortcut?.hidden) return acc;
                           const group = shortcut.group || "General";
                           if (!acc[group]) {
                             acc[group] = [];
@@ -196,60 +230,66 @@ const GlobalKeyBinderProvider = ({
 
                     if (!grouped) return null;
 
-                    return Object.entries(grouped).map(
-                      ([group, shortcuts], i) => (
-                        <div key={group} className={i > 0 ? "mt-4" : ""}>
-                          <p className="text-sm font-medium text-foreground mb-2">
-                            {group}
-                          </p>
-                          <ul className="space-y-2">
-                            {shortcuts.map((shortcut: any, index) => (
-                              <li
-                                key={index}
-                                className="flex items-center justify-between text-sm"
-                              >
-                                <p
-                                  className="text-muted-foreground"
-                                  dangerouslySetInnerHTML={{
-                                    __html: shortcut?.description,
-                                  }}
-                                />
-                                <ShortcutLabel
-                                  className="!bg-transparent !border-0 flex gap-2"
-                                  keys={shortcut.keys}
-                                  render={(keys) => {
-                                    return keys.map((key) => (
-                                      <span
-                                        key={Math.random()}
-                                        className="text-xs font-medium text-foreground rounded px-2 py-1 bg-muted border-muted uppercase"
-                                      >
-                                        {formatKey(key as any)}
-                                      </span>
-                                    ));
-                                  }}
-                                />
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )
+                    // Sort groups: custom groups first
+                    const sortedGroups = Object.entries(grouped).sort(
+                      ([groupA], [groupB]) => {
+                        if (groupA === "General") return 1;
+                        if (groupB === "General") return -1;
+                        return groupA.localeCompare(groupB);
+                      }
                     );
-                  })()}
 
-                {/* Promo Area */}
-                <div className="pt-4 mt-4 border-t border-border text-xs text-muted-foreground flex items-center justify-center">
-                  <span>
-                    Powered by{" "}
-                    <a
-                      href="https://github.com/keybindyjs"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-medium text-foreground hover:underline"
-                    >
-                      @keybindy
-                    </a>
-                  </span>
-                </div>
+                    return sortedGroups.map(([group, shortcuts], i) => (
+                      <div key={group} className={i > 0 ? "mt-4" : ""}>
+                        <p className="text-sm font-medium text-foreground mb-2">
+                          {group}
+                        </p>
+                        <ul className="space-y-2">
+                          {shortcuts.map((shortcut: any, index) => (
+                            <li
+                              key={index}
+                              className="flex items-center justify-between text-sm"
+                            >
+                              <p
+                                className="text-muted-foreground"
+                                dangerouslySetInnerHTML={{
+                                  __html: shortcut?.description,
+                                }}
+                              />
+                              <ShortcutLabel
+                                className="!bg-transparent !border-0 flex gap-2"
+                                keys={shortcut.keys}
+                                render={(keys) => {
+                                  return keys.map((key) => (
+                                    <span
+                                      key={Math.random()}
+                                      className="text-xs font-medium text-foreground rounded px-2 py-1 bg-muted border-muted uppercase"
+                                    >
+                                      {formatKey(key as any)}
+                                    </span>
+                                  ));
+                                }}
+                              />
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ));
+                  })()}
+              </div>
+              {/* Promo Area */}
+              <div className="py-3 mt-4 border-t border-border text-xs text-muted-foreground flex items-center justify-center">
+                <span>
+                  Powered by{" "}
+                  <a
+                    href="https://github.com/keybindyjs"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium text-foreground hover:underline"
+                  >
+                    @keybindy
+                  </a>
+                </span>
               </div>
             </motion.div>
           </motion.div>

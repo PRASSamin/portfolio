@@ -14,7 +14,6 @@
 
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
-  --color-shaded: hsl(var(--shaded));
 
   --color-card: hsl(var(--card));
   --color-card-foreground: hsl(var(--card-foreground));
@@ -49,22 +48,17 @@
 
   --color-sidebar: hsl(var(--sidebar-background));
   --color-sidebar-foreground: hsl(var(--sidebar-foreground));
-  --color-sidebar-primary: hsl(var(--sidebar-primary));
-  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
   --color-sidebar-accent: hsl(var(--sidebar-accent));
   --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
   --color-sidebar-border: hsl(var(--sidebar-border));
   --color-sidebar-ring: hsl(var(--sidebar-ring));
 
-  --color-chat: var(--chat);
-  --color-chat-muted: var(--chat-muted);
-  --color-chat-secondary: var(--chat-secondary);
-  --color-chat-deep: var(--chat-deep);
-  --color-chat-primary: var(--chat-primary);
-  --color-chat-accent: var(--chat-accent);
-  --color-chat-border: var(--chat-border);
-  --color-chat-text: var(--chat-text);
-  --color-chat-muted-text: var(--chat-muted-text);
+  /* --- THEME COLORS --- */
+  --color-theme-accent-1: var(--accent-1);
+  --color-theme-accent-2: var(--accent-2);
+  --color-theme-primary: var(--theme-primary);
+  --color-theme-secondary: var(--theme-secondary);
+  /* --- THEME COLORS --- */
 
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
@@ -138,17 +132,133 @@
     --chart-5: 340 75% 55%;
     --pras-logo: brightness(0) saturate(100%) invert(100%) sepia(0%)
       saturate(7454%) hue-rotate(22deg) brightness(101%) contrast(86%);
-    --shaded: 262 92% 51%;
     --radius: 0.5rem;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 240 3.7% 15.9%;
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
     --scrollbar-visibility: none;
+  }
+
+  /* --- THEME Variants --- */
+  [data-theme="lavender"] {
+    --theme-primary: #e6e6fa;
+    --theme-secondary: #dda0dd;
+    --accent-1: hsl(270 80% 85%);
+    --accent-2: hsl(300 60% 70%);
+    --bg-gradient-1: hsl(270 80% 85% / 0.7);
+    --bg-gradient-2: hsl(300 60% 70% / 0.7);
+    --bg-gradient-3: hsl(280 70% 75% / 0.6);
+  }
+  [data-theme="luminous"] {
+    --theme-primary: #ff6ac1;
+    --theme-secondary: #ffe866;
+    --accent-1: hsl(316 100% 71%);
+    --accent-2: hsl(52 100% 65%);
+    --bg-gradient-1: hsl(316 100% 71% / 0.7);
+    --bg-gradient-2: hsl(52 100% 65% / 0.7);
+    --bg-gradient-3: hsl(192 97% 77% / 0.6);
+  }
+
+  [data-theme="synthwave"] {
+    --theme-primary: #8e2de2;
+    --theme-secondary: #4a00e0;
+    --accent-1: hsl(332 90% 55%);
+    --accent-2: hsl(275 90% 60%);
+    --bg-gradient-1: hsl(275 92% 51% / 0.7);
+    --bg-gradient-2: hsl(330 100% 55% / 0.7);
+    --bg-gradient-3: hsl(220 100% 70% / 0.6);
+  }
+
+  [data-theme="aquatic"] {
+    --theme-primary: #00c9ff;
+    --theme-secondary: #92fe9d;
+    --accent-1: hsl(195 100% 50%);
+    --accent-2: hsl(220 100% 60%);
+    --bg-gradient-1: hsl(195 100% 50% / 0.7);
+    --bg-gradient-2: hsl(125 98% 78% / 0.7);
+    --bg-gradient-3: hsl(220 100% 60% / 0.6);
+  }
+
+  [data-theme="cyberpunk"] {
+    --theme-primary: #ec008c;
+    --theme-secondary: #00bfff;
+    --accent-1: hsl(195 100% 50%);
+    --accent-2: hsl(320 100% 50%);
+    --bg-gradient-1: hsl(320 100% 50% / 0.7);
+    --bg-gradient-2: hsl(195 100% 50% / 0.7);
+    --bg-gradient-3: hsl(260 100% 55% / 0.6);
+  }
+
+  [data-theme="emerald"] {
+    --theme-primary: #009245;
+    --theme-secondary: #fcee21;
+    --accent-1: hsl(55 98% 55%);
+    --accent-2: hsl(125 98% 45%);
+    --bg-gradient-1: hsl(150 100% 30% / 0.7);
+    --bg-gradient-2: hsl(125 98% 45% / 0.7);
+    --bg-gradient-3: hsl(145 100% 20% / 0.6);
+  }
+
+  [data-theme="solar"] {
+    --theme-primary: #ffd700;
+    --theme-secondary: #ffa500;
+    --accent-1: hsl(45 100% 50%);
+    --accent-2: hsl(30 100% 50%);
+    --bg-gradient-1: hsl(45 100% 50% / 0.7);
+    --bg-gradient-2: hsl(30 100% 50% / 0.7);
+    --bg-gradient-3: hsl(55 100% 70% / 0.6);
+  }
+
+  [data-theme="sakura"] {
+    --theme-primary: #ffb6c1;
+    --theme-secondary: #ff69b4;
+    --accent-1: hsl(330 100% 85%);
+    --accent-2: hsl(340 90% 70%);
+    --bg-gradient-1: hsl(330 100% 85% / 0.7);
+    --bg-gradient-2: hsl(0 100% 95% / 0.7);
+    --bg-gradient-3: hsl(340 90% 70% / 0.6);
+  }
+
+  [data-theme="volcano"] {
+    --theme-primary: #ff4e50;
+    --theme-secondary: #f9d423;
+    --accent-1: hsl(10 100% 60%);
+    --accent-2: hsl(40 95% 55%);
+    --bg-gradient-1: hsl(10 100% 60% / 0.7);
+    --bg-gradient-2: hsl(20 90% 55% / 0.7);
+    --bg-gradient-3: hsl(40 95% 55% / 0.6);
+  }
+  [data-theme="minty"] {
+    --theme-primary: #a8ff78;
+    --theme-secondary: #78ffd6;
+    --accent-1: hsl(145 80% 70%);
+    --accent-2: hsl(165 75% 60%);
+    --bg-gradient-1: hsl(145 80% 70% / 0.7);
+    --bg-gradient-2: hsl(165 75% 60% / 0.7);
+    --bg-gradient-3: hsl(150 80% 65% / 0.6);
+  }
+
+  [data-theme="inferno"] {
+    --theme-primary: #ff512f;
+    --theme-secondary: #dd2476;
+    --accent-1: hsl(345 90% 50%);
+    --accent-2: hsl(20 95% 60%);
+    --bg-gradient-1: hsl(345 90% 50% / 0.7);
+    --bg-gradient-2: hsl(20 95% 60% / 0.7);
+    --bg-gradient-3: hsl(0 90% 55% / 0.6);
+  }
+
+  [data-theme="aurora"] {
+    --theme-primary: #00ffcc;
+    --theme-secondary: #3366ff;
+    --accent-1: hsl(165 100% 50%);
+    --accent-2: hsl(220 90% 55%);
+    --bg-gradient-1: hsl(165 100% 50% / 0.7);
+    --bg-gradient-2: hsl(200 100% 55% / 0.7);
+    --bg-gradient-3: hsl(220 90% 55% / 0.6);
   }
 }
 
@@ -164,6 +274,18 @@
   &::-webkit-scrollbar-thumb {
     @apply block h-1 hover:!bg-muted-foreground/40 !bg-muted-foreground/30 hover:py-2 cursor-pointer rounded-full;
   }
+}
+
+@utility bg-gradient-1 {
+  background: radial-gradient(circle, var(--bg-gradient-1), transparent 70%);
+}
+
+@utility bg-gradient-2 {
+  background: radial-gradient(circle, var(--bg-gradient-2), transparent 70%);
+}
+
+@utility bg-gradient-3 {
+  background: radial-gradient(circle, var(--bg-gradient-3), transparent 70%);
 }
 
 @utility scrollbar-hidden {

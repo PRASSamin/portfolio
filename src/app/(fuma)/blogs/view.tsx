@@ -42,7 +42,7 @@ import { cn } from "@/utils";
 import { formatDate } from "@/utils/format-date";
 import { debounce } from "@/utils/debounce";
 import Footer from "@/components/Footer";
-import { useKeybindy } from "@keybindy/react";
+import { Keybindy } from "@keybindy/react";
 import { QueryBlogs } from "@/utils/get-blogs";
 import Background from "@/components/Background";
 
@@ -71,24 +71,9 @@ const BlogsView = ({
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [mounted, setMounted] = useState(false);
   const [debouncedSearch, setDebouncedSearch] = useState(searchQuery);
-  const binder = useKeybindy();
 
   useEffect(() => {
     setMounted(true);
-    binder.register(
-      ["Ctrl", "K"],
-      () => {
-        searchRef.current?.focus();
-      },
-      { preventDefault: true }
-    );
-    binder.register(
-      ["Esc"],
-      () => {
-        searchRef.current?.blur();
-      },
-      { preventDefault: true }
-    );
   }, []);
 
   useEffect(() => {
@@ -172,7 +157,36 @@ const BlogsView = ({
   };
 
   return (
-    <>
+    <Keybindy
+      shortcuts={[
+        {
+          keys: ["Ctrl", "K"],
+          handler: () => {
+            searchRef.current?.focus();
+          },
+          options: {
+            preventDefault: true,
+            data: {
+              group: "On this page",
+              description: "Search",
+            },
+          },
+        },
+        {
+          keys: ["Esc"],
+          handler: () => {
+            searchRef.current?.blur();
+          },
+          options: {
+            preventDefault: true,
+            data: {
+              group: "On this page",
+              description: "Close search",
+            },
+          },
+        },
+      ]}
+    >
       <Background />
       <motion.div
         initial="hidden"
@@ -183,7 +197,7 @@ const BlogsView = ({
         <div ref={containerRef} className="flex flex-col gap-2 items-center">
           <h1 className="text-3xl sm:text-4xl lg:text-6xl font-black leading-normal">
             My{" "}
-            <span className="text-transparent bg-clip-text bg-linear-to-b from-[#ffa5c3] to-[#eb0954]">
+            <span className="text-transparent bg-clip-text bg-linear-to-b from-theme-primary to-theme-secondary">
               Blogs
             </span>
           </h1>
@@ -285,9 +299,9 @@ const BlogsView = ({
             </h2>
             <div className="flex flex-wrap gap-2 justify-start sm:justify-center w-full">
               <button
-                className={`px-2.5 py-1 rounded-md text-sm font-semibold transition-all ${
+                className={`px-2.5 py-1 rounded-md text-sm font-semibold transition-all outline-none ${
                   !selectedTag
-                    ? "bg-rose-700/30 text-rose-500"
+                    ? "bg-theme-accent-1/30 text-theme-accent-1"
                     : "bg-muted/60 text-muted-foreground"
                 }`}
                 onClick={() => setSelectedTag(null)}
@@ -300,9 +314,9 @@ const BlogsView = ({
                   .map((tag) => (
                     <button
                       key={tag}
-                      className={`px-2.5 py-1 rounded-md text-sm font-semibold transition-all duration-300 ease-linear ${
+                      className={`px-2.5 py-1 rounded-md text-sm font-semibold transition-all duration-300 ease-linear outline-none ${
                         selectedTag === tag
-                          ? "bg-rose-700/30 text-rose-500"
+                          ? "bg-theme-accent-1/30 text-theme-accent-1"
                           : "bg-muted/60 text-muted-foreground"
                       }`}
                       onClick={() => setSelectedTag(tag)}
@@ -313,7 +327,7 @@ const BlogsView = ({
               {tags.length > TAG_PREVIEW_LIMIT && (
                 <button
                   key="more"
-                  className={`px-2.5 py-1 rounded-md text-sm font-semibold transition-all duration-300 ease-linear bg-muted/60 text-muted-foreground`}
+                  className={`px-2.5 py-1 rounded-md text-sm font-semibold transition-all duration-300 ease-linear outline-none bg-muted/60 text-muted-foreground`}
                   onClick={() => setShowAllTags(!showAllTags)}
                 >
                   {(showAllTags ? "-" : "+") +
@@ -347,14 +361,14 @@ const BlogsView = ({
 
                 <Card className="h-full w-full flex flex-col bg-background/60 backdrop-blur-sm justify-between border-dashed transition-all duration-300 overflow-hidden group-hover:[transform:perspective(1000px)_rotateX(-2deg)_rotateY(3deg)] group-hover:origin-top-left">
                   <CardHeader className="p-0 h-full">
-                    {blog.thumbnail && (
-                      <div
-                        className="border border-dashed rounded-t-lg overflow-hidden h-36"
-                        style={{
-                          maskImage:
-                            "linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.3), rgba(0,0,0,0))",
-                        }}
-                      >
+                    <div
+                      className="border border-dashed rounded-t-lg overflow-hidden h-36"
+                      style={{
+                        maskImage:
+                          "linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.3), rgba(0,0,0,0))",
+                      }}
+                    >
+                      {blog.thumbnail && (
                         <BetterImage
                           src={blog.thumbnail}
                           width={300}
@@ -362,8 +376,8 @@ const BlogsView = ({
                           className="object-cover w-full h-full"
                           alt={blog.title}
                         />
-                      </div>
-                    )}
+                      )}
+                    </div>
                     <CardTitle className="px-4 pb-0 pt-2">
                       <h2 className="text-white text-xl truncate">
                         {blog.title}
@@ -400,7 +414,7 @@ const BlogsView = ({
                       blog.tags.map((tag, i) => (
                         <span
                           key={i}
-                          className="px-2.5 py-1 bg-rose-800/50 border border-rose-700 rounded-full text-xs text-rose-500 font-semibold capitalize"
+                          className="px-2.5 py-1 bg-theme-accent-1/20 border border-theme-accent-1 rounded-full text-xs text-theme-accent-1 font-semibold capitalize"
                         >
                           {tag}
                         </span>
@@ -462,7 +476,7 @@ const BlogsView = ({
         )}
       </motion.div>
       <Footer />
-    </>
+    </Keybindy>
   );
 };
 

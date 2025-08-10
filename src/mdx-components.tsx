@@ -23,14 +23,14 @@ const Head = ({ className, ...props }: HeadProps) => (
 export const mdxComponents = {
   h1: ({ className, ...props }: HeadProps) => (
     <Head
-      className={cn("border-l-[5px] border-rose-600 pl-2.5", className)}
+      className={cn("border-l-[5px] border-theme-accent-1 pl-2.5", className)}
       {...props}
     />
   ),
-  h2: ({ ...props }: HeadProps) => (
+  h2: ({ className, ...props }: HeadProps) => (
     <Head
       as="h2"
-      className="border-l-[5px] border-rose-600 pl-2.5"
+      className={cn("border-l-[5px] border-theme-accent-1 pl-2.5", className)}
       {...props}
     />
   ),

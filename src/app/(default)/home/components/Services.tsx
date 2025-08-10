@@ -96,13 +96,13 @@ const ServiceCard = ({ service }: { service: any }) => {
             <CardTitle className="flex items-center gap-2">
               <div
                 className={cn(
-                  "bg-[#31004d] p-1.5 rounded-full",
+                  "bg-theme-accent-2/50 p-1.5 rounded-full",
                   service.iconData.className
                 )}
               >
                 <service.iconData.icon
                   size={service.iconData.size}
-                  color="#ff0090"
+                  color="hsl(var(--card-foreground))"
                 />
               </div>
               {service.title}

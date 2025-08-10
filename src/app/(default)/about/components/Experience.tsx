@@ -112,7 +112,7 @@ const ExperienceSection = ({ experiences }: Props) => {
       <div className="flex flex-col gap-1 items-left">
         <h3
           data-type="title"
-          className="text-left text-4xl lg:text-5xl font-semibold bg-clip-text text-transparent bg-linear-to-b from-[#4e4e4e] to-[#ffffff]"
+          className="text-left text-4xl lg:text-5xl font-semibold bg-clip-text text-transparent bg-linear-to-b from-theme-primary to-theme-secondary"
         >
           Experience
         </h3>
@@ -141,7 +141,7 @@ const ExperienceSection = ({ experiences }: Props) => {
             >
               <TimelineItem key={exp.id}>
                 <TimelineIcon icon={<Briefcase />} />
-                <TimelineContent>
+                <TimelineContent className="bg-popover/50 backdrop-blur-sm p-3.5">
                   <div className="flex flex-col gap-0.5">
                     <TimelineTitle
                       dangerouslySetInnerHTML={{ __html: exp.company }}

@@ -35,7 +35,7 @@ export const project = defineCollections({
       })
       .optional(),
     category: z.string(),
-    tools: z.array(z.string()),
+    tools: z.array(z.string()).optional(),
     views: z.number().optional(),
   }),
 });

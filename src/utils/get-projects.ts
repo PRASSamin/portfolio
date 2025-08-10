@@ -38,7 +38,9 @@ export async function getProjects({
     limitParam === "all" ? Infinity : Math.min(100, Math.max(1, limitParam));
   const search = searchParam.toLowerCase();
 
-  const allPages = projectSource.getPages();
+  const allPages = projectSource
+    .getPages()
+    .filter((p) => p.slugs.join("/") !== "");
 
   // Filter by search
   const filtered = allPages.filter((entry) => {

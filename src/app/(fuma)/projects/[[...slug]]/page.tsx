@@ -24,8 +24,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { getFontIcon, getFontIconByName } from "@/utils/get-font-icon";
-import { ChartTooltipContent } from "@/components/ui/chart";
+import { getFontIconByName } from "@/utils/get-font-icon";
 import ProjectsView from "../view";
 
 type Props = Promise<{ slug?: string[] }>;
@@ -129,7 +128,7 @@ const ProjectPage = async ({ params }: { params: Props }) => {
               className="w-screen h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background to-background/60" />
-            <div className="absolute right-3 top-[72px]">
+            <div className="absolute right-3 top-[72px] md:hidden">
               <span className="flex gap-1.5 items-center text-[13px] select-none">
                 <Eye className="text-muted-foreground/70" size={16} />
                 <span>{page.data.views}</span>
@@ -201,7 +200,7 @@ const ProjectPage = async ({ params }: { params: Props }) => {
                     </span>
                   </div>
                   <div className="flex items-center justify-center gap-2.5">
-                    {page.data.tools.map((tool, index) => {
+                    {page.data.tools?.map((tool, index) => {
                       const icon = getFontIconByName(tool);
                       if (!icon) return null;
                       return (
@@ -249,16 +248,14 @@ export default ProjectPage;
 export async function generateStaticParams() {
   return source.generateParams();
 }
-export async function generateMetadata(props: {
-  params: Promise<{ slug?: string[] }>;
-}) {
+export async function generateMetadata(props: { params: Props }) {
   const params = await props.params;
-  const page = source.getPage(params.slug);
+  const page = projectSource.getPage(params.slug);
   if (!page) notFound();
   return metatag({
-    title: `${page.data.title} | PRAS`,
-    description: page.data.description,
-    image: page.data.thumbnail,
+    title: `${page?.data.title} | PRAS`,
+    description: page?.data.description,
+    image: page?.data.thumbnail,
     robots: "index, follow",
   });
 }

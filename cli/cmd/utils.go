@@ -42,6 +42,14 @@ type toolsFile struct {
 	Tools []toolDef `yaml:"tools"`
 }
 
+type iconData struct {
+	Name string `yaml:"name"`
+}
+
+type yamlData struct {
+	Icons []iconData `yaml:"icons"`
+}
+
 // getContentDir reads the fumadocs config and extracts the content directory for a given collection.
 func getContentDir(collectionName string) (string, error) {
 	content, err := os.ReadFile("source.config.ts")
@@ -94,17 +102,19 @@ func writeProjectMDX(frontmatter map[string]any, slug, outputDir, title, descrip
 func loadTools(path string) ([]string, error) {
 	data, err := os.ReadFile(path)
 	if err != nil {
-		return nil, err
-	}
-	var tf toolsFile
-	if err := yaml.Unmarshal(data, &tf); err != nil {
-		return nil, err
+		return nil, fmt.Errorf("read file: %w", err)
 	}
 
-	names := make([]string, 0, len(tf.Tools))
-	for _, t := range tf.Tools {
-		names = append(names, t.Name)
+	var yamlContent yamlData
+	if err := yaml.Unmarshal(data, &yamlContent); err != nil {
+		return nil, fmt.Errorf("unmarshal yaml: %w", err)
 	}
+
+	names := make([]string, 0, len(yamlContent.Icons))
+	for _, icon := range yamlContent.Icons {
+		names = append(names, icon.Name)
+	}
+
 	return names, nil
 }
 

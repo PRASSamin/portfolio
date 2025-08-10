@@ -175,7 +175,7 @@ const BlogPage = async ({ params }: { params: Props }) => {
               <Heading
                 as="h2"
                 id="topics"
-                className="border-l-[5px] border-rose-600 pl-2.5 [&_a]:!no-underline"
+                className="border-l-[5px] border-theme-accent-1 pl-2.5 [&_a]:!no-underline"
               >
                 Topics
               </Heading>
@@ -184,7 +184,7 @@ const BlogPage = async ({ params }: { params: Props }) => {
                   page.data?.tags?.map((tag, i) => (
                     <span
                       key={i}
-                      className="px-2.5 py-0.5 bg-rose-800/50 border border-rose-700 rounded-full text-[13px] text-rose-500 font-semibold select-none"
+                      className="px-2.5 py-0.5 bg-theme-accent-1/20 border border-theme-accent-1 rounded-full text-[13px] text-theme-accent-1 font-semibold select-none"
                     >
                       {tag}
                     </span>

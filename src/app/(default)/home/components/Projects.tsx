@@ -134,7 +134,7 @@ const ProjectSection: React.FC<Props> = ({ projects }) => {
                     {project?.links?.github && (
                       <Button
                         asChild
-                        className="w-full bg-pink-700/50 hover:bg-pink-700/70 border-pink-600"
+                        className="w-full bg-theme-accent-1/20 hover:bg-theme-accent-1/30 bordertheme-accent-1"
                         variant={"outline"}
                         onClick={(e) => e.stopPropagation()}
                       >
@@ -150,7 +150,7 @@ const ProjectSection: React.FC<Props> = ({ projects }) => {
                     {project?.links?.live && (
                       <Button
                         asChild
-                        className="w-full bg-purple-700/30 hover:bg-purple-700/50 border-purple-600"
+                        className="w-full bg-theme-accent-2/20 hover:bg-theme-accent-2/30 bordertheme-accent-2"
                         variant={"outline"}
                         onClick={(e) => e.stopPropagation()}
                       >

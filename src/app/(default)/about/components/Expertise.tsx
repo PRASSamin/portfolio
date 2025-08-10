@@ -25,7 +25,7 @@ import {
   Tailwind,
   Vite,
   Motion,
-} from "../../../../components/icons";
+} from "@/components/icons";
 import {
   Tooltip,
   TooltipArrow,
@@ -147,7 +147,9 @@ const ExpertiseSection = memo(() => {
   useEffect(() => {
     const handleWindowResize = () => {
       const adjustedWidth = window.innerWidth * 1.2;
-      const calculatedColumns = Math.floor(adjustedWidth / (window.innerWidth > 640 ? 129 : 104));
+      const calculatedColumns = Math.floor(
+        adjustedWidth / (window.innerWidth > 640 ? 129 : 104)
+      );
       console.log(calculatedColumns);
       setColumnsPerRow(calculatedColumns);
 
@@ -226,7 +228,7 @@ const ExpertiseSection = memo(() => {
             className="text-center text-4xl lg:text-5xl font-semibold text-foreground"
           >
             My{" "}
-            <span className="tracking-tight inline from-[#FF72E1] to-[#F54C7A] bg-clip-text text-transparent bg-linear-to-b">
+            <span className="tracking-tight inline from-theme-primary to-theme-secondary bg-clip-text text-transparent bg-linear-to-b">
               Expertise
             </span>{" "}
             Area

@@ -114,11 +114,11 @@ const SocialSection = () => {
           className="text-center text-4xl lg:text-5xl font-semibold text-foreground"
         >
           Explore{" "}
-          <span className="tracking-tight inline bg-clip-text text-transparent bg-linear-to-b from-[#6FEE8D] to-[#17c964]">
+          <span className="tracking-tight inline bg-clip-text text-transparent bg-linear-to-b from-theme-primary to-theme-secondary">
             My
           </span>{" "}
           Online{" "}
-          <span className="tracking-tight inline bg-clip-text text-transparent bg-linear-to-b from-[#FF705B] to-[#FFB457]">
+          <span className="tracking-tight inline bg-clip-text text-transparent bg-linear-to-b from-theme-primary to-theme-secondary">
             Nexus
           </span>
         </h3>

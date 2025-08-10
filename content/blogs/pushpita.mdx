@@ -1,0 +1,473 @@
+---
+title: Pushpita
+description: Pushpita
+createdAt: "2025-08-10T13:29:34.088Z"
+updatedAt: "2025-08-10T17:16:42.640Z"
+tags:
+  - pras
+  - pushpita
+---
+
+# Fumadocs Framework: Manual Installation
+
+URL: /docs/ui/manual-installation
+Source: https://raw.githubusercontent.com/fuma-nama/fumadocs/refs/heads/main/apps/docs/content/docs/ui/manual-installation.mdx
+
+Add Fumadocs to existing projects.
+
+Before continuing, make sure:
+
+- Next.js 15 and Tailwind CSS 4 are configured.
+
+## Getting Started
+
+<CodeBlockTabs defaultValue="npm">
+  <CodeBlockTabsList>
+    <CodeBlockTabsTrigger value="npm">
+      npm
+    </CodeBlockTabsTrigger>
+
+    <CodeBlockTabsTrigger value="pnpm">
+      pnpm
+    </CodeBlockTabsTrigger>
+
+    <CodeBlockTabsTrigger value="yarn">
+      yarn
+    </CodeBlockTabsTrigger>
+
+    <CodeBlockTabsTrigger value="bun">
+      bun
+    </CodeBlockTabsTrigger>
+
+  </CodeBlockTabsList>
+
+{" "}
+
+<CodeBlockTab value="npm">
+  ```bash npm i fumadocs-ui fumadocs-core ```
+</CodeBlockTab>
+
+{" "}
+
+<CodeBlockTab value="pnpm">
+  ```bash pnpm add fumadocs-ui fumadocs-core ```
+</CodeBlockTab>
+
+{" "}
+
+<CodeBlockTab value="yarn">
+  ```bash yarn add fumadocs-ui fumadocs-core ```
+</CodeBlockTab>
+
+  <CodeBlockTab value="bun">
+    ```bash
+    bun add fumadocs-ui fumadocs-core
+    ```
+  </CodeBlockTab>
+</CodeBlockTabs>
+
+### Content Source
+
+Fumadocs supports different content sources, including Fumadocs MDX and [Content Collections](/docs/headless/content-collections).
+
+Fumadocs MDX is our official content source, you can configure it with:
+
+<CodeBlockTabs defaultValue="npm">
+  <CodeBlockTabsList>
+    <CodeBlockTabsTrigger value="npm">
+      npm
+    </CodeBlockTabsTrigger>
+
+    <CodeBlockTabsTrigger value="pnpm">
+      pnpm
+    </CodeBlockTabsTrigger>
+
+    <CodeBlockTabsTrigger value="yarn">
+      yarn
+    </CodeBlockTabsTrigger>
+
+    <CodeBlockTabsTrigger value="bun">
+      bun
+    </CodeBlockTabsTrigger>
+
+  </CodeBlockTabsList>
+
+{" "}
+
+<CodeBlockTab value="npm">
+  ```bash npm install fumadocs-mdx @types/mdx ```
+</CodeBlockTab>
+
+{" "}
+
+<CodeBlockTab value="pnpm">
+  ```bash pnpm add fumadocs-mdx @types/mdx ```
+</CodeBlockTab>
+
+{" "}
+
+<CodeBlockTab value="yarn">
+  ```bash yarn add fumadocs-mdx @types/mdx ```
+</CodeBlockTab>
+
+  <CodeBlockTab value="bun">
+    ```bash
+    bun add fumadocs-mdx @types/mdx
+    ```
+  </CodeBlockTab>
+</CodeBlockTabs>
+
+```js tab="next.config.mjs"
+import { createMDX } from "fumadocs-mdx/next";
+
+const withMDX = createMDX();
+
+/** @type {import('next').NextConfig} */
+const config = {
+  reactStrictMode: true,
+};
+
+export default withMDX(config);
+```
+
+```tsx tab="mdx-components.tsx"
+import defaultMdxComponents from "fumadocs-ui/mdx";
+import type { MDXComponents } from "mdx/types";
+
+export function getMDXComponents(components?: MDXComponents): MDXComponents {
+  return {
+    ...defaultMdxComponents,
+    ...components,
+  };
+}
+```
+
+```ts tab="source.config.ts"
+import { defineDocs } from "fumadocs-mdx/config";
+
+export const docs = defineDocs({
+  dir: "content/docs",
+});
+```
+
+```json tab="package.json"
+{
+  "scripts": {
+    "postinstall": "fumadocs-mdx" // [!code ++]
+  }
+}
+```
+
+Finally, to access your content:
+
+```ts title="lib/source.ts"
+// .source folder will be generated when you run `next dev`
+import { docs } from "@/.source";
+import { loader } from "fumadocs-core/source";
+
+export const source = loader({
+  baseUrl: "/docs",
+  source: docs.toFumadocsSource(),
+});
+```
+
+### Root Layout
+
+Wrap the entire application inside [Root Provider](/docs/ui/layouts/root-provider), and add required styles to `body`.
+
+```tsx title="app/layout.tsx"
+import { RootProvider } from "fumadocs-ui/provider";
+import type { ReactNode } from "react";
+
+export default function Layout({ children }: { children: ReactNode }) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body
+        // you can use Tailwind CSS too
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          minHeight: "100vh",
+        }}
+      >
+        <RootProvider>{children}</RootProvider>
+      </body>
+    </html>
+  );
+}
+```
+
+### Styles
+
+Add the following Tailwind CSS styles to `global.css`.
+
+```css title="global.css"
+@import "tailwindcss";
+@import "fumadocs-ui/css/neutral.css";
+@import "fumadocs-ui/css/preset.css";
+```
+
+> It doesn't come with a default font, you may choose one from `next/font`.
+
+### Layout
+
+Create a `app/layout.config.tsx` file to put the shared options for our layouts.
+
+```tsx title="app/layout.config.tsx"
+import { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
+
+export const baseOptions: BaseLayoutProps = {
+  nav: {
+    title: "My App",
+  },
+};
+```
+
+Create a folder `/app/docs` for our docs, and give it a proper layout.
+
+```tsx title="app/docs/layout.tsx"
+import { source } from "@/lib/source";
+import { DocsLayout } from "fumadocs-ui/layouts/docs";
+import type { ReactNode } from "react";
+import { baseOptions } from "@/app/layout.config";
+
+export default function Layout({ children }: { children: ReactNode }) {
+  return (
+    <DocsLayout tree={source.pageTree} {...baseOptions}>
+      {children}
+    </DocsLayout>
+  );
+}
+```
+
+> `pageTree` refers to Page Tree, it should be provided by your content source.
+
+### Page
+
+Create a catch-all route `/app/docs/[[...slug]]` for docs pages.
+
+In the page, wrap your content in the [Page](/docs/ui/layouts/page) component.
+
+<CodeBlockTabs groupId="content-source">
+  ```tsx title="app/docs/\[\[...slug]]/page.tsx" tab="Fumadocs MDX"
+  import { source } from '@/lib/source';
+  import {
+    DocsBody,
+    DocsDescription,
+    DocsPage,
+    DocsTitle,
+  } from 'fumadocs-ui/page';
+  import { notFound } from 'next/navigation';
+  import { getMDXComponents } from '@/mdx-components';
+
+export default async function Page(props: {
+params: Promise<{ slug?: string[] }>;
+}) {
+const params = await props.params;
+const page = source.getPage(params.slug);
+if (!page) notFound();
+
+    const MDX = page.data.body;
+
+    return (
+      <DocsPage toc={page.data.toc} full={page.data.full}>
+        <DocsTitle>{page.data.title}</DocsTitle>
+        <DocsDescription>{page.data.description}</DocsDescription>
+        <DocsBody>
+          <p>{page.data.content}</p>
+          <MDX components={getMDXComponents()} />
+        </DocsBody>
+      </DocsPage>
+    );
+
+}
+
+export async function generateStaticParams() {
+return source.generateParams();
+}
+
+export async function generateMetadata(props: {
+params: Promise<{ slug?: string[] }>;
+}) {
+const params = await props.params;
+const page = source.getPage(params.slug);
+if (!page) notFound();
+
+    return {
+      title: page.data.title,
+      description: page.data.description,
+    };
+
+}
+
+````
+
+```tsx title="app/docs/\[\[...slug]]/page.tsx" tab="Content Collections"
+import { source } from '@/lib/source';
+import type { Metadata } from 'next';
+import {
+  DocsPage,
+  DocsBody,
+  DocsTitle,
+  DocsDescription,
+} from 'fumadocs-ui/page';
+import { notFound } from 'next/navigation';
+import { MDXContent } from '@content-collections/mdx/react';
+import { getMDXComponents } from '@/mdx-components';
+
+export default async function Page(props: {
+  params: Promise<{ slug?: string[] }>;
+}) {
+  const params = await props.params;
+  const page = source.getPage(params.slug);
+
+  if (!page) {
+    notFound();
+  }
+
+  return (
+    <DocsPage toc={page.data.toc} full={page.data.full}>
+      <DocsTitle>{page.data.title}</DocsTitle>
+      <DocsDescription>{page.data.description}</DocsDescription>
+      <DocsBody>
+        <MDXContent code={page.data.body} components={getMDXComponents()} />
+      </DocsBody>
+    </DocsPage>
+  );
+}
+
+export async function generateStaticParams() {
+  return source.generateParams();
+}
+
+export async function generateMetadata(props: {
+  params: Promise<{ slug?: string[] }>;
+}) {
+  const params = await props.params;
+  const page = source.getPage(params.slug);
+
+  if (!page) notFound();
+
+  return {
+    title: page.data.title,
+    description: page.data.description,
+  } satisfies Metadata;
+}
+
+````
+
+</CodeBlockTabs>
+
+### Search
+
+Use the default document search based on Orama.
+
+```ts title="app/api/search/route.ts"
+import { source } from "@/lib/source";
+import { createFromSource } from "fumadocs-core/search/server";
+
+export const { GET } = createFromSource(source, {
+  // https://docs.orama.com/open-source/supported-languages
+  language: "english",
+});
+```
+
+Learn more about [Document Search](/docs/headless/search).
+
+### Done
+
+You can start the dev server and create MDX files.
+
+```mdx title="content/docs/index.mdx"
+---
+title: Hello World
+---
+
+## Introduction
+
+I love Anime.
+```
+
+## Deploying
+
+It should work out-of-the-box with Vercel & Netlify.
+
+### Cloudflare
+
+Use [https://opennext.js.org/cloudflare](https://opennext.js.org/cloudflare), Fumadocs doesn't work on Edge runtime.
+
+### Docker Deployment
+
+If you want to deploy your Fumadocs app using Docker with **Fumadocs MDX configured**, make sure to add the `source.config.ts` file to the `WORKDIR` in the Dockerfile.
+The following snippet is taken from the official [Next.js Dockerfile Example](https://github.com/vercel/next.js/blob/canary/examples/with-docker/Dockerfile):
+
+```zsh title="Dockerfile"
+# syntax=docker.io/docker/dockerfile:1
+
+FROM node:18-alpine AS base
+
+# Install dependencies only when needed
+FROM base AS deps
+# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
+RUN apk add --no-cache libc6-compat
+WORKDIR /app
+
+# Install dependencies based on the preferred package manager [!code highlight]
+COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* .npmrc* source.config.ts ./
+RUN \
+  if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
+  elif [ -f package-lock.json ]; then npm ci; \
+  elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm i --frozen-lockfile; \
+  else echo "Lockfile not found." && exit 1; \
+  fi
+
+
+# Rebuild the source code only when needed
+FROM base AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+
+# Next.js collects completely anonymous telemetry data about general usage.
+# Learn more here: https://nextjs.org/telemetry
+# Uncomment the following line in case you want to disable telemetry during the build.
+# ENV NEXT_TELEMETRY_DISABLED=1
+
+RUN \
+  if [ -f yarn.lock ]; then yarn run build; \
+  elif [ -f package-lock.json ]; then npm run build; \
+  elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm run build; \
+  else echo "Lockfile not found." && exit 1; \
+  fi
+
+# Production image, copy all the files and run next
+FROM base AS runner
+WORKDIR /app
+
+ENV NODE_ENV=production
+# Uncomment the following line in case you want to disable telemetry during runtime.
+# ENV NEXT_TELEMETRY_DISABLED=1
+
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+
+COPY --from=builder /app/public ./public
+
+# Automatically leverage output traces to reduce image size
+# https://nextjs.org/docs/advanced-features/output-file-tracing
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+USER nextjs
+
+EXPOSE 3000
+
+ENV PORT=3000
+
+# server.js is created by next build from the standalone output
+# https://nextjs.org/docs/pages/api-reference/config/next-config-js/output
+ENV HOSTNAME="0.0.0.0"
+CMD ["node", "server.js"]
+```
+
+This ensures Fumadocs MDX can access your configuration file during builds.

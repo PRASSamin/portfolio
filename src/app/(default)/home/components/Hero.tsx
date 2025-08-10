@@ -63,7 +63,7 @@ const HeroSection = () => {
       <div className="flex flex-col gap-2">
         <h1 className="text-4xl md:text-6xl font-black">
           PRAS{" "}
-          <span className="tracking-tight inline from-[#9809eb] to-[#ff5277] bg-clip-text text-transparent bg-linear-to-b">
+          <span className="tracking-tight inline from-theme-primary to-theme-secondary bg-clip-text text-transparent bg-linear-to-b">
             Samin
           </span>
         </h1>
@@ -77,7 +77,7 @@ const HeroSection = () => {
           continue to grow in this field!
         </p>
       </div>
-      <div className="relative p-[3px] rounded-sm transition-all duration-1000 group after:rounded-sm after:-z-10 after:absolute after:w-full after:inset-0 after:p-[3px] after:bg-linear-to-r after:from-[#9809eb] after:to-[#f441a5] before:absolute before:inset-0 before:m-auto before:rounded-sm before:-z-10 before:transition-all before:duration-300 before:bg-linear-to-r before:from-[#9809eb] before:to-[#f441a5] before:blur-lg hover:before:blur-xs">
+      <div className="relative p-[3px] rounded-sm transition-all duration-1000 group after:rounded-sm after:-z-10 after:absolute after:w-full after:inset-0 after:p-[3px] after:bg-linear-to-r after:from-theme-primary after:to-theme-secondary before:absolute before:inset-0 before:m-auto before:rounded-sm before:-z-10 before:transition-all before:duration-300 before:bg-linear-to-r before:from-theme-primary before:to-theme-secondary before:blur-lg hover:before:blur-xs">
         <button
           onClick={() => window.open("/resume.pdf", "_blank")}
           className="text-md py-2.5 px-3 rounded-sm border-none bg-black text-white cursor-pointer shadow-[2px_2px_3px_#000000b4]"

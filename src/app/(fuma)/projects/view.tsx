@@ -44,7 +44,7 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { debounce } from "@/utils/debounce";
-import { useKeybindy } from "@keybindy/react";
+import { Keybindy } from "@keybindy/react";
 import { QueryProjects } from "@/utils/get-projects";
 import Footer from "@/components/Footer";
 import Background from "@/components/Background";
@@ -71,24 +71,9 @@ const ProjectsView = ({
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [mounted, setMounted] = useState(false);
   const [debouncedSearch, setDebouncedSearch] = useState(searchQuery);
-  const binder = useKeybindy();
 
   useEffect(() => {
     setMounted(true);
-    binder.register(
-      ["Ctrl", "K"],
-      () => {
-        searchRef.current?.focus();
-      },
-      { preventDefault: true }
-    );
-    binder.register(
-      ["Esc"],
-      () => {
-        searchRef.current?.blur();
-      },
-      { preventDefault: true }
-    );
   }, []);
 
   useEffect(() => {
@@ -151,7 +136,36 @@ const ProjectsView = ({
   };
 
   return (
-    <>
+    <Keybindy
+      shortcuts={[
+        {
+          keys: ["Ctrl", "K"],
+          handler: () => {
+            searchRef.current?.focus();
+          },
+          options: {
+            preventDefault: true,
+            data: {
+              group: "On this page",
+              description: "Search",
+            },
+          },
+        },
+        {
+          keys: ["Esc"],
+          handler: () => {
+            searchRef.current?.blur();
+          },
+          options: {
+            preventDefault: true,
+            data: {
+              group: "On this page",
+              description: "Close search",
+            },
+          },
+        },
+      ]}
+    >
       <Background />
       <motion.div
         ref={containerRef}
@@ -163,7 +177,7 @@ const ProjectsView = ({
         <div className="flex flex-col gap-1 items-center">
           <h1 className="text-3xl sm:text-4xl lg:text-6xl font-black leading-normal">
             My{" "}
-            <span className="text-transparent bg-clip-text bg-linear-to-b from-[#9809eb] to-[#ff5277]">
+            <span className="text-transparent bg-clip-text bg-linear-to-b from-theme-primary to-theme-secondary">
               Project
             </span>
           </h1>
@@ -303,7 +317,7 @@ const ProjectsView = ({
                       <div className="absolute top-2 right-2 flex gap-2">
                         <span
                           title="Category"
-                          className="bg-[#31004d]/50 text-white backdrop-blur-sm px-2 py-1 rounded text-sm"
+                          className="bg-[var(--accent-2)/0.5] text-white backdrop-blur-sm px-2 py-1 rounded text-sm"
                         >
                           {project.category}
                         </span>
@@ -368,7 +382,7 @@ const ProjectsView = ({
                           {project?.link?.github && (
                             <Button
                               asChild
-                              className="bg-pink-700/50 hover:bg-pink-700/70 border-pink-600"
+                              className="bg-[var(--accent-1)/0.5] hover:bg-[var(--accent-1)/0.7] bordertheme-accent-1"
                               variant={"outline"}
                               onClick={(e) => e.stopPropagation()}
                             >
@@ -384,7 +398,7 @@ const ProjectsView = ({
                           {project?.link?.live && (
                             <Button
                               asChild
-                              className="bg-purple-700/30 hover:bg-purple-700/50 border-purple-600"
+                              className="bg-[var(--accent-2)/0.3] hover:bg-[var(--accent-2)/0.5] bordertheme-accent-2"
                               variant={"outline"}
                               onClick={(e) => e.stopPropagation()}
                             >
@@ -457,7 +471,7 @@ const ProjectsView = ({
         )}
       </motion.div>
       <Footer />
-    </>
+    </Keybindy>
   );
 };
 
