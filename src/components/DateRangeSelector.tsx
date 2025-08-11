@@ -1,58 +1,71 @@
 "use client";
-import * as React from "react";
-import { ChevronDownIcon } from "lucide-react";
-import { type DateRange } from "react-day-picker";
+import { SyntheticEvent, useState } from "react";
+import { DateRangePicker } from "rsuite";
+import { format } from "date-fns";
+import { CustomProvider } from "rsuite";
 
-import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
-import { Label } from "@/components/ui/label";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+import "rsuite/DateRangePicker/styles/index.css";
+import { DateRange } from "rsuite/esm/DateRangePicker";
 
 export default function DateRangeSelector({
-  label,
   onChange,
   value,
 }: {
-  label?: string;
-  onChange?: (range: DateRange) => void;
-  value?: DateRange;
+  onChange?: (range: { startDate: Date; endDate?: Date }) => void;
+  value?: { startDate: Date; endDate?: Date };
 }) {
+  // @ts-expect-error: unnecessary
+  const [selectedRange, setSelectedRange] = useState<DateRange | null>([
+    value?.startDate ?? null,
+    value?.endDate ?? null,
+  ]);
+
+  const handleChange = (
+    ranges: DateRange | null,
+    event: SyntheticEvent<Element, Event>
+  ) => {
+    setSelectedRange(ranges);
+
+    const startDate = ranges?.[0];
+    const endDate = ranges?.[1];
+
+    const shouldSetEndDate =
+      endDate instanceof Date &&
+      startDate instanceof Date &&
+      endDate.getTime() !== startDate.getTime();
+
+    onChange?.({
+      startDate: startDate ?? new Date(),
+      endDate: shouldSetEndDate ? endDate : undefined,
+    });
+  };
+
   return (
-    <div className="flex flex-col gap-3">
-      {label && (
-        <Label htmlFor="dates" className="px-1">
-          {label}
-        </Label>
-      )}
-      <Popover>
-        <PopoverTrigger asChild>
-          <Button
-            variant="outline"
-            id="dates"
-            className="justify-between font-normal w-full py-5"
-          >
-            {value?.from && value?.to
-              ? `${value.from.toLocaleDateString()} - ${value.to.toLocaleDateString()}`
-              : "Select date"}
-            <ChevronDownIcon />
-          </Button>
-        </PopoverTrigger>
-        <PopoverContent className="w-auto overflow-hidden p-0" align="end">
-          <Calendar
-            mode="range"
-            selected={value}
-            captionLayout="dropdown"
-            onSelect={(range) => {
-              if (!range) return;
-              onChange?.(range);
-            }}
-          />
-        </PopoverContent>
-      </Popover>
-    </div>
+    <CustomProvider theme="dark">
+      <DateRangePicker
+        showHeader={false}
+        menuStyle={{ zIndex: 50, pointerEvents: "all" }}
+        appearance="subtle"
+        onChange={handleChange}
+        value={selectedRange}
+        character=" - "
+        className="
+          [&>.rs-picker-input-group]:!bg-transparent 
+          [&>.rs-picker-input-group]:!border-border 
+          [&>.rs-picker-input-group]:!py-1 
+          [&_.rs-input]:!bg-transparent
+        "
+        menuClassName="scrollbar-show-light [&_.rs-calendar-month-view_.rs-calendar-header-backward]:!flex [&_.rs-calendar-month-view_.rs-calendar-header-forward]:!flex"
+        renderValue={(value, formatStr) => {
+          if (!value?.[0]) return "";
+          const start = format(value[0], formatStr);
+          const end =
+            value[1] && value[1].getTime() !== value[0].getTime()
+              ? format(value[1], formatStr)
+              : "Present";
+          return `${start} - ${end}`;
+        }}
+      />
+    </CustomProvider>
   );
 }

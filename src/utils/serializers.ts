@@ -11,7 +11,21 @@ const getDuration = (
     ? parseISO(endDate)
     : endDate;
 
-  const months = differenceInMonths(end, start);
+  // Calculate the difference in months
+  let months = differenceInMonths(end, start);
+  
+  // Get the start date advanced by the number of months
+  const startPlusMonths = new Date(start);
+  startPlusMonths.setMonth(start.getMonth() + months);
+  
+  // Calculate remaining days
+  const remainingDays = Math.ceil((end.getTime() - startPlusMonths.getTime()) / (1000 * 60 * 60 * 24));
+  
+  // If remaining days > 15, count as an additional month
+  if (remainingDays > 15) {
+    months += 1;
+  }
+
   const years = Math.floor(months / 12);
   const remainingMonths = months % 12;
 

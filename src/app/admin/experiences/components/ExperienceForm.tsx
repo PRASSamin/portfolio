@@ -194,10 +194,14 @@ const ExperienceForm = ({
                 <div className="h-2 w-2 animate-ping rounded-full bg-rose-600 absolute -top-0.5 -left-0.5" />
               </div>
               <DateRangeSelector
-                onChange={({ from, to }) => {
-                  setFormData((prev) => ({ ...prev, start: from, end: to }));
+                onChange={({ startDate, endDate }) => {
+                  setFormData((prev) => ({
+                    ...prev,
+                    start: startDate,
+                    end: endDate,
+                  }));
                 }}
-                value={{ from: formData.start!, to: formData.end }}
+                value={{ startDate: formData.start!, endDate: formData.end }}
               />
             </div>
           </div>

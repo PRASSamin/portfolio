@@ -189,17 +189,14 @@ const EduForm = ({
                 </div>
               ))}
               <DateRangeSelector
-                onChange={({ from, to }) => {
-                  setFormData((prev) => ({ ...prev, start: from, end: to }));
+                onChange={({ startDate, endDate }) => {
+                  setFormData((prev) => ({
+                    ...prev,
+                    start: startDate,
+                    end: endDate,
+                  }));
                 }}
-                value={{
-                  from:
-                    formData.start ||
-                    new Date(
-                      new Date().setFullYear(new Date().getFullYear() - 1)
-                    ),
-                  to: formData.end || new Date(),
-                }}
+                value={{ startDate: formData.start!, endDate: formData.end }}
               />
             </div>
           </div>
@@ -254,7 +251,11 @@ const EduForm = ({
             className="bg-blue-600 text-white hover:bg-blue-700"
             disabled={isSubmitting}
           >
-            {isSubmitting ? <Loader2 className="animate-spin" /> : submitButtonText}
+            {isSubmitting ? (
+              <Loader2 className="animate-spin" />
+            ) : (
+              submitButtonText
+            )}
           </Button>
         )}
       </div>
