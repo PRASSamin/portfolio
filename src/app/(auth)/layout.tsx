@@ -11,7 +11,7 @@ export default function AuthLayout({
 }>) {
   return (
     <>
-      <main className="flex min-h-screen items-center justify-center bg-[url('/graph.svg')] bg-repeat bg-size-[40px_40px]">
+      <main className="flex min-h-screen items-center justify-center bg-[url('/assets/graph.svg')] bg-repeat bg-size-[40px_40px]">
         {children}
       </main>
     </>

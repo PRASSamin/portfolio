@@ -17,7 +17,7 @@ export default function Page() {
       <div className="relative">
         <div className="absolute inset-0 bg-linear-to-t from-card via-card/60 to-card/50 z-10" />
         <BetterImage
-          src="/anime_collage.png"
+          src="/assets/anime_collage.png"
           width={1000}
           height={1000}
           className="w-full h-full object-cover object-center"
