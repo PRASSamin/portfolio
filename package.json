@@ -14,7 +14,7 @@
     "prepare": "husky",
     "prisma:dev": "sed -i 's|from \"@prisma/client/edge\";|from \"@prisma/client\";|' src/utils/db.ts",
     "prisma:edge": "sed -i 's|from \"@prisma/client\";|from \"@prisma/client/edge\";|' src/utils/db.ts",
-    "preinstall": "chmod +x .husky/*"
+    "preinstall": "husky && chmod +x .husky/*"
   },
   "prisma": {
     "seed": "bun prisma/seed.ts"
