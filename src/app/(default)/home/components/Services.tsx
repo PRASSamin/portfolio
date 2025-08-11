@@ -16,19 +16,19 @@ const ServiceSection = () => {
     {
       title: "Web development",
       description:
-        "Bringing ideas to life through clean, functional code, I craft intuitive user interfaces and robust back end systems. I’m driven by a passion for learning and solving challenges, creating seamless digital experiences with modern technologies.",
+        "I love turning ideas into real, working websites. This means building easy to use parts you see and strong systems behind the scenes. My goal is always to create smooth online experiences that just work, and I enjoy figuring out the best ways to make that happen.",
       iconData: { icon: ReactColorLessIcon, size: 28, className: "p-1.5" },
     },
     {
       title: "Python development",
       description:
-        "Python empowers me to build scalable solutions, automate tasks, and explore data analysis. Its versatility inspires me to solve problems, embrace innovation, and deliver impactful results through clean, maintainable code.",
+        "With Python, I build smart solutions that can grow with needs. I enjoy using it to automate everyday tasks and dig into data to find useful insights. It's all about solving problems efficiently and creating reliable code that's easy to understand and update.",
       iconData: { icon: PythonColorLessIcon, size: 26, className: "p-2" },
     },
     {
       title: "Open source",
       description:
-        "I have always loved contributing to open source projects and helping others. I believe that open source is a great way to learn and share knowledge. I also love creating open source projects and sharing my knowledge with others.",
+        "I'm passionate about open source because it's a fantastic way to learn, grow, and give back to the community. I enjoy contributing to projects that others use and creating my own tools to share. It's all about building together and making software better for everyone.",
       iconData: {
         icon: GitFork,
         size: 26,

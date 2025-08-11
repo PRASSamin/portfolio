@@ -382,7 +382,7 @@ const ProjectsView = ({
                           {project?.link?.github && (
                             <Button
                               asChild
-                              className="bg-[var(--accent-1)/0.5] hover:bg-[var(--accent-1)/0.7] bordertheme-accent-1"
+                              className="bg-[var(--accent-1)/0.5] hover:bg-[var(--accent-1)/0.7] border-theme-accent-1"
                               variant={"outline"}
                               onClick={(e) => e.stopPropagation()}
                             >
@@ -398,7 +398,7 @@ const ProjectsView = ({
                           {project?.link?.live && (
                             <Button
                               asChild
-                              className="bg-[var(--accent-2)/0.3] hover:bg-[var(--accent-2)/0.5] bordertheme-accent-2"
+                              className="bg-[var(--accent-2)/0.3] hover:bg-[var(--accent-2)/0.5] border-theme-accent-2"
                               variant={"outline"}
                               onClick={(e) => e.stopPropagation()}
                             >

@@ -93,7 +93,7 @@ export function ThemeSwitcher() {
                 <div className="flex items-center gap-2">
                   <div
                     className={cn(
-                      "w-5 h-5 rounded-full border border-border",
+                      "w-5 h-5 rounded-full",
                       themes[theme as keyof typeof themes]
                     )}
                   />

@@ -113,21 +113,17 @@ const SocialSection = () => {
           data-type="title"
           className="text-center text-4xl lg:text-5xl font-semibold text-foreground"
         >
-          Explore{" "}
-          <span className="tracking-tight inline bg-clip-text text-transparent bg-linear-to-b from-theme-primary to-theme-secondary">
-            My
+          Let&apos;s{" "}
+          <span className="from-theme-primary to-theme-secondary text-4xl lg:text-6xl bg-clip-text text-transparent bg-linear-to-b">
+            Connect
           </span>{" "}
-          Online{" "}
-          <span className="tracking-tight inline bg-clip-text text-transparent bg-linear-to-b from-theme-primary to-theme-secondary">
-            Nexus
-          </span>
+          Online
         </h3>
         <p
           data-type="description"
           className="text-muted-foreground text-sm lg:text-base text-center"
         >
-          Discover my presence across platforms and explore a world of
-          creativity and inspiration.
+          Explore my profiles and follow my journey across the web.
         </p>
       </div>
       <motion.div
@@ -146,11 +142,12 @@ const SocialSection = () => {
             <motion.div
               variants={socialBackgroundVariants}
               className={cn(
-                "group-hover:rotate-0! group-hover:opacity-100! transition-all duration-300 bg-transparent rounded-xl absolute inset-0 z-[-1]",
-                handler?.className
+                "absolute inset-0 z-[-1]"
               )}
-            />
-            <div className="flex justify-center items-center gap-2.5 p-4 bg-background/50 group-hover:bg-transparent backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl z-10 transition-all duration-300 border">
+            >
+              <div className={cn("group-hover:!rotate-[6deg] bg-transparent rounded-xl w-full h-full transition-all duration-300", handler?.className)}></div>
+            </motion.div>
+            <div className="flex justify-center items-center gap-2.5 p-4 bg-background/50 group-hover:bg-transparent backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl z-10 transition-all duration-300 border border-border/50">
               <handler.icon size={18} className="text-primary" />
               <h4 className="text-base font-medium text-foreground">
                 {handler.name}

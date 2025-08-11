@@ -67,14 +67,13 @@ const HeroSection = () => {
             Samin
           </span>
         </h1>
-        <h2 className="text-xl md:text-4xl">Developer</h2>
+        <h2 className="text-xl md:text-4xl">Software Engineer</h2>
         <p className="w-full lg:w-1/2 md:text-lg text-muted-foreground">
-          I&apos;m a web developer fully focused on web and Python development.
-          I specialize in crafting dynamic websites and applications using
-          React, Next.js, Tailwind CSS, Django, and more. While I&apos;ve
-          stepped away from Flutter, I&apos;m passionate about building modern,
-          scalable, and engaging full-stack solutions. Follow along as I
-          continue to grow in this field!
+          I&apos;m a developer who loves to build. My passion is creating
+          digital tools that are not just functional, but genuinely improve how
+          people work and interact. I actively contribute to open source
+          projects on platforms like npm, and within communities such as linux,
+          always aiming to make a positive impact.
         </p>
       </div>
       <div className="relative p-[3px] rounded-sm transition-all duration-1000 group after:rounded-sm after:-z-10 after:absolute after:w-full after:inset-0 after:p-[3px] after:bg-linear-to-r after:from-theme-primary after:to-theme-secondary before:absolute before:inset-0 before:m-auto before:rounded-sm before:-z-10 before:transition-all before:duration-300 before:bg-linear-to-r before:from-theme-primary before:to-theme-secondary before:blur-lg hover:before:blur-xs">

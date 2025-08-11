@@ -79,10 +79,10 @@ const AboutMeSection = () => {
       animate={isInView ? "visible" : "hidden"}
       variants={containerVariants}
       data-section="aboutme"
-      className="flex flex-col gap-20 md:gap-0 md:justify-around w-[calc(100vw-2rem)] lg:container mx-auto pt-10 md:pt-0"
+      className="flex flex-col gap-20 md:gap-0 md:justify-evenly w-[calc(100vw-2rem)] lg:container mx-auto pt-10 md:pt-0"
       style={{ minHeight: `${height - 64}px` }}
     >
-      <div className="flex flex-col gap-1 items-cetner">
+      <div className="flex flex-col gap-1 items-center">
         <h3
           data-type="title"
           className="text-center text-4xl lg:text-6xl font-semibold text-foreground"
@@ -106,13 +106,15 @@ const AboutMeSection = () => {
       >
         <div className="flex flex-col gap-5 justify-center">
           <p>
-            I&apos;m a web developer fully focused on web and Python
-            development. I specialize in crafting dynamic websites and
-            applications using <strong>React</strong>, <strong>Next.js</strong>,{" "}
-            <strong>Tailwind CSS</strong>, <strong>Django</strong>, and more.
-            While I&apos;ve stepped away from Flutter, I&apos;m passionate about
-            building modern, scalable, and engaging full-stack solutions. Follow
-            along as I continue to grow in this field!
+            Hey there! I&apos;m <span className="font-bold">PRAS Samin</span>, a
+            dedicated developer who loves bringing ideas to life through code.
+            My focus is on creating digital tools that are intuitive for users
+            and efficient for developers. I enjoy tackling diverse challenges,
+            from crafting web applications to building strong backend systems
+            and automating complex processes. I&apos;m also deeply committed to
+            the open source community, contributing to platforms like npm, PyPI,
+            and the Linux ecosystem, always aiming to share knowledge and make a
+            positive impact.
           </p>
           <div className="flex flex-col gap-3">
             <div className="flex gap-3 font-medium">
