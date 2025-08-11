@@ -65,7 +65,7 @@ const ProjectSection: React.FC<Props> = ({ projects }) => {
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       variants={containerVariants}
-      className="flex flex-col gap-10 items-center mb-14"
+      className="flex flex-col gap-10 items-center mb-5 md:mb-10"
     >
       <div className="flex flex-col items-center">
         <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-linear-to-t from-[#353535] to-[#ffffff] leading-normal!">

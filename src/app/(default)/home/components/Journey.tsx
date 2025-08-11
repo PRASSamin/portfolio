@@ -84,7 +84,7 @@ const JourneySection = ({ totalProjects }: Props) => {
       transition={{ duration: 0.5 }}
       className="flex flex-col gap-6 items-center"
     >
-      <h2 className="text-lg text-muted-foreground">My Journey So Far</h2>
+      <h2 className="md:text-lg text-sm text-muted-foreground">My Journey So Far</h2>
       <div className="flex gap-3 w-full items-center justify-evenly">
         {/* Years Counter */}
         <div className="items-center gap-3 hidden md:flex">

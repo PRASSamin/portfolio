@@ -75,7 +75,7 @@ const NavigationBar: FC<React.ComponentPropsWithoutRef<"header">> = ({
             alt="pras-logo"
           />
         </Link>
-        <div className="flex items-center justify-center gap-10">
+        <div className="flex items-center justify-center gap-4 md:gap-10">
           <ul className="hidden md:flex items-center justify-center gap-5">
             {navItems.map(({ href, name }, i) => {
               return <MenuLink key={i} href={href} name={name} />;
@@ -95,13 +95,14 @@ const NavigationBar: FC<React.ComponentPropsWithoutRef<"header">> = ({
               </Link>
             </Button>
           </div>
+          <ThemeSwitcher className="md:hidden" />
           <Popover>
             <PopoverTrigger asChild className="md:hidden">
               <button ref={mobileMenuRef}>
                 <Menu className="cursor-pointer hover:bg-muted/50 h-8 w-8 p-1 rounded duration-300 transition-all" />
               </button>
             </PopoverTrigger>
-            <PopoverContent className="w-80 mt-6 mr-2 bg-popover/60 backdrop-blur-sm rounded-xl flex md:hidden flex-col gap-3">
+            <PopoverContent className="w-80 mt-4 mr-2 bg-popover/60 backdrop-blur-sm rounded-xl border-border/50 flex md:hidden flex-col gap-3">
               {navItems.map(({ href, name, icon: Icon, ...rest }) => {
                 return (
                   <Link

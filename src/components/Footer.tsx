@@ -12,7 +12,7 @@ import { BASE_URL } from "@/constants/env";
 const Footer = () => {
   return (
     <footer
-      className={`relative z-20 backdrop-blur-sm border-t bg-background/70`}
+      className={`relative z-20 backdrop-blur-sm border-t border-border/50 bg-background/70`}
     >
       <div className={`container mx-auto px-1.5 md:px-0 py-[10px]`}>
         <div className=" flex gap-2 md:gap-0 items-center justify-between">

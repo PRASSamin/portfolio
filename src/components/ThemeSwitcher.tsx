@@ -16,7 +16,9 @@ import { cn } from "@/utils";
 import { Keybindy } from "@keybindy/react";
 import { isTypingInFormElement } from "@/context/GlobalKeyBinderProvider";
 
-export function ThemeSwitcher() {
+export function ThemeSwitcher({
+  className,
+}: React.ComponentPropsWithoutRef<"button">) {
   const { theme: activeTheme, setTheme } = useTheme();
 
   return (
@@ -63,7 +65,10 @@ export function ThemeSwitcher() {
           <Button
             variant="ghost"
             size="icon"
-            className="h-9 w-9 cursor-pointer focus-visible:outline-none focus-visible:ring-0"
+            className={cn(
+              "h-9 w-9 cursor-pointer focus-visible:outline-none focus-visible:ring-0",
+              className
+            )}
           >
             <Palette className="!size-5" />
             <span className="sr-only">Toggle theme</span>
@@ -71,7 +76,7 @@ export function ThemeSwitcher() {
         </DropdownMenuTrigger>
         <DropdownMenuContent
           align="end"
-          className="p-4 border-border/50 rounded-lg bg-popover/50 backdrop-blur-lg"
+          className="p-4 mt-4 ml-4  border-border/50 rounded-lg bg-popover/50 backdrop-blur-lg"
         >
           <DropdownMenuLabel className="text-lg p-0">
             Select Theme
@@ -79,15 +84,15 @@ export function ThemeSwitcher() {
           <div className="text-xs text-muted-foreground mb-5">
             Select your preferred theme
           </div>
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
             {Object.keys(themes).map((theme, index) => (
               <button
                 key={theme}
                 onClick={() => setTheme(theme as any)}
                 suppressHydrationWarning
                 className={cn(
-                  "w-full flex items-center justify-between gap-2 px-2 py-1.5 rounded-md hover:bg-accent cursor-pointer text-xs focus-visible:outline-none focus-visible:ring-0 border",
-                  activeTheme === theme ? "bg-accent" : ""
+                  "w-full flex items-center justify-between gap-2 px-2 py-1.5 rounded-md bg-muted/70 cursor-pointer text-xs focus-visible:outline-none focus-visible:ring-0",
+                  activeTheme === theme ? "bg-gradient-to-l from-theme-accent-1/50" : ""
                 )}
               >
                 <div className="flex items-center gap-2">

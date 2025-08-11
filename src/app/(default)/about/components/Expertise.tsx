@@ -246,9 +246,9 @@ const ExpertiseSection = memo(() => {
           initial="hidden"
           animate={isInStackView ? "visible" : "hidden"}
           variants={containerVariants}
-          className="flex flex-col gap-6 w-[120%] ml-[-10%]"
+          className="flex flex-col gap-4 sm:gap-6 w-[120%] ml-[-10%]"
         >
-          <div className="flex justify-center items-center gap-6">
+          <div className="flex justify-center items-center gap-4 sm:gap-6">
             {[...Array(columnsPerRow)].map((_, index) => (
               <div
                 key={index}
@@ -262,7 +262,7 @@ const ExpertiseSection = memo(() => {
           </div>
 
           {rowTranslations.length > 0 && (
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-4 sm:gap-6">
               {generateTechnologyRows().map((rowItems, rowIndex) => (
                 <div
                   key={rowIndex}
@@ -271,9 +271,9 @@ const ExpertiseSection = memo(() => {
                       rowTranslations[rowIndex]
                     }px)`,
                   }}
-                  className="flex flex-col justify-center items-center gap-6 transition-all duration-300"
+                  className="flex flex-col justify-center items-center gap-4 sm:gap-6 transition-all duration-300"
                 >
-                  <div className="flex justify-center items-center gap-6">
+                  <div className="flex justify-center items-center gap-4 sm:gap-6">
                     {[
                       ...Array(
                         Math.ceil((columnsPerRow - rowItems.length) / 2)
@@ -332,7 +332,7 @@ const ExpertiseSection = memo(() => {
             </div>
           )}
 
-          <div className="flex justify-center items-center gap-6">
+          <div className="flex justify-center items-center gap-4 sm:gap-6">
             {[...Array(columnsPerRow)].map((_, index) => (
               <div
                 key={index}
