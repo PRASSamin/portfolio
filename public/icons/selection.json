@@ -4,25 +4,95 @@
     {
       "icon": {
         "paths": [
-          "M794.432 764.32h-105.504l-56.864-140.064h-240.224l-56.864 140.128h-105.568l282.56-626.272zM511.968 32.128l-452.64 159.232 69.024 590.656 383.648 209.824 383.744-209.632 68.928-590.784zM429.248 537.792h165.472l-82.784-196.256z"
+          "M576 365.6c-20-8.8-41.6-13.6-64-13.6s-44 4.8-64 13.6c-12 4.8-25.6 2.4-35.2-7.2l-81.6-81.6c-25.6-24.8-25.6-65.6 0-90.4l135.2-136c25.6-24.8 65.6-24.8 91.2 0l135.2 136c24.8 24.8 24.8 65.6 0 90.4l-81.6 82.4c-9.6 8.8-23.2 11.2-35.2 6.4zM973.6 557.6l-136 135.2c-24.8 25.6-65.6 25.6-90.4 0l-81.6-81.6c-9.6-9.6-12-23.2-7.2-35.2 8.8-20 13.6-41.6 13.6-64s-4.8-44-13.6-64c-4.8-12-2.4-25.6 6.4-35.2l82.4-81.6c24.8-24.8 65.6-24.8 90.4 0l136 135.2c24.8 25.6 24.8 65.6 0 91.2zM365.6 448c-8.8 20-13.6 41.6-13.6 64s4.8 44 13.6 64c4.8 12 2.4 25.6-7.2 35.2l-81.6 81.6c-24.8 24.8-65.6 24.8-90.4 0l-136-135.2c-24.8-25.6-24.8-65.6 0-91.2l136-135.2c24.8-24.8 65.6-24.8 90.4 0l82.4 81.6c8.8 9.6 11.2 23.2 6.4 35.2zM448 658.4c20 8.8 41.6 13.6 64 13.6s44-4.8 64-13.6c12-4.8 25.6-2.4 35.2 7.2l81.6 81.6c24.8 24.8 24.8 65.6 0 90.4l-135.2 136c-25.6 24.8-65.6 24.8-91.2 0l-135.2-136c-24.8-24.8-24.8-65.6 0-90.4l81.6-81.6c9.6-9.6 23.2-12 35.2-7.2zM512 640c-70.4 0-128-57.6-128-128s57.6-128 128-128c70.4 0 128 57.6 128 128s-57.6 128-128 128z"
         ],
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
         "grid": 0,
-        "tags": ["angularjs"]
+        "tags": ["Prasmoid"]
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 184,
-        "id": 52,
-        "name": "AngularJs",
+        "order": 82,
+        "id": 55,
+        "name": "Prasmoid",
+        "prevSize": 32,
+        "code": 59703
+      },
+      "setIdx": 0,
+      "setId": 0,
+      "iconIdx": 0
+    },
+    {
+      "icon": {
+        "paths": [
+          "M588.8 0c-110.933 0-221.867 42.667-307.2 128-170.667 170.667-170.667 443.733 0 614.4 85.333 85.333 221.867 85.333 307.2 0s85.333-221.867 0-307.2l-76.8 76.8c42.667 42.667 42.667 110.933 0 153.6s-110.933 42.667-153.6 0c-128-128-128-332.8 0-460.8s332.8-128 460.8 0l76.8-76.8c-85.333-85.333-196.267-128-307.2-128zM512 512c-42.667-42.667-42.667-110.933 0-153.6s110.933-42.667 153.6 0c128 128 128 332.8 0 460.8s-332.8 128-460.8 0l-76.8 76.8c170.667 170.667 443.733 170.667 614.4 0s170.667-443.733 0-614.4c-42.667-42.667-98.133-64-153.6-64s-110.933 21.333-153.6 64c-85.333 85.333-85.333 221.867 0 307.2z"
+        ],
+        "attrs": [{ "fill": "rgb(255, 255, 255)" }],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "tags": ["upstash"],
+        "grid": 0
+      },
+      "attrs": [{ "fill": "rgb(255, 255, 255)" }],
+      "properties": {
+        "order": 80,
+        "id": 0,
+        "name": "Upstash",
         "prevSize": 32,
         "code": 59648
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 0
+      "setId": 0,
+      "iconIdx": 1
+    },
+    {
+      "icon": {
+        "paths": [
+          "M399.277 835.738c11.716 0 23.741 0 34.224-1.233l116.238 172.969 208.118-102.98-94.655-140.903c78.314-65.364 113.771-175.435 113.771-339.771 0-292.598-111.304-412.227-377.695-412.227s-374.303 119.629-374.303 412.227c0 292.29 111.304 411.919 374.303 411.919zM399.277 613.13c-85.405 0-104.213-68.756-104.213-189.31 0-120.862 18.808-189.618 104.213-189.618 88.797 0 100.513 68.756 100.513 189.618 0 119.321-12.95 189.31-100.513 189.31zM806.263 250.851h163.102v569.471h274.715v-569.471h154.161v-223.842h-591.979z"
+        ],
+        "width": 1418,
+        "attrs": [{ "fill": "rgb(255, 255, 255)" }],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "tags": ["qt"],
+        "grid": 0
+      },
+      "attrs": [{ "fill": "rgb(255, 255, 255)" }],
+      "properties": {
+        "order": 59,
+        "id": 1,
+        "name": "QT",
+        "prevSize": 32,
+        "code": 59649
+      },
+      "setIdx": 0,
+      "setId": 0,
+      "iconIdx": 2
+    },
+    {
+      "icon": {
+        "paths": [
+          "M794.432 764.32h-105.504l-56.864-140.064h-240.224l-56.864 140.128h-105.568l282.56-626.272zM511.968 32.128l-452.64 159.232 69.024 590.656 383.648 209.824 383.744-209.632 68.928-590.784zM429.248 537.792h165.472l-82.784-196.256z"
+        ],
+        "attrs": [{ "fill": "rgb(255, 255, 255)" }],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "tags": ["angularjs"],
+        "grid": 0
+      },
+      "attrs": [{ "fill": "rgb(255, 255, 255)" }],
+      "properties": {
+        "order": 58,
+        "id": 2,
+        "name": "AngularJs",
+        "prevSize": 32,
+        "code": 59650
+      },
+      "setIdx": 0,
+      "setId": 0,
+      "iconIdx": 3
     },
     {
       "icon": {
@@ -32,20 +102,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["apache"]
+        "tags": ["apache"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 185,
-        "id": 51,
+        "order": 57,
+        "id": 3,
         "name": "Apache",
         "prevSize": 32,
-        "code": 59649
+        "code": 59651
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 1
+      "setId": 0,
+      "iconIdx": 4
     },
     {
       "icon": {
@@ -55,20 +125,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["astrojs"]
+        "tags": ["astrojs"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 186,
-        "id": 50,
-        "name": "AstroJs",
+        "order": 56,
+        "id": 4,
+        "name": "Astrojs",
         "prevSize": 32,
-        "code": 59650
+        "code": 59652
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 2
+      "setId": 0,
+      "iconIdx": 5
     },
     {
       "icon": {
@@ -84,8 +154,8 @@
         ],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["aws"]
+        "tags": ["aws"],
+        "grid": 0
       },
       "attrs": [
         { "fill": "rgb(255, 255, 255)" },
@@ -93,15 +163,15 @@
         { "fill": "rgb(255, 255, 255)" }
       ],
       "properties": {
-        "order": 187,
-        "id": 49,
+        "order": 34,
+        "id": 5,
         "name": "AWS",
         "prevSize": 32,
-        "code": 59651
+        "code": 59653
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 3
+      "setId": 0,
+      "iconIdx": 6
     },
     {
       "icon": {
@@ -111,20 +181,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["azure"]
+        "tags": ["azure"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 188,
-        "id": 48,
+        "order": 33,
+        "id": 6,
         "name": "Azure",
         "prevSize": 32,
-        "code": 59652
+        "code": 59654
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 4
+      "setId": 0,
+      "iconIdx": 7
     },
     {
       "icon": {
@@ -134,20 +204,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["bootstrap"]
+        "tags": ["bootstrap"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 189,
-        "id": 47,
+        "order": 32,
+        "id": 7,
         "name": "Bootstrap",
         "prevSize": 32,
-        "code": 59653
+        "code": 59655
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 5
+      "setId": 0,
+      "iconIdx": 8
     },
     {
       "icon": {
@@ -157,20 +227,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["cassandra"]
+        "tags": ["cassandra"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 190,
-        "id": 46,
+        "order": 31,
+        "id": 8,
         "name": "Cassandra",
         "prevSize": 32,
-        "code": 59654
+        "code": 59656
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 6
+      "setId": 0,
+      "iconIdx": 9
     },
     {
       "icon": {
@@ -180,20 +250,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["css"]
+        "tags": ["css"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 191,
-        "id": 45,
+        "order": 30,
+        "id": 9,
         "name": "CSS",
         "prevSize": 32,
-        "code": 59655
+        "code": 59657
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 7
+      "setId": 0,
+      "iconIdx": 10
     },
     {
       "icon": {
@@ -203,20 +273,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["django"]
+        "tags": ["django"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 192,
-        "id": 44,
+        "order": 29,
+        "id": 10,
         "name": "Django",
         "prevSize": 32,
-        "code": 59656
+        "code": 59658
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 8
+      "setId": 0,
+      "iconIdx": 11
     },
     {
       "icon": {
@@ -226,20 +296,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["docker"]
+        "tags": ["docker"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 193,
-        "id": 43,
+        "order": 28,
+        "id": 11,
         "name": "Docker",
         "prevSize": 32,
-        "code": 59657
+        "code": 59659
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 9
+      "setId": 0,
+      "iconIdx": 12
     },
     {
       "icon": {
@@ -249,20 +319,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["expressjs"]
+        "tags": ["expressjs"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 194,
-        "id": 42,
+        "order": 27,
+        "id": 12,
         "name": "ExpressJs",
         "prevSize": 32,
-        "code": 59664
+        "code": 59660
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 10
+      "setId": 0,
+      "iconIdx": 13
     },
     {
       "icon": {
@@ -272,20 +342,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["fastapi"]
+        "tags": ["fastapi"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 195,
-        "id": 41,
-        "name": "FastApi",
+        "order": 26,
+        "id": 13,
+        "name": "FastAPI",
         "prevSize": 32,
-        "code": 59665
+        "code": 59661
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 11
+      "setId": 0,
+      "iconIdx": 14
     },
     {
       "icon": {
@@ -295,20 +365,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["firebase"]
+        "tags": ["firebase"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 196,
-        "id": 40,
+        "order": 25,
+        "id": 14,
         "name": "Firebase",
         "prevSize": 32,
-        "code": 59666
+        "code": 59662
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 12
+      "setId": 0,
+      "iconIdx": 15
     },
     {
       "icon": {
@@ -318,20 +388,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["flask"]
+        "tags": ["flask"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 197,
-        "id": 39,
+        "order": 61,
+        "id": 15,
         "name": "Flask",
         "prevSize": 32,
-        "code": 59667
+        "code": 59663
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 13
+      "setId": 0,
+      "iconIdx": 16
     },
     {
       "icon": {
@@ -351,8 +421,8 @@
         ],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["flutter"]
+        "tags": ["flutter"],
+        "grid": 0
       },
       "attrs": [
         { "fill": "rgb(255, 255, 255)" },
@@ -362,15 +432,15 @@
         { "fill": "rgb(255, 255, 255)" }
       ],
       "properties": {
-        "order": 198,
-        "id": 38,
+        "order": 55,
+        "id": 16,
         "name": "Flutter",
         "prevSize": 32,
-        "code": 59668
+        "code": 59664
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 14
+      "setId": 0,
+      "iconIdx": 17
     },
     {
       "icon": {
@@ -380,20 +450,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["git"]
+        "tags": ["git"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 199,
-        "id": 37,
+        "order": 54,
+        "id": 17,
         "name": "Git",
         "prevSize": 32,
-        "code": 59669
+        "code": 59665
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 15
+      "setId": 0,
+      "iconIdx": 18
     },
     {
       "icon": {
@@ -403,20 +473,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["github"]
+        "tags": ["github"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 200,
-        "id": 36,
+        "order": 53,
+        "id": 18,
         "name": "Github",
         "prevSize": 32,
-        "code": 59670
+        "code": 59666
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 16
+      "setId": 0,
+      "iconIdx": 19
     },
     {
       "icon": {
@@ -426,20 +496,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["go"]
+        "tags": ["go"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 236,
-        "id": 35,
+        "order": 52,
+        "id": 19,
         "name": "GO",
         "prevSize": 32,
-        "code": 59671
+        "code": 59667
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 17
+      "setId": 0,
+      "iconIdx": 20
     },
     {
       "icon": {
@@ -449,20 +519,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["graphql"]
+        "tags": ["graphql"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 201,
-        "id": 34,
+        "order": 24,
+        "id": 20,
         "name": "GraphQL",
         "prevSize": 32,
-        "code": 59672
+        "code": 59668
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 18
+      "setId": 0,
+      "iconIdx": 21
     },
     {
       "icon": {
@@ -472,20 +542,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["html"]
+        "tags": ["html"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 202,
-        "id": 33,
+        "order": 23,
+        "id": 21,
         "name": "Html",
         "prevSize": 32,
-        "code": 59673
+        "code": 59669
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 19
+      "setId": 0,
+      "iconIdx": 22
     },
     {
       "icon": {
@@ -495,20 +565,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["java"]
+        "tags": ["java"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 203,
-        "id": 32,
+        "order": 22,
+        "id": 22,
         "name": "Java",
         "prevSize": 32,
-        "code": 59680
+        "code": 59670
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 20
+      "setId": 0,
+      "iconIdx": 23
     },
     {
       "icon": {
@@ -518,20 +588,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["javascript"]
+        "tags": ["javascript"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 204,
-        "id": 31,
+        "order": 21,
+        "id": 23,
         "name": "Javascript",
         "prevSize": 32,
-        "code": 59681
+        "code": 59671
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 21
+      "setId": 0,
+      "iconIdx": 24
     },
     {
       "icon": {
@@ -541,20 +611,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["jinja"]
+        "tags": ["jinja"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 205,
-        "id": 30,
+        "order": 38,
+        "id": 24,
         "name": "Jinja",
         "prevSize": 32,
-        "code": 59682
+        "code": 59672
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 22
+      "setId": 0,
+      "iconIdx": 25
     },
     {
       "icon": {
@@ -564,20 +634,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["kotlin"]
+        "tags": ["kotlin"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 206,
-        "id": 29,
+        "order": 37,
+        "id": 25,
         "name": "Kotlin",
         "prevSize": 32,
-        "code": 59683
+        "code": 59673
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 23
+      "setId": 0,
+      "iconIdx": 26
     },
     {
       "icon": {
@@ -591,23 +661,23 @@
         ],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["lynxjs"]
+        "tags": ["lynxjs"],
+        "grid": 0
       },
       "attrs": [
         { "fill": "rgb(255, 255, 255)" },
         { "fill": "rgb(255, 255, 255)" }
       ],
       "properties": {
-        "order": 207,
-        "id": 28,
+        "order": 20,
+        "id": 26,
         "name": "LynxJs",
         "prevSize": 32,
-        "code": 59684
+        "code": 59674
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 24
+      "setId": 0,
+      "iconIdx": 27
     },
     {
       "icon": {
@@ -617,20 +687,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["mariadb"]
+        "tags": ["mariadb"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 208,
+        "order": 19,
         "id": 27,
         "name": "MariaDB",
         "prevSize": 32,
-        "code": 59685
+        "code": 59675
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 25
+      "setId": 0,
+      "iconIdx": 28
     },
     {
       "icon": {
@@ -640,20 +710,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["mongodb"]
+        "tags": ["mongodb"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 209,
-        "id": 26,
+        "order": 18,
+        "id": 28,
         "name": "MongoDB",
         "prevSize": 32,
-        "code": 59686
+        "code": 59676
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 26
+      "setId": 0,
+      "iconIdx": 29
     },
     {
       "icon": {
@@ -663,20 +733,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["motion"]
+        "tags": ["motion"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 210,
-        "id": 25,
+        "order": 17,
+        "id": 29,
         "name": "Motion",
         "prevSize": 32,
-        "code": 59687
+        "code": 59677
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 27
+      "setId": 0,
+      "iconIdx": 30
     },
     {
       "icon": {
@@ -690,23 +760,23 @@
         ],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["mysql"]
+        "tags": ["mysql"],
+        "grid": 0
       },
       "attrs": [
         { "fill": "rgb(255, 255, 255)" },
         { "fill": "rgb(255, 255, 255)" }
       ],
       "properties": {
-        "order": 211,
-        "id": 24,
+        "order": 62,
+        "id": 30,
         "name": "MySQL",
         "prevSize": 32,
-        "code": 59688
+        "code": 59678
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 28
+      "setId": 0,
+      "iconIdx": 31
     },
     {
       "icon": {
@@ -716,20 +786,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["nestjs"]
+        "tags": ["nestjs"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 212,
-        "id": 23,
+        "order": 51,
+        "id": 31,
         "name": "NestJs",
         "prevSize": 32,
-        "code": 59689
+        "code": 59679
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 29
+      "setId": 0,
+      "iconIdx": 32
     },
     {
       "icon": {
@@ -739,20 +809,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["nextjs"]
+        "tags": ["nextjs"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 213,
-        "id": 22,
+        "order": 50,
+        "id": 32,
         "name": "NextJs",
         "prevSize": 32,
-        "code": 59696
+        "code": 59680
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 30
+      "setId": 0,
+      "iconIdx": 33
     },
     {
       "icon": {
@@ -762,20 +832,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["nginx"]
+        "tags": ["nginx"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 214,
-        "id": 21,
+        "order": 49,
+        "id": 33,
         "name": "Nginx",
         "prevSize": 32,
-        "code": 59697
+        "code": 59681
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 31
+      "setId": 0,
+      "iconIdx": 34
     },
     {
       "icon": {
@@ -789,23 +859,23 @@
         ],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["nodejs"]
+        "tags": ["nodejs"],
+        "grid": 0
       },
       "attrs": [
         { "fill": "rgb(255, 255, 255)" },
         { "fill": "rgb(255, 255, 255)" }
       ],
       "properties": {
-        "order": 215,
-        "id": 20,
+        "order": 48,
+        "id": 34,
         "name": "NodeJs",
         "prevSize": 32,
-        "code": 59698
+        "code": 59682
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 32
+      "setId": 0,
+      "iconIdx": 35
     },
     {
       "icon": {
@@ -815,20 +885,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["nuxtjs"]
+        "tags": ["nuxtjs"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 216,
-        "id": 19,
+        "order": 16,
+        "id": 35,
         "name": "NuxtJs",
         "prevSize": 32,
-        "code": 59699
+        "code": 59683
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 33
+      "setId": 0,
+      "iconIdx": 36
     },
     {
       "icon": {
@@ -838,20 +908,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["phoenix_elixir"]
+        "tags": ["phoenix_elixir"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 217,
-        "id": 18,
+        "order": 15,
+        "id": 36,
         "name": "PhoenixElixir",
         "prevSize": 32,
-        "code": 59700
+        "code": 59684
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 34
+      "setId": 0,
+      "iconIdx": 37
     },
     {
       "icon": {
@@ -861,20 +931,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["postgres"]
+        "tags": ["postgres"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 235,
-        "id": 17,
-        "name": "PostgreSQL",
+        "order": 14,
+        "id": 37,
+        "name": "Postgres",
         "prevSize": 32,
-        "code": 59701
+        "code": 59685
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 35
+      "setId": 0,
+      "iconIdx": 38
     },
     {
       "icon": {
@@ -884,20 +954,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["prisma"]
+        "tags": ["prisma"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 218,
-        "id": 16,
+        "order": 13,
+        "id": 38,
         "name": "Prisma",
         "prevSize": 32,
-        "code": 59702
+        "code": 59686
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 36
+      "setId": 0,
+      "iconIdx": 39
     },
     {
       "icon": {
@@ -911,23 +981,23 @@
         ],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["python"]
+        "tags": ["python"],
+        "grid": 0
       },
       "attrs": [
         { "fill": "rgb(255, 255, 255)" },
         { "fill": "rgb(255, 255, 255)" }
       ],
       "properties": {
-        "order": 219,
-        "id": 15,
+        "order": 36,
+        "id": 39,
         "name": "Python",
         "prevSize": 32,
-        "code": 59703
+        "code": 59687
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 37
+      "setId": 0,
+      "iconIdx": 40
     },
     {
       "icon": {
@@ -937,20 +1007,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["rails"]
+        "tags": ["rails"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 220,
-        "id": 14,
+        "order": 35,
+        "id": 40,
         "name": "Rails",
         "prevSize": 32,
-        "code": 59704
+        "code": 59688
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 38
+      "setId": 0,
+      "iconIdx": 41
     },
     {
       "icon": {
@@ -960,20 +1030,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["reactjs"]
+        "tags": ["reactjs"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 221,
-        "id": 13,
+        "order": 12,
+        "id": 41,
         "name": "ReactJs",
         "prevSize": 32,
-        "code": 59705
+        "code": 59689
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 39
+      "setId": 0,
+      "iconIdx": 42
     },
     {
       "icon": {
@@ -983,20 +1053,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["redis"]
+        "tags": ["redis"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 222,
-        "id": 12,
+        "order": 11,
+        "id": 42,
         "name": "Redis",
         "prevSize": 32,
-        "code": 59712
+        "code": 59690
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 40
+      "setId": 0,
+      "iconIdx": 43
     },
     {
       "icon": {
@@ -1006,20 +1076,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["sass"]
+        "tags": ["sass"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 223,
-        "id": 11,
+        "order": 10,
+        "id": 43,
         "name": "Sass",
         "prevSize": 32,
-        "code": 59713
+        "code": 59691
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 41
+      "setId": 0,
+      "iconIdx": 44
     },
     {
       "icon": {
@@ -1029,20 +1099,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["socketio"]
+        "tags": ["socketio"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 224,
-        "id": 10,
+        "order": 9,
+        "id": 44,
         "name": "SocketIO",
         "prevSize": 32,
-        "code": 59714
+        "code": 59692
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 42
+      "setId": 0,
+      "iconIdx": 45
     },
     {
       "icon": {
@@ -1052,20 +1122,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["sqlite"]
+        "tags": ["sqlite"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 225,
-        "id": 9,
-        "name": "SQLite",
+        "order": 47,
+        "id": 45,
+        "name": "SqLite",
         "prevSize": 32,
-        "code": 59715
+        "code": 59693
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 43
+      "setId": 0,
+      "iconIdx": 46
     },
     {
       "icon": {
@@ -1079,23 +1149,23 @@
         ],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["supabase"]
+        "tags": ["supabase"],
+        "grid": 0
       },
       "attrs": [
         { "fill": "rgb(255, 255, 255)" },
         { "fill": "rgb(255, 255, 255)" }
       ],
       "properties": {
-        "order": 226,
-        "id": 8,
+        "order": 46,
+        "id": 46,
         "name": "Supabase",
         "prevSize": 32,
-        "code": 59716
+        "code": 59694
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 44
+      "setId": 0,
+      "iconIdx": 47
     },
     {
       "icon": {
@@ -1105,20 +1175,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["svelte"]
+        "tags": ["svelte"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 227,
-        "id": 7,
+        "order": 45,
+        "id": 47,
         "name": "Svelte",
         "prevSize": 32,
-        "code": 59717
+        "code": 59695
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 45
+      "setId": 0,
+      "iconIdx": 48
     },
     {
       "icon": {
@@ -1128,20 +1198,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["swift"]
+        "tags": ["swift"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 228,
-        "id": 6,
+        "order": 44,
+        "id": 48,
         "name": "Swift",
         "prevSize": 32,
-        "code": 59718
+        "code": 59696
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 46
+      "setId": 0,
+      "iconIdx": 49
     },
     {
       "icon": {
@@ -1151,20 +1221,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["tailwind"]
+        "tags": ["tailwind"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 229,
-        "id": 5,
+        "order": 43,
+        "id": 49,
         "name": "Tailwind",
         "prevSize": 32,
-        "code": 59719
+        "code": 59697
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 47
+      "setId": 0,
+      "iconIdx": 50
     },
     {
       "icon": {
@@ -1174,20 +1244,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["typescript"]
+        "tags": ["typescript"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 230,
-        "id": 4,
+        "order": 42,
+        "id": 50,
         "name": "Typescript",
         "prevSize": 32,
-        "code": 59720
+        "code": 59698
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 48
+      "setId": 0,
+      "iconIdx": 51
     },
     {
       "icon": {
@@ -1195,20 +1265,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["vercel"]
+        "tags": ["vercel"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 231,
-        "id": 3,
+        "order": 41,
+        "id": 51,
         "name": "Vercel",
         "prevSize": 32,
-        "code": 59721
+        "code": 59699
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 49
+      "setId": 0,
+      "iconIdx": 52
     },
     {
       "icon": {
@@ -1218,20 +1288,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["vitejs"]
+        "tags": ["vitejs"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 232,
-        "id": 2,
+        "order": 39,
+        "id": 52,
         "name": "ViteJs",
         "prevSize": 32,
-        "code": 59728
+        "code": 59700
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 50
+      "setId": 0,
+      "iconIdx": 53
     },
     {
       "icon": {
@@ -1241,20 +1311,20 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["vuejs"]
+        "tags": ["vuejs"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 233,
-        "id": 1,
+        "order": 40,
+        "id": 53,
         "name": "VueJs",
         "prevSize": 32,
-        "code": 59729
+        "code": 59701
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 51
+      "setId": 0,
+      "iconIdx": 54
     },
     {
       "icon": {
@@ -1264,31 +1334,32 @@
         "attrs": [{ "fill": "rgb(255, 255, 255)" }],
         "isMulticolor": false,
         "isMulticolor2": false,
-        "grid": 0,
-        "tags": ["webpack"]
+        "tags": ["webpack"],
+        "grid": 0
       },
       "attrs": [{ "fill": "rgb(255, 255, 255)" }],
       "properties": {
-        "order": 234,
-        "id": 0,
+        "order": 63,
+        "id": 54,
         "name": "Webpack",
         "prevSize": 32,
-        "code": 59730
+        "code": 59702
       },
       "setIdx": 0,
-      "setId": 2,
-      "iconIdx": 52
+      "setId": 0,
+      "iconIdx": 55
     }
   ],
   "height": 1024,
   "metadata": { "name": "icons" },
   "preferences": {
     "showGlyphs": true,
+    "showCodes": true,
     "showQuickUse": true,
     "showQuickUse2": true,
     "showSVGs": true,
     "fontPref": {
-      "prefix": "i",
+      "prefix": "icon-",
       "metadata": {
         "fontFamily": "icons",
         "majorVersion": 1,
@@ -1296,30 +1367,22 @@
       },
       "metrics": { "emSize": 1024, "baseline": 6.25, "whitespace": 50 },
       "embed": false,
-      "autoHost": true,
-      "ie7": true,
-      "noie8": false,
       "showSelector": true,
-      "showMetrics": true,
-      "selector": "",
-      "showMetadata": true,
-      "showVersion": true
+      "showMetrics": false,
+      "selector": "i",
+      "classSelector": ".icon",
+      "showMetadata": false,
+      "showVersion": false,
+      "ie7": true,
+      "noie8": false
     },
     "imagePref": {
       "prefix": "icon-",
       "png": true,
       "useClassSelector": true,
       "color": 0,
-      "bgColor": 16777215,
-      "classSelector": ".icon",
-      "name": "icomoon"
+      "bgColor": 16777215
     },
-    "historySize": 50,
-    "showCodes": true,
-    "gridSize": 16,
-    "showLiga": false,
-    "quickUsageToken": {
-      "UntitledProject": "Y2MzN2M3NmJmOCMxNzQxNzAyNjcyI1JmZWZiOGFvYSthbFNHL1BxdFlJbmxOT1F0NDBIZmNrd1dablJmVHlBejRu"
-    }
+    "historySize": 50
   }
 }

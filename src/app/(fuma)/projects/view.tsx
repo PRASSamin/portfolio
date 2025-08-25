@@ -306,8 +306,8 @@ const ProjectsView = ({
                       {project.thumbnail && (
                         <BetterImage
                           className="rounded-md object-cover"
-                          width={250}
-                          height={250}
+                          width={500}
+                          height={500}
                           src={project.thumbnail}
                           alt={project.title}
                         />

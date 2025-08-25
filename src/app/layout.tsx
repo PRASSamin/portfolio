@@ -87,9 +87,9 @@ export default function RootLayout({
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <AnalyticsProvider/>
       </head>
       <TooltipProvider>
-        <AnalyticsProvider>
           <ThemeProvider>
             <body
               className={`${poppins.className} antialiased overflow-x-hidden`}
@@ -103,7 +103,6 @@ export default function RootLayout({
               </RootProvider>
             </body>
           </ThemeProvider>
-        </AnalyticsProvider>
       </TooltipProvider>
     </html>
   );

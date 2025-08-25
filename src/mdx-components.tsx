@@ -3,6 +3,7 @@ import { cn } from "@/utils";
 import defaultMdxComponents from "fumadocs-ui/mdx";
 import * as FilesComponents from "fumadocs-ui/components/files";
 import * as TabsComponents from "fumadocs-ui/components/tabs";
+import * as StepsComponents from "fumadocs-ui/components/steps";
 import type { MDXComponents } from "mdx/types";
 import { Accordion, Accordions } from "fumadocs-ui/components/accordion";
 import * as icons from "lucide-react";
@@ -41,6 +42,9 @@ export const mdxComponents = {
   blockquote: Callout as unknown as React.FC<
     React.ComponentProps<"blockquote">
   >,
+  code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
+    <code className={cn("before:hidden after:hidden", className)} {...props} />
+  ),
   strong: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
     <strong
       className={cn(
@@ -55,6 +59,9 @@ export const mdxComponents = {
       className={cn("leading-relaxed [&:not(:first-child)]:my-0", className)}
       {...props}
     />
+  ),
+  hr: ({ className, ...props }: React.ComponentProps<"hr">) => (
+    <hr className={cn("border-border", className)} {...props} />
   ),
   img: ({ className, alt, ...props }: React.ComponentProps<"img">) => (
     <img className={cn("rounded-md", className)} alt={alt} {...props} />
@@ -122,13 +129,14 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     ...(icons as unknown as MDXComponents),
     ...defaultMdxComponents,
     ...TabsComponents,
+    ...StepsComponents,
     ...FilesComponents,
     Accordion,
     Accordions,
     ImageZoom,
-    ...components,
     Banner,
     Button,
     TypeTable,
+    ...components,
   };
 }

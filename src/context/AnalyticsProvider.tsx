@@ -1,7 +1,7 @@
 import Script from "next/script";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 
-const AnalyticsProvider = ({ children }: { children: React.ReactNode }) => {
+const AnalyticsProvider = ({ children }: { children?: React.ReactNode }) => {
   return (
     <>
       <Script

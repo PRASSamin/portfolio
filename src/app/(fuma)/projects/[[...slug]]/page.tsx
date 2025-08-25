@@ -116,7 +116,7 @@ const ProjectPage = async ({ params }: { params: Props }) => {
 
   return (
     <>
-      <div className={`bg-background min-h-[calc(100vh-44px)] pb-14 relative`}>
+      <div className={`bg-background min-h-[calc(100vh-44px)] pb-4 relative`}>
         <div />
         {page.data.thumbnail ? (
           <div className="relative w-full h-80">

@@ -106,7 +106,7 @@ const BlogPage = async ({ params }: { params: Props }) => {
   return (
     <>
       <div
-        className={`bg-background w-full min-h-[calc(100vh-44px)] pb-14 relative`}
+        className={`bg-background w-full min-h-[calc(100vh-44px)] pb-4 relative`}
       >
         <div />
         {page.data.thumbnail ? (
