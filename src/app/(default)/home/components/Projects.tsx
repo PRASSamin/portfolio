@@ -101,8 +101,8 @@ const ProjectSection: React.FC<Props> = ({ projects }) => {
                       {project.thumbnail && (
                         <BetterImage
                           className="rounded-md aspect-square object-cover"
-                          width={250}
-                          height={250}
+                          width={500}
+                          height={500}
                           src={project.thumbnail}
                           alt={project.title}
                         />
