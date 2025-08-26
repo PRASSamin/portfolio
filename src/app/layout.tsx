@@ -63,6 +63,9 @@ export const metadata: Metadata = {
     description: description,
     creator: "@prassamin78",
   },
+  verification: {
+    google: "1Hibq62KV62bSjoXtQEEWNH7oArNJYkycmuyJ2yOaW4",
+  },
 };
 
 export default function RootLayout({
@@ -87,22 +90,22 @@ export default function RootLayout({
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-        <AnalyticsProvider/>
       </head>
       <TooltipProvider>
-          <ThemeProvider>
-            <body
-              className={`${poppins.className} antialiased overflow-x-hidden`}
-            >
-              <Suspense fallback={null}>
-                <Progress />
-              </Suspense>
-              <Toaster />
-              <RootProvider search={{ enabled: false }}>
-                <GlobalKeyBinderProvider>{children}</GlobalKeyBinderProvider>
-              </RootProvider>
-            </body>
-          </ThemeProvider>
+        <ThemeProvider>
+          <body
+            className={`${poppins.className} antialiased overflow-x-hidden`}
+          >
+            <Suspense fallback={null}>
+              <Progress />
+            </Suspense>
+            <Toaster />
+            <RootProvider search={{ enabled: false }}>
+              <GlobalKeyBinderProvider>{children}</GlobalKeyBinderProvider>
+            </RootProvider>
+            <AnalyticsProvider />
+          </body>
+        </ThemeProvider>
       </TooltipProvider>
     </html>
   );

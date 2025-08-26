@@ -1,7 +1,4 @@
 import "../globals.css";
-import { poppins } from "@/constants/fonts";
-import { Toaster } from "@/components/ui/sonner";
-import { AnalyticsProvider } from "@/context/AnalyticsProvider";
 export { metadata } from "@/app/layout";
 
 export default function AuthLayout({
