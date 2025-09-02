@@ -69,10 +69,11 @@ const NavigationBar: FC<React.ComponentPropsWithoutRef<"header">> = ({
         <Link className="h-full" href={"/"}>
           <Image
             className="h-full w-auto pras-logo"
-            src={"/logo-b.svg"}
+            src={"/logo.svg"}
             width={250}
+            priority
+            alt="PRAS"
             height={250}
-            alt="pras-logo"
           />
         </Link>
         <div className="flex items-center justify-center gap-4 md:gap-10">

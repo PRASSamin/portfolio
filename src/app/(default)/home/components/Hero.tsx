@@ -67,7 +67,7 @@ const HeroSection = () => {
             Samin
           </span>
         </h1>
-        <h2 className="text-xl md:text-4xl">Software Engineer</h2>
+        <h2 className="text-xl md:text-4xl">Software Developer</h2>
         <p className="w-full lg:w-1/2 md:text-lg text-muted-foreground">
           I&apos;m a developer who loves to build. My passion is creating
           digital tools that are not just functional, but genuinely improve how

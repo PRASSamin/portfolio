@@ -17,7 +17,7 @@ export const metatag = async ({
 }) => {
   const headersList = await headers();
   const url = headersList.get("x-current-url");
-  const fav = image || `${BASE_URL}/favicons/favicon-512x512.png`;
+  const fav = image || `${BASE_URL}/favicons/favicon-512x512-maskable.png`;
 
   const fixedKeywords = [
     "pras",
