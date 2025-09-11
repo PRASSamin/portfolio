@@ -1,7 +1,15 @@
 {
-  "name": "portfolio-v2",
-  "version": "0.1.0",
+  "name": "pras",
+  "version": "2.0.0",
   "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PRASSamin/PRASSamin"
+  },
+  "author": "PRASSamin <prassamin@gmail.com> (https://pras.me)",
+  "description": "My Portfolio v2.",
+  "homepage": "https://pras.me/",
   "scripts": {
     "predev": "bun run prisma:dev",
     "dev": "next dev --turbopack",
