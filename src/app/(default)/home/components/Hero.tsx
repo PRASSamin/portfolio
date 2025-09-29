@@ -8,7 +8,6 @@ import {
   Email,
 } from "@mui/icons-material";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
 
 const HeroSection = () => {
   const socialHandles = [
@@ -49,17 +48,9 @@ const HeroSection = () => {
       color: "#EA4335",
     },
   ];
-  const [height, setHeight] = useState(0);
-
-  useEffect(() => {
-    setHeight(window.innerHeight);
-  }, []);
 
   return (
-    <div
-      className="flex flex-col items-start justify-center gap-7"
-      style={{ height: `${height - 64}px` }}
-    >
+    <div className="flex flex-col items-start justify-center gap-7 h-[calc(100dvh-64px)]">
       <div className="flex flex-col gap-2">
         <h1 className="text-4xl md:text-6xl font-black">
           PRAS{" "}
