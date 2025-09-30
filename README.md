@@ -31,6 +31,7 @@ Hey there! I'm **PRAS Samin**, a dedicated developer who loves bringing ideas to
 
 <!-- view counting from 27/7/2025 -->
 
-![](https://komarev.com/ghpvc/?username=prassamin&abbreviated=true&style=for-the-badge)
+![](https://komarev.com/ghpvc/?username=prassamin&abbreviated=true&style=flat)<br/>
+[![wakatime](https://wakatime.com/badge/user/be1df601-e50a-4f48-95c9-f61eb1b84d70.svg)](https://wakatime.com/@be1df601-e50a-4f48-95c9-f61eb1b84d70)
 
 <!-- Proudly created with GPRM ( https://gprm.itsvg.in ) -->
