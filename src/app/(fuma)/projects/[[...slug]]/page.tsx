@@ -118,10 +118,10 @@ const ProjectPage = async ({ params }: { params: Props }) => {
     <>
       <div className={`bg-background min-h-[calc(100vh-44px)] pb-4 relative`}>
         <div />
-        {page.data.thumbnail ? (
+        {page.data.banner || page.data.thumbnail ? (
           <div className="relative w-full h-80">
             <BetterImage
-              src={page.data.thumbnail}
+              src={page.data.banner || page.data.thumbnail || ""}
               width={1200}
               height={600}
               priority
@@ -132,7 +132,9 @@ const ProjectPage = async ({ params }: { params: Props }) => {
             <div className="absolute right-3 top-[72px] md:hidden">
               <span className="flex gap-1.5 items-center text-[13px] select-none">
                 <Eye className="text-muted-foreground/70" size={16} />
-                <span>{page.data.views}</span>
+                <span>
+                  {page.data.views || <span className="font-frozito">–––</span>}
+                </span>
               </span>
             </div>
           </div>

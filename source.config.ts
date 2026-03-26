@@ -28,6 +28,7 @@ export const project = defineCollections({
     updatedAt: z.string(),
     createdAt: z.string(),
     thumbnail: z.string().optional(),
+    banner: z.string().optional(),
     links: z
       .object({
         github: z.string().optional(),
