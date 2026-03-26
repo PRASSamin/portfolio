@@ -61,10 +61,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: title,
     description: description,
-    creator: "@prassamin78",
-  },
-  verification: {
-    google: "1Hibq62KV62bSjoXtQEEWNH7oArNJYkycmuyJ2yOaW4",
+    creator: "@imprassamin",
   },
 };
 
@@ -81,7 +78,6 @@ export default function RootLayout({
       } catch (e) {}
     })();
   `;
-
   return (
     <html
       className="scrollbar-hidden overflow-x-hidden scroll-smooth dark"
@@ -100,7 +96,7 @@ export default function RootLayout({
               <Progress />
             </Suspense>
             <Toaster />
-            <RootProvider search={{ enabled: false }}>
+            <RootProvider search={{ enabled: false }} theme={{ defaultTheme: "dark", forcedTheme: "dark" }}>
               <GlobalKeyBinderProvider>{children}</GlobalKeyBinderProvider>
             </RootProvider>
             <AnalyticsProvider />

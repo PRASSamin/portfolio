@@ -1,0 +1,112 @@
+---
+category: Security
+createdAt: '2025-06-01T00:00:00+06:00'
+description: >-
+  Zero-knowledge encrypted secret sharing for developers. Paste a secret or drop
+  a .env file, everything encrypts in your browser. The server never sees it.
+links:
+  github: 'https://github.com/prassamin/envdrop'
+  live: 'https://envdrop.dev'
+thumbnail: >-
+  https://res.cloudinary.com/dee5yihmx/image/upload/v1774507124/pras/portfolio/projects/EnvDrop.png
+title: EnvDrop
+tools:
+  - Motion
+  - NextJs
+  - Redis
+  - Tailwind
+  - Typescript
+updatedAt: '2026-03-26T11:37:39.785Z'
+---
+
+Every developer has done it. Pasted an API key in Slack. Emailed a `.env` file to a teammate. Dropped database credentials in a Discord DM. It works, but that Stripe key you shared six months ago is still sitting in plaintext in someone's chat history.
+
+Most "secret sharing" tools out there either need everyone to install something and create an account, or the server can still read your data. I wanted something where the server is blind by design and sharing a secret takes a few seconds with no signup. That's why I built EnvDrop.
+
+![EnvDrop](https://raw.githubusercontent.com/redenv-labs/envdrop/refs/heads/main/public/thumbnail.png)
+
+---
+
+### How it works
+
+Your browser encrypts everything before it leaves your machine. The server only ever stores encrypted noise.
+
+<Steps>
+  <Step>
+    **Encrypt in your browser.** Your browser generates a random AES-256-GCM key and encrypts the secret client-side using the Web Crypto API.
+  </Step>
+  <Step>
+    **The key stays in the URL.** The encryption key goes into the URL fragment (the part after `#`). Browsers never send fragments over HTTP, so the server never sees the key.
+  </Step>
+  <Step>
+    **Recipient decrypts locally.** When someone opens the link, their browser fetches the encrypted blob and decrypts it using the key from the URL.
+  </Step>
+</Steps>
+
+```
+You                          EnvDrop Server                    Recipient
+ │                               │                               │
+ ├─ Encrypt in browser ──────►   │                               │
+ │  (AES-256-GCM)                │                               │
+ │                               ├─ Store encrypted blob         │
+ │                               │  (zero knowledge)             │
+ ├─ Get share link ◄─────────    │                               │
+ │  (key lives in URL fragment)  │                               │
+ │                               │                               │
+ ├─ Send link to recipient ──────────────────────────────────►   │
+ │                               │                               │
+ │                               │    ◄── Fetch encrypted blob ──┤
+ │                               │                               │
+ │                               │        Decrypt in browser ────┤
+ │                               │        (AES-256-GCM)          │
+```
+
+---
+
+### What you can do with it
+
+<Tabs items={["Share Secrets", "Drop .env Files", "Password Protection"]}>
+  <Tab value="Share Secrets">
+    Paste any secret, an API key, a database password, a connection string, and get a secure link in seconds. No signup, no accounts.
+
+    You can also configure how the secret behaves:
+    - **Burn after read** so it self-destructs after one view
+    - **Auto-expiry** with options for 1 hour, 24 hours, or 3 days
+
+  </Tab>
+  <Tab value="Drop .env Files">
+    Drag and drop a `.env` file (or any sensitive file up to 200KB) and the entire thing gets encrypted client-side. The recipient opens the link and gets the decrypted contents right in their browser, ready to copy or download.
+
+  </Tab>
+  <Tab value="Password Protection">
+    You can add an optional password as a second layer. The password never goes to the server. It's used as extra key material via PBKDF2 to derive a wrapping key that encrypts the master key.
+  </Tab>
+</Tabs>
+
+---
+
+### The security model
+
+<Callout type="info" title="Zero-Knowledge Architecture">
+  Even if the server gets compromised, an attacker gets nothing but encrypted noise. The decryption key only exists in the share link's URL fragment, which never touches the server.
+</Callout>
+
+- Encryption and decryption happen exclusively in the browser using the Web Crypto API
+- The server stores only encrypted ciphertext and has no way to decrypt it
+- Burn-after-read deletion is triggered client-side after successful decryption, so a page reload won't destroy the secret before it's actually been read
+- All API endpoints are rate-limited per IP using Upstash Ratelimit
+
+The encryption engine behind this is <Link href="https://www.npmjs.com/package/@redenv/e2ee" target="_blank">**@redenv/e2ee**</Link>, a standalone zero-knowledge encryption library I built and open sourced separately.
+
+---
+
+### The road ahead
+
+- <Terminal className="inline-block text-green-400 mr-2" /> **CLI Tool:**
+  `npx envdrop push .env` to encrypt and share directly from the terminal. Developers live in the terminal, so EnvDrop should too.
+- <Users className="inline-block text-blue-400 mr-2" /> **Team Spaces:**
+  Shared encrypted vaults with role-based access and audit logs for teams that need to manage secrets together.
+- <MessageSquare className="inline-block text-purple-400 mr-2" /> **Slack & Discord Bots:**
+  `/envdrop share` right inside your team chat.
+- <Webhook className="inline-block text-orange-400 mr-2" /> **API Access:**
+  A REST API for CI/CD pipelines to rotate and share credentials programmatically.

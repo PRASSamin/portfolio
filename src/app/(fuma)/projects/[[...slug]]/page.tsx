@@ -124,6 +124,7 @@ const ProjectPage = async ({ params }: { params: Props }) => {
               src={page.data.thumbnail}
               width={1200}
               height={600}
+              priority
               alt={page.data.title}
               className="w-screen h-full object-cover"
             />
