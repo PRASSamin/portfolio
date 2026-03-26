@@ -36,7 +36,6 @@
     "@mui/icons-material": "^6.3.1",
     "@next/third-parties": "^15.5.0",
     "@pras-ui/slot": "^1.0.2",
-    "@prass/betterimage": "^1.0.4",
     "@prisma/client": "^6.13.0",
     "@prisma/extension-accelerate": "^2.0.2",
     "@radix-ui/react-avatar": "^1.1.10",

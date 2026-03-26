@@ -6,16 +6,12 @@ import { notFound } from "next/navigation";
 import { DocsBody, DocsPage } from "fumadocs-ui/page";
 import { getMDXComponents, mdxComponents } from "@/mdx-components";
 import { formatDate } from "@/utils/format-date";
-import { motion, useInView } from "motion/react";
-import { BetterImage } from "@prass/betterimage/components";
+import Image from "next/image";
 import ExpandableText from "@/components/ExpandableText";
 import { Eye, LinkIcon } from "lucide-react";
-import { isTomorrow } from "date-fns";
-import { Heading } from "fumadocs-ui/components/heading";
-import { geolocation, ipAddress } from "@vercel/functions";
+import { geolocation } from "@vercel/functions";
 import { NextRequest } from "next/server";
 import Footer from "@/components/Footer";
-import { getBlogs } from "@/utils/get-blogs";
 import { getProjects } from "@/utils/get-projects";
 import Link from "next/link";
 import { Github } from "@/components/icons";
@@ -114,14 +110,16 @@ const ProjectPage = async ({ params }: { params: Props }) => {
   page.data.views = projectStat?.totalViews;
   const MDX = page.data.body;
 
+  const thumbnail = (page.data.banner || page.data.thumbnail)?.replace(/\.(png|jpe?g)$/i, ".webp")
+
   return (
     <>
       <div className={`bg-background min-h-[calc(100vh-44px)] pb-4 relative`}>
         <div />
-        {page.data.banner || page.data.thumbnail ? (
+        {thumbnail ? (
           <div className="relative w-full h-80">
-            <BetterImage
-              src={page.data.banner || page.data.thumbnail || ""}
+            <Image
+              src={thumbnail}
               width={1200}
               height={600}
               priority
@@ -141,7 +139,7 @@ const ProjectPage = async ({ params }: { params: Props }) => {
         ) : null}
         <div
           className={`lg:flex items-center justify-center max-w-[calc(100vw-1rem)] lg:max-w-full mx-auto relative z-50 ${
-            page?.data?.thumbnail ? "-mt-28" : "mt-40"
+            thumbnail ? "-mt-28" : "mt-40"
           }`}
         >
           <div className="prose prose-invert !max-w-[100ch] w-full flex flex-col gap-6">

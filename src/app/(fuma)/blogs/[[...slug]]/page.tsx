@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 import { DocsBody, DocsPage } from "fumadocs-ui/page";
 import { getMDXComponents, mdxComponents } from "@/mdx-components";
 import { formatDate } from "@/utils/format-date";
-import { BetterImage } from "@prass/betterimage/components";
+import Image from "next/image";
 import ExpandableText from "@/components/ExpandableText";
 import { Eye } from "lucide-react";
 import { Heading } from "fumadocs-ui/components/heading";
@@ -111,8 +111,8 @@ const BlogPage = async ({ params }: { params: Props }) => {
         <div />
         {page.data.thumbnail ? (
           <div className="relative w-full h-80">
-            <BetterImage
-              src={page.data.thumbnail}
+            <Image
+              src={page.data.thumbnail.replace(/\.(png|jpe?g)$/i, ".webp")}
               width={1200}
               height={600}
               alt={page.data.title}

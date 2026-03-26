@@ -1,0 +1,100 @@
+---
+category: Web App
+createdAt: '2026-03-26T13:33:34.824Z'
+description: >-
+  A free, open source media downloader for Instagram, TikTok, Facebook, and
+  YouTube. Paste a link, pick what you want, download.
+links:
+  github: 'https://github.com/PRASSamin/Fetchy'
+  live: 'https://gofetchy.app'
+thumbnail: >-
+  https://res.cloudinary.com/dee5yihmx/image/upload/v1774532278/pras/portfolio/projects/Fetchy.png
+title: Fetchy
+tools:
+  - NextJs
+  - Redis
+  - Tailwind
+  - Typescript
+  - Vercel
+updatedAt: '2026-03-26T13:38:40.835Z'
+---
+
+
+Fetchy started as a simple Node.js project back when I was learning web development. It could download videos from YouTube and Instagram, and that was about it. The UI was basic, the code was messy, and it did the job.
+
+But I kept using it myself. And every time I needed to grab a TikTok video or a Facebook reel, I'd think about what Fetchy could be if I actually rebuilt it properly. So I did. Three times.
+
+The current version, codenamed **Neon**, is a full rewrite with a proper architecture, a plugin system for tools, and support for Instagram, TikTok, Facebook, and YouTube. It's free, open source, and has no signup requirement.
+
+---
+
+### How it works
+
+Paste a link from any supported platform, and Fetchy extracts the media for you. Videos, photos, reels, stories, carousels, slideshows. You pick the quality and format, then download.
+
+<Tabs items={["Instagram", "TikTok", "Facebook"]}>
+  <Tab value="Instagram">
+    Download posts, reels, carousels, stories, and highlights. Fetchy handles both public and private-looking pages that require session context on Instagram's end. You get the full resolution media, not a compressed preview.
+  </Tab>
+  <Tab value="TikTok">
+    Download videos with or without watermark, extract audio as MP3, and handle slideshows. Paste the TikTok link, and Fetchy pulls everything it can find.
+  </Tab>
+  <Tab value="Facebook">
+    Download videos, reels, stories, and highlights from Facebook. Supports both public posts and pages that normally require login to view.
+  </Tab>
+</Tabs>
+
+---
+
+### The evolution
+
+Fetchy has gone through three major rewrites. Each version taught me something new about building software.
+
+<Steps>
+  <Step>
+    **v1** was a Node.js + Express app with server-rendered EJS templates. Basic video downloading for YouTube and Instagram. It worked, but the codebase was rough.
+  </Step>
+  <Step>
+    **v2** moved to Next.js with Tailwind CSS. Added rate limiting, better error handling, and a cleaner UI. But the architecture was still tightly coupled.
+  </Step>
+  <Step>
+    **v3 (Neon)** is the current version. Full rewrite with Next.js 15, a custom plugin system for tool metadata, FumaDocs-powered blog, i18n support, and a unified API response format across all download endpoints.
+  </Step>
+</Steps>
+
+Starting with v3, each major release is named after an element from the periodic table. Neon, Argon, Zinc, Copper, and so on.
+
+---
+
+### What powers it
+
+The download pipeline works like this: when you paste a URL, Fetchy's API scrapes the platform, uploads the media temporarily to Cloudinary, and generates a short-lived CDN link through a Cloudflare Worker with KV storage. The original source URL is never exposed to the user.
+
+<Callout type="info" title="Temporary storage only">
+  Downloaded media is cached on Cloudinary temporarily. Nothing is stored permanently. The CDN keys in Cloudflare KV expire automatically.
+</Callout>
+
+Upstash Redis handles two things: logging every API call (success logs auto-expire, error logs persist until resolved) and rate limiting to prevent abuse.
+
+The tool system is one of the more interesting parts. Each download tool (Instagram, TikTok, etc.) has its own `meta.ts` frontmatter file. A custom Next.js plugin collects all this metadata at build time and maps it into a central store, so adding a new platform is just a matter of creating a new folder with the right files.
+
+---
+
+### What I learned building this
+
+- <GitBranch className="inline-block text-green-400 mr-2" /> **Rewriting is fine.** Each version of Fetchy was better because I understood more. v1 taught me how HTTP works, v2 taught me component architecture, v3 taught me how to build systems that scale.
+- <Sparkles className="inline-block text-orange-400 mr-2" /> **Plugin systems pay off.** Building the frontmatter + mapper plugin system took time upfront, but adding new tools now takes minutes instead of hours.
+- <Globe className="inline-block text-blue-400 mr-2" /> **i18n from day one.** Adding internationalization later is painful. Fetchy Neon has it baked in with `next-intl`.
+
+<Banner variant="rainbow" className="mt-10">
+  **Fetchy is open source!** Check out the code, contribute, or file an issue
+  on{" "}
+  <Link href="https://github.com/PRASSamin/Fetchy" target="_blank">
+    GitHub
+  </Link>
+  , or try it live at{" "}
+  <Link href="https://gofetchy.app" target="_blank">
+    gofetchy.app
+  </Link>
+  .
+</Banner>

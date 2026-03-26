@@ -6,7 +6,7 @@ import { Link } from "@/components/Link";
 import { motion, Variants } from "motion/react";
 import { Check, Eye, ListFilterPlus, Loader2, SearchIcon } from "lucide-react";
 
-import { BetterImage } from "@prass/betterimage/components";
+import Image from "next/image";
 import ExpandableText from "@/components/ExpandableText";
 
 import {
@@ -369,7 +369,7 @@ const BlogsView = ({
                       }}
                     >
                       {blog.thumbnail && (
-                        <BetterImage
+                        <Image
                           src={blog.thumbnail}
                           width={300}
                           height={300}

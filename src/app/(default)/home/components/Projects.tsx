@@ -7,7 +7,7 @@ import {
   CardTitle,
   CardFooter,
 } from "@/components/ui/card";
-import { BetterImage } from "@prass/betterimage/components";
+import Image from "next/image";
 import ExpandableText from "../../../../components/ExpandableText";
 import { Button } from "@/components/ui/button";
 import {
@@ -99,11 +99,14 @@ const ProjectSection: React.FC<Props> = ({ projects }) => {
                   <CardHeader className="p-4 h-full justify-between">
                     <CardTitle className="flex items-center gap-2 relative min-h-56">
                       {project.thumbnail && (
-                        <BetterImage
+                        <Image
                           className="rounded-md aspect-square object-cover"
                           width={500}
                           height={500}
-                          src={project.thumbnail}
+                          src={project.thumbnail.replace(
+                            /\.(png|jpe?g)$/i,
+                            ".webp",
+                          )}
                           alt={project.title}
                         />
                       )}

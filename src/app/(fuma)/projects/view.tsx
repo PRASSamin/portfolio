@@ -6,7 +6,7 @@ import {
   CardTitle,
   CardFooter,
 } from "@/components/ui/card";
-import { BetterImage } from "@prass/betterimage/components";
+import Image from "next/image";
 import ExpandableText from "@/components/ExpandableText";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { motion, Variants } from "motion/react";
@@ -249,7 +249,7 @@ const ProjectsView = ({
                                 "ml-auto animate-spin",
                                 sort === Object.values(order)[i]
                                   ? "opacity-100"
-                                  : "opacity-0"
+                                  : "opacity-0",
                               )}
                             />
                           ) : (
@@ -258,7 +258,7 @@ const ProjectsView = ({
                                 "ml-auto",
                                 sort === Object.values(order)[i]
                                   ? "opacity-100"
-                                  : "opacity-0"
+                                  : "opacity-0",
                               )}
                             />
                           )}
@@ -304,11 +304,14 @@ const ProjectsView = ({
                   <CardHeader className="p-4 h-full justify-between">
                     <CardTitle className="flex items-center gap-2 relative min-h-56 aspect-16/12">
                       {project.thumbnail && (
-                        <BetterImage
+                        <Image
                           className="rounded-md object-cover"
                           width={500}
                           height={500}
-                          src={project.thumbnail}
+                          src={project.thumbnail.replace(
+                            /\.(png|jpe?g)$/i,
+                            ".webp",
+                          )}
                           alt={project.title}
                         />
                       )}
@@ -334,7 +337,7 @@ const ProjectsView = ({
                         {i === 0 &&
                           new Date(project.updated_at || project.created_at) >
                             new Date(
-                              new Date().getTime() - 3 * 24 * 60 * 60 * 1000 // 3 days
+                              new Date().getTime() - 3 * 24 * 60 * 60 * 1000, // 3 days
                             ) && (
                             <span className="bg-muted text-foreground border px-1.5 py-0.5 rounded text-[10px] tracking-wide uppercase">
                               New

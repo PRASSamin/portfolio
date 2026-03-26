@@ -1,4 +1,4 @@
-import { BetterImage } from "@prass/betterimage/components";
+import Image from "next/image";
 import { GithubOAuthButton } from "@/components/GithubOAuthButton";
 import { Info } from "lucide-react";
 import {
@@ -16,7 +16,7 @@ export default function Page() {
       {/* Left Section (Anime Collage) */}
       <div className="relative">
         <div className="absolute inset-0 bg-linear-to-t from-card via-card/60 to-card/50 z-10" />
-        <BetterImage
+        <Image
           src="/assets/anime_collage.png"
           width={1000}
           height={1000}
