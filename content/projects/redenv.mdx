@@ -1,0 +1,109 @@
+---
+category: Security
+createdAt: '2026-04-13T04:53:25.295Z'
+description: >-
+  A zero-knowledge secret management system for modern apps. Encrypt secrets
+  client-side, store safely in Upstash Redis, and load them at runtime.
+links:
+  github: 'https://github.com/redenv-labs/redenv'
+  live: 'https://redenv.dev'
+thumbnail: 'https://res.cloudinary.com/dee5yihmx/image/upload/v1776056450/pras/portfolio/images/redenv.png'
+banner: 'https://res.cloudinary.com/dee5yihmx/image/upload/v1776056620/pras/portfolio/images/redenv-cover.png'
+title: Redenv
+tools:
+  - Typescript
+  - Redis
+  - NodeJs
+  - Security
+  - CLI
+updatedAt: '2026-04-13T12:00:00.000Z'
+---
+
+Redenv started from a real pain I kept seeing in teams and personal projects. Secrets were everywhere: local `.env` files, deployment dashboards, old chat messages, and random notes. It worked at first, but after a few months things became messy. One teammate had an old key, another had the updated one, and rotating secrets felt risky because it often needed a rebuild.
+
+I wanted one system that solves both sides of the problem:
+
+- **Security**: secrets should be encrypted before storage, and plaintext should not touch the database
+- **Developer experience**: updating a secret should feel like changing config, not shipping a new release
+
+That is why I built Redenv as a **developer-first, zero-knowledge secret management system** where encryption happens client-side and apps can fetch secrets dynamically at runtime.
+
+![Redenv](https://res.cloudinary.com/dee5yihmx/image/upload/v1776056620/pras/portfolio/images/redenv-cover.png)
+
+---
+
+### What it does
+
+- Encrypts secrets client-side using Web Crypto primitives
+- Stores encrypted values in Upstash Redis with project/environment scoping
+- Provides a CLI for add, edit, list, history, rollback, import/export, and token workflows
+- Includes `@redenv/client` for runtime loading with caching and stale-while-revalidate behavior
+- Supports optional visual management through `@redenv/studio`
+
+---
+
+### How it works
+
+<Steps>
+  <Step>
+    **Project setup and key generation.** During registration, Redenv creates a per-project encryption key. That key is protected by a key derived from your master password.
+  </Step>
+  <Step>
+    **Encrypt before write.** When you add or update a secret, encryption happens on the client side using AES-256-GCM. Redis stores only encrypted values and metadata.
+  </Step>
+  <Step>
+    **Runtime access with scoped tokens.** Apps use service tokens to fetch encrypted data and decrypt in runtime memory. This allows updates without rebuild-heavy workflows.
+  </Step>
+</Steps>
+
+Under the hood, I use PBKDF2-HMAC-SHA256 key derivation with strong iteration settings and a clean separation between metadata and environment secret records in Redis.
+
+---
+
+### Architecture decisions
+
+I designed Redenv as a small ecosystem instead of one giant package:
+
+- `@redenv/core` for crypto and shared logic
+- `@redenv/cli` for operational workflows and team usage
+- `@redenv/client` for runtime loading inside apps
+- `@redenv/studio` as an optional visual layer
+
+This separation made it easier to test, version, and improve each part independently. It also keeps the runtime client lightweight for production apps.
+
+---
+
+### Key workflows I focused on
+
+<Tabs items={["Daily Ops", "Production Safety", "Team Collaboration"]}>
+  <Tab value="Daily Ops">
+    Add, update, and inspect secrets fast from the CLI. I focused on commands that map to real day-to-day work so developers can manage secrets without opening multiple dashboards.
+  </Tab>
+  <Tab value="Production Safety">
+    Secret history and rollback are built in. If a bad value gets deployed, you can inspect versions and recover quickly instead of debugging blind.
+  </Tab>
+  <Tab value="Team Collaboration">
+    Service tokens and environment scoping allow safer sharing patterns. Teams can separate development/staging/production behavior without duplicating unmanaged `.env` files.
+  </Tab>
+</Tabs>
+
+---
+
+### Challenges while building
+
+- **Balancing security and UX**: strong crypto is useless if daily usage feels painful
+- **Cross-runtime compatibility**: making Web Crypto behavior reliable across Node and modern runtimes
+- **Versioning model**: keeping history useful without making read/write operations complicated
+- **Dynamic loading**: avoiding latency spikes using cache + stale-while-revalidate strategies
+
+These constraints shaped many implementation details and helped me think more like a product engineer, not just a feature builder.
+
+---
+
+### Why this project matters
+
+On serverless platforms, changing a secret often means opening a dashboard and triggering a rebuild. Redenv decouples that process by allowing apps to read updated secrets at runtime while keeping the zero-knowledge model intact.
+
+For me, this project is important because it combines security engineering, DX design, and system architecture in one product. It is not only about encrypting data, it is about building a workflow developers actually want to use every day.
+
+The goal is simple: make secret management more secure **and** more practical for real teams shipping fast.
