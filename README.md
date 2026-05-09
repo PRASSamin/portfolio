@@ -1,6 +1,6 @@
 # 💫 About Me:
 
-Hey there! I'm **PRAS Samin**, a dedicated developer who loves bringing ideas to life through code. My focus is on creating digital tools that are intuitive for users and efficient for developers. I enjoy tackling diverse challenges, from crafting web applications to building strong backend systems and automating complex processes. I'm also deeply committed to the open source community, contributing to platforms like npm, PyPI, and the Linux ecosystem, always aiming to share knowledge and make a positive impact.<br><br>🔭 I’m currently working on pras-ui<br>👯 I’m looking to collaborate
+Hey there! I'm **PRAS Samin**, a dedicated developer who loves bringing ideas to life through code. My focus is on creating digital tools that are intuitive for users and efficient for developers. I enjoy tackling diverse challenges, from crafting web applications to building strong backend systems and automating complex processes. I'm also deeply committed to the open source community, contributing to platforms like npm, PyPI, and the Linux ecosystem, always aiming to share knowledge and make a positive impact.<br><br>👯 I’m looking to collaborate
 
 <br/>
 
@@ -14,13 +14,9 @@ Hey there! I'm **PRAS Samin**, a dedicated developer who loves bringing ideas to
 
 # 📊 GitHub Stats:
 
-![](https://github-readme-stats.vercel.app/api?username=prassamin&theme=github_dark&hide_border=false&include_all_commits=false&count_private=false)<br/>
-![](https://nirzak-streak-stats.vercel.app/?user=prassamin&theme=github_dark&hide_border=false)<br/>
-![](https://github-readme-stats.vercel.app/api/top-langs/?username=prassamin&theme=github_dark&hide_border=false&include_all_commits=false&count_private=false&layout=compact)
-
-### 🔝 Top Contributed Repo
-
-![](https://github-contributor-stats.vercel.app/api?username=prassamin&limit=5&theme=github_dark&combine_all_yearly_contributions=true)
+![](https://github-readme-stats.shion.dev/api?username=prassamin&theme=github_dark&hide_border=false&include_all_commits=false&count_private=false)<br/>
+![](https://streak-stats.demolab.com/?user=prassamin&theme=github_dark&hide_border=false)<br/>
+![](https://github-readme-stats.shion.dev/api/top-langs/?username=prassamin&theme=github_dark&hide_border=false&include_all_commits=false&count_private=false&layout=compact)
 
 ---
 
