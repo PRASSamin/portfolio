@@ -146,11 +146,12 @@ export default function DonatePage() {
             {/* Optional Details */}
             <div className="space-y-4">
               <label className="text-sm font-semibold tracking-wide uppercase text-muted-foreground ml-1">
-                Leave a Note (Optional)
+                Your Details
               </label>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <input
                   type="text"
+                  required
                   placeholder="Your Name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
@@ -158,6 +159,7 @@ export default function DonatePage() {
                 />
                 <input
                   type="email"
+                  required
                   placeholder="Your Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}

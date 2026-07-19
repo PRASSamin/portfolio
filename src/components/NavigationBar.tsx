@@ -12,7 +12,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { HomeIcon, FolderGit2, Library, User } from "lucide-react";
+import { HomeIcon, FolderGit2, Library, User, Heart } from "lucide-react";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 
 export const navItems = [
@@ -35,6 +35,11 @@ export const navItems = [
     href: "/about",
     name: "About",
     icon: User,
+  },
+  {
+    href: "/donate",
+    name: "Donate",
+    icon: Heart,
   },
   {
     href: "https://github.com/PRASSamin",

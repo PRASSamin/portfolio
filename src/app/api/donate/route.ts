@@ -13,16 +13,17 @@ export async function POST(req: Request) {
     const amountInCents = Math.round(parseFloat(amount) * 100);
     const origin = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
-    const checkout = await polar.checkouts.create({
+    const checkoutPayload: any = {
       products: [process.env.NEXT_PUBLIC_POLAR_DONATION_PRODUCT_ID],
       successUrl: `${origin}/donate/success?checkout_id={CHECKOUT_ID}`,
       amount: amountInCents,
-      customerEmail: email || undefined,
-      customerName: name || undefined,
-      customFieldData: {
-        message: message || undefined
-      }
-    });
+    };
+
+    if (email) checkoutPayload.customerEmail = email;
+    if (name) checkoutPayload.customerName = name;
+    if (message) checkoutPayload.customFieldData = { message };
+
+    const checkout = await polar.checkouts.create(checkoutPayload);
 
     return NextResponse.json({ url: checkout.url });
   } catch (error) {

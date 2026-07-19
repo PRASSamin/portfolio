@@ -8,6 +8,8 @@ import {
   Email,
 } from "@mui/icons-material";
 import { motion } from "framer-motion";
+import { Heart } from "lucide-react";
+import DonationBanner from "./DonationBanner";
 
 const HeroSection = () => {
   const socialHandles = [
@@ -67,7 +69,7 @@ const HeroSection = () => {
           always aiming to make a positive impact.
         </p>
       </div>
-      <div className="relative p-[3px] rounded-sm transition-all duration-1000 group after:rounded-sm after:-z-10 after:absolute after:w-full after:inset-0 after:p-[3px] after:bg-linear-to-r after:from-theme-primary after:to-theme-secondary before:absolute before:inset-0 before:m-auto before:rounded-sm before:-z-10 before:transition-all before:duration-300 before:bg-linear-to-r before:from-theme-primary before:to-theme-secondary before:blur-lg hover:before:blur-xs">
+      <div className="relative p-[3px] rounded-sm transition-all duration-1000 group after:rounded-sm after:-z-10 after:absolute after:w-full after:inset-0 after:p-[3px] after:bg-linear-to-r after:from-theme-primary after:to-theme-secondary before:absolute before:inset-0 before:m-auto before:rounded-sm before:-z-10 before:transition-all before:duration-300 before:bg-linear-to-r before:from-theme-primary before:to-theme-secondary before:blur-lg hover:before:blur-xs w-max">
         <button
           onClick={() => window.open("/resume", "_blank")}
           className="text-md py-2.5 px-3 rounded-sm border-none bg-black text-white cursor-pointer shadow-[2px_2px_3px_#000000b4]"
@@ -134,6 +136,11 @@ const HeroSection = () => {
             </a>
           );
         })}
+      </div>
+      
+      {/* Web3 style donation cinematic banner */}
+      <div className="w-full mt-4">
+        <DonationBanner />
       </div>
     </div>
   );

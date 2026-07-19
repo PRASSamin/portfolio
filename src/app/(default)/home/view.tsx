@@ -17,6 +17,7 @@ const HomeView: React.FC<Props> = ({ totalProjects, projects }) => {
   const serviceAnimation = useSectionAnimation();
   const journeyAnimation = useSectionAnimation();
   const projectAnimation = useSectionAnimation();
+  const bannerAnimation = useSectionAnimation();
 
   return (
     <div className="flex flex-col items-center w-[calc(100vw-2rem)] lg:container mx-auto">
